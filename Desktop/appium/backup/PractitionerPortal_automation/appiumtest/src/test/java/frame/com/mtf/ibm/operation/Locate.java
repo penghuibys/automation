@@ -198,7 +198,7 @@ public class Locate extends AndroidInit {
 				break;
 			} catch (Exception e) {
 				countTime = countTime + 1;
-		//		swipeAction("up");
+				//swipeAction("up");
 				LogUtil.info("[Info] swiped and find again..." + countTime + " time(s)");
 				
 				if (countTime == swipeTime){

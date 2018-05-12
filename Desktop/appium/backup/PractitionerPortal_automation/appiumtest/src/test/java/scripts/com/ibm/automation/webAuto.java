@@ -33,7 +33,7 @@ public class webAuto extends TestBase {
 		comm = new CommonPage(action);
 	}
 
-	@Test
+	//@Test
 	public void TestDemo(){
 		
     	url = comm.getURL("testdata.xlsx", "ENV", "URLProd", "URLStage", "URLTest" );
