@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" preserve-order="true">
+
+	
+	<test name="PractitionerPortal_TestDemo_android">
+		<classes>
+			<class name="com.ibm.automation.mobileAuto" />
+		</classes>
+	</test>
+	
+	<test name="PractitionerPortal_TestDemo_firefox">
+		<classes>
+			<class name="com.ibm.automation.webAuto" />
+		</classes>
+	</test>
+	
+
+</suite>

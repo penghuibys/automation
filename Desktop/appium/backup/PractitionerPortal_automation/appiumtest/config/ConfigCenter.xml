@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataPool>
+
+	<defaultApp>
+		<iOSsimuAppLocation>/Users/james/Library/Developer/CoreSimulator/Devices/39C201FD-77D3-4558-83F1-1527BFAC16F5/data/Containers/Bundle/Application/E79AB20D-7C88-4BC1-8A91-4B76E67590C3/RiskAdvisor.app</iOSsimuAppLocation>
+		<iOSudid>fd6dd1c79b77129784a97326da1e4f9e33b8f876</iOSudid>
+		<iOSBundleID>com.ibm.cio.be.finance.tools.salesperformance.icm.salestrackerst</iOSBundleID>
+		
+<!--   		<androidAppPackage>com.taobao.taobao</androidAppPackage>>
+		<androidAppActivity>com.taobao.tao.welcome.Welcome</androidAppActivity> -->
+	
+		<androidAppPackage>com.kingsoft</androidAppPackage>>
+		<androidAppActivity>com.kingsoft.StartActivity</androidAppActivity>
+		<androidAppName>com.kingsoft_080302.apk</androidAppName>
+		
+		<!-- <androidAppPackage>com.jiubang.gopim</androidAppPackage>>
+		<androidAppActivity>com.jiubang.gopim.main.MainActivity</androidAppActivity> -->
+		
+		<!--
+		<androidAppPackage>com.axonlabs.hkbus</androidAppPackage>>
+		<androidAppActivity>com.axonlabs.hkbus.view.MainActivity</androidAppActivity>  -->
+		
+		
+		<!-- single mode only, if multiple devices will call grid hub like : local host:4444 -->
+		<URL>127.0.0.1:4723</URL>
+	</defaultApp>
+
+	<objectSheet>iOSObject</objectSheet>
+
+	<driverName>webDriver</driverName>
+	
+
+</dataPool>

@@ -1,0 +1,71 @@
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+		<style type="text/css">
+			td{padding-left:15px;}
+			#header {
+				margin-left:2%;
+				color:#242424;
+				font-size:30px;
+				margin-bottom:20px;
+			}
+			#testinfo{
+				margin-left:2%;
+				margin-bottom:40px;
+				border: 1px;
+			}
+			#infoTable{
+				text-align:left;
+				width:90%;
+				height:230px;
+				border-collapse:collapse;
+				font-size:13px;
+				border-style:solid;
+				border-width:1px;
+				border-color:#446666;
+			}
+			#infoTitle{
+				color:#FFFFFF;
+				height:25px;
+				font-weight:bold;
+				font-size:16px;
+			}
+			.tc_passed {
+				background-color: green;
+			}
+			.tc_failed {
+				background-color: red;
+			}
+			#changesDiv{
+				margin-left:2%;
+			}
+		</style>
+		<title>Automated Testing Report</title>
+	</head>
+	<body>
+		<div id="header">Practitioner Portal [<b>@testing.project@</b>] - @project.type.name@ - @test.display.result@</div>
+		<div id="testinfo">
+			<table id="infoTable" border="1">
+				<tr id="infoTitle" class="tc_@test.result@">
+					<td colspan="3" height="20">Test Result Overview - @testing.browser@ - Pass rate: @success.ratio@%</td>
+				</tr>
+				<tr bgcolor="#FBFBEA">
+					<td height="20">Start Time: @test.suite.start@</td>
+					<td>End Time: @test.suite.finish@</td>
+					<td>Test Duration: @test.suite.duration@ms</td>
+				</tr>
+				<tr bgcolor="#FBFBEA">
+					<td height="20">Total/skipped: @test.total@/@test.skipped@</td>
+					<td>Passed: @test.passed@</td>
+					<td>Failed: @test.failed@</td>
+				</tr>
+				<tr bgcolor="#FBFBEA">
+						<td colspan="3" height="60">Test Report: <a href="@test.report@">@test.report@</a></td>
+				</tr>
+			</table>
+			</br>
+		<!--	<img src="@JOB_URL@/testngreports/graph" />  -->
+		</div>
+		</div>
+	</body>
+</html>

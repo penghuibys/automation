@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test thread-count="5" name="Default test(failed)">
+    <classes>
+      <class name="scripts.com.ibm.automation.mobileAuto">
+        <methods>
+          <include name="mobileTestDemo"/>
+          <include name="aClass"/>
+          <include name="setUp"/>
+          <include name="aTest"/>
+          <include name="bClass"/>
+        </methods>
+      </class> <!-- scripts.com.ibm.automation.mobileAuto -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->
