@@ -82,3 +82,24 @@
 2018-05-12 18:53:54 287...[FRAME]  Exist path: frame-output/report/image
 2018-05-12 18:53:54 288...[FRAME]  Copy File from /Users/devicepass/Desktop/appium/PractitionerPortal_automation/resource/image/Passed.png to /Users/devicepass/Desktop/appium/backup/PractitionerPortal_automation/appiumtest/frame-output/report/image/Passed.png
 2018-05-12 18:53:54 288...[FRAME]  Exist path: frame-output/executeLog
+2018-05-12 19:43:12 784...     [INFO] ----------------------------------------
+2018-05-12 19:43:12 810...     [INFO] Start to run Default test
+2018-05-12 19:43:12 810...     [INFO] ----------------------------------------
+
+2018-05-12 19:43:18 768...[FRAME]  Load Configuration Succeed
+2018-05-12 19:43:19 364...     [INFO] -------Start to Run Class-----------
+2018-05-12 19:43:19 370...
+  <TestCase> Start to run test method [mobileTestDemo]
+2018-05-12 19:43:25 312...     [STEP] Send Key 'sgasser@eg.ibm.com' to username, Passed
+2018-05-12 19:43:32 050...     [STEP] Send Key 'wedjun22' to password, Passed
+2018-05-12 19:43:32 051...  <TestCase> [mobileTestDemo] Test method Passed
+
+2018-05-12 19:43:32 052...     [INFO] -------Finished Test Class-----------
+2018-05-12 19:43:32 619...[FRAME]  Exist path: frame-output/report
+2018-05-12 19:43:32 622...[FRAME]  Exist path: frame-output/report/css
+2018-05-12 19:43:32 626...[FRAME]  Copy File from /Users/devicepass/Desktop/appium/PractitionerPortal_automation/resource/css/report.css to /Users/devicepass/git/automation/Desktop/appium/backup/PractitionerPortal_automation/appiumtest/frame-output/report/css/report.css
+2018-05-12 19:43:32 626...[FRAME]  Exist path: frame-output/report/image
+2018-05-12 19:43:32 628...[FRAME]  Copy File from /Users/devicepass/Desktop/appium/PractitionerPortal_automation/resource/image/Failed.png to /Users/devicepass/git/automation/Desktop/appium/backup/PractitionerPortal_automation/appiumtest/frame-output/report/image/Failed.png
+2018-05-12 19:43:32 628...[FRAME]  Exist path: frame-output/report/image
+2018-05-12 19:43:32 629...[FRAME]  Copy File from /Users/devicepass/Desktop/appium/PractitionerPortal_automation/resource/image/Passed.png to /Users/devicepass/git/automation/Desktop/appium/backup/PractitionerPortal_automation/appiumtest/frame-output/report/image/Passed.png
+2018-05-12 19:43:32 629...[FRAME]  Create Path : frame-output/executeLog
