@@ -23,5 +23,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/Users/devicepass/Desktop/appium/PractitionerPortal_automation/lib/selenium-server-standalone-2.53.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
