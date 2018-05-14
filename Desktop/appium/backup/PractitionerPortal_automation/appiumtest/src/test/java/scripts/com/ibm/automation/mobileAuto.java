@@ -15,17 +15,7 @@ import frame.com.pp.auto.action.FrameAssertion;
 import frame.com.pp.auto.base.TestBase;
 
 import java.net.MalformedURLException;
-import java.net.URL;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.remote.CapabilityType;
-//import com.appium.ios.IOSDeviceConfiguration;
-//import com.appium.utils.CommandPrompt;
-
 
 
 public class mobileAuto extends TestBase{
@@ -36,7 +26,6 @@ public class mobileAuto extends TestBase{
 	public String password_l;
 	public String year1;
 	public String year2;
-	public AndroidDriver<WebElement> driver;
 	public AndroidInit android;
 	public IOSDriver<WebElement> iosDriver;
 	public IOSInit ios;
@@ -45,40 +34,40 @@ public class mobileAuto extends TestBase{
   
   @BeforeTest
   public void setUp() throws MalformedURLException{
-	  	android = new AndroidInit();
 	  	ios = new IOSInit();
 	  	
-	//  	driver = android.launchApp();
 	  	iosDriver = ios.launchRealApp();
 	  	setMobileDriver(iosDriver); 
 	  	
 		data.loadData("testdata.xlsx", "mobile");
 		username = data.getData("mobileTest", "username");
 		password = data.getData("mobileTest", "password");
-		
-	 // 	username_l = data.getData("mobileTest", "username_l");
-	//	password_l = data.getData("mobileTest", "password_");
   }
 
 
 	
-  @Test//(description = "login")
+  @Test
   public void mobileTestDemo() throws InterruptedException, MalformedURLException {
-	  
-	  
-		
-	  username_l = "//XCUIElementTypeTextField";
-	  password_l = "//XCUIElementTypeSecureTextField";
-	  
-//	  Locate.swipeAction("left");;
-  
-//	  Locate.send(iosDriver, username_l, username);
-//	  Locate.send(iosDriver, password_l, password);
+	  signIn();
+	  Locate.click(iosDriver, "安利云购");
 
-	  Locate.send(iosDriver, "username", username);
-	  Locate.send(iosDriver, "password", password);
+	  Locate.clickIfItemDisplayed(iosDriver, "我知道了");
 	  
+	  Locate.click(iosDriver, "搜索");
+	  Locate.send(iosDriver,  "输入框", "饮品券");
+	  Locate.click(iosDriver, "搜索");
+	  boolean isSearchResultDisplayed = Locate.validateElementDisplayed(iosDriver, "RICHJAY咖啡饮品券");
+	  FrameAssertion.isTrue(isSearchResultDisplayed, "搜索结果显示.");
 	  
+
+	//  action.sleep(5, "");
+	  
+  }
+  
+  public void signIn() throws InterruptedException {
+	  Locate.send(iosDriver, "username", "58374544");
+	  Locate.send(iosDriver, "password", "123456");
+	  Locate.clickByLabelText(iosDriver, "登   录");
   }
   
   

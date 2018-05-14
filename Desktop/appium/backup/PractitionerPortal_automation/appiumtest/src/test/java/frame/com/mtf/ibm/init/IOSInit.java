@@ -64,7 +64,7 @@ public class IOSInit {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability("deviceName", "iPhone 7");
 		capabilities.setCapability(CapabilityType.VERSION, "10.3");
-		capabilities.setCapability(CapabilityType.PLATFORM_NAME, "iOS");
+		capabilities.setCapability(CapabilityType.PLATFORM, "iOS");
 		capabilities.setCapability("udid", "8522f4c2c74501a6c29c36846b7c4db50679bd7b");
 		capabilities.setCapability("bundleid", "com.amway.amhubPhone");
 		capabilities.setCapability("automationName", "XCUITest");

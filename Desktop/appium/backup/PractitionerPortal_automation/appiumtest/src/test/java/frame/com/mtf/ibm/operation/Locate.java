@@ -1,5 +1,6 @@
 package frame.com.mtf.ibm.operation;
 
+import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 
@@ -10,10 +11,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 
+import bsh.This;
 import frame.com.mtf.ibm.init.AndroidInit;
 import frame.com.mtf.ibm.universal.ReadFile;
 import frame.com.mtf.ibm.universal.SystemRelated;
@@ -43,9 +46,11 @@ public class Locate extends AndroidInit {
 	
 	private static ReadFile RF = new ReadFile();
 	private static int timeout = 30;//second
+	private static int retry = 3;
 	public static AppiumDriver<WebElement> androidDriver;
 	public static AppiumDriver<WebElement> iosDriver;
 	private static String timeFormat = "yyyy/MM/dd/ HH:mm:ss";
+	
 	
 	/**
 	 * @purpose due to network, device performance,other concerns, will do the next action when element is displayed 
@@ -67,37 +72,52 @@ public class Locate extends AndroidInit {
 		} else {
 			object = RF.getObject(target).get(0);
 			attribute = RF.getObject(target).get(1);
-//			object = target;
-//			attribute = "xpath";
 		}
 		switch (attribute.toLowerCase()) {	
 	    	case "id":
-	    	//	new WebDriverWait(dr,timeout).until((Function<? super WebDriver, V>) ExpectedConditions.presenceOfElementLocated(By.id("")));
-	    	//	until(ExpectedConditions.presenceOfElementLocated(By.id(object)));
-	    		 	element = (WebElement) dr.findElement(By.id(object));
+	    		try {
+	    			element = dr.findElement(By.id(object));
+	    			element(element);
+	    		} catch (Exception e) {
+		    		new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(By.id(object)));
+		    		element = dr.findElement(By.id(object));
+		    		element(element);	    		}
 	    		break;
 	    	case "name":
-	    	//	new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(By.name(object)));
-	    			element = (WebElement) dr.findElement(By.name(object));
+	    		try {
+	    			element = dr.findElement(By.name(object));
+	    			element(element);
+				} catch (Exception e) {
+		    		new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(By.name(object)));
+		    		element = dr.findElement(By.name(object));
+		    		element(element);
+				}
+
 	    		break;
 	    	case "classname":
-	    	//	new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(By.className(object)));
+	    		new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(By.className(object)));
 	    		element = dr.findElement(By.className(object));
 	    		break;
 	    	case "xpath":
-	    	//	new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(By.xpath(object)));
-	    		element =  dr.findElement(By.xpath(object));
+	    		try {
+	    			element = dr.findElement(By.xpath(object));
+	    			element(element);
+				} catch (Exception e) {
+		    		new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(By.xpath(object)));
+		    		element = dr.findElement(By.xpath(object));
+		    		element(element);
+				}
 	    		break;
 	    	case "linktext":
-	    	//	new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(By.linkText(object)));
+	    		new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(By.linkText(object)));
 	    		element = (WebElement) dr.findElement(By.linkText(object));
 	    		break;
 	    	case "tagname":
-	    	//	new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(By.tagName(object)));
+	    		new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(By.tagName(object)));
 	    		element = (WebElement) dr.findElement(By.tagName(object));
 	    		break;
 	        case "css":
-	    	//	new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(object)));
+	    		new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(object)));
 	    		element = (WebElement) dr.findElement(By.cssSelector(object));
 	    		break;      		
 	        default : 
@@ -107,6 +127,66 @@ public class Locate extends AndroidInit {
 		return element;
 	}
 	
+	public static WebElement element(WebElement element) {
+		if (element.isDisplayed()) {
+			return element;
+		} else {
+			return null;
+		}
+	}
+	
+	public static List<WebElement> elementsByLabel(AppiumDriver<WebElement> dr, String by, String target, int timeout){
+		
+		List<WebElement> elements = null;
+		String attribute = null;
+		String object = null;
+		//for temporary element purpose		
+		if (by != null){			
+			object = target;
+			attribute = by;
+		} else {
+			object = RF.getObject(target).get(0);
+			attribute = RF.getObject(target).get(1);
+		}
+		switch (attribute.toLowerCase()) {	
+	    	case "id":
+	    		new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(By.id(object)));
+	    		elements = dr.findElements(By.id(object));
+	    		break;
+	    	case "name":
+	    		new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(By.name(object)));
+	    		elements = dr.findElements(By.name(object));
+	    		break;
+	    	case "classname":
+	    		new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(By.className(object)));
+	    		elements = dr.findElements(By.className(object));
+	    		break;
+	    	case "xpath":
+	    		try {
+	    			elements = dr.findElements(By.xpath(object));
+				} catch (Exception e) {
+			   		new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(By.xpath(object)));
+		    		elements = dr.findElements(By.xpath(object));
+				}
+	    		break;
+	    	case "linktext":
+	    		new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(By.linkText(object)));
+	    		elements = dr.findElements(By.linkText(object));
+	    		break;
+	    	case "tagname":
+	    		new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(By.tagName(object)));
+	    		elements = dr.findElements(By.tagName(object));
+	    		break;
+	        case "css":
+	    		new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(object)));
+	        	elements = dr.findElements(By.cssSelector(object));
+	    		break;      		
+	        default : 
+	        	System.out.println("[Info:] Your attribute " + attribute + " is not correct or empty for selenium,the API such as: id,name,etc");
+	        	break;
+			}
+		return elements;
+	}
 	//overloading for time out which can be adjustment for mobile only
 	public static WebElement isDisplayed(AppiumDriver<WebElement> driver,String by,String target){
 		
@@ -123,16 +203,61 @@ public class Locate extends AndroidInit {
 		return isDisplayed(androidDriver,null,target,timeout);
 	}
 	
-	public static WebElement isDisplayed(AppiumDriver<WebElement> driver,String target){
+	public static WebElement element(AppiumDriver<WebElement> driver,String target){
 		
 		return isDisplayed(driver,null,target,timeout);
 	}
 	
-	private static void click(AppiumDriver<WebElement> driver,String target) throws InterruptedException{
+	public static List<WebElement> elementsByLabel(AppiumDriver<WebElement> driver,String target){
+		
+		return elementsByLabel(driver,null,target,timeout);
+	}
+	
+
+	public static void click(AppiumDriver<WebElement> driver,String target) throws InterruptedException{
 		
 		try{
-			WebElement dr = isDisplayed(driver, target);
-			dr.click();
+			WebElement element = element(driver, target);
+			element.click();
+			LogUtil.step("Clicked at '" + target + "', Passed");
+		}
+		catch(Exception e){
+			FrameAssertion.fail("Clicked at '" + target + "', Failed");
+		}
+	}
+	
+	public static boolean validateElementDisplayed(AppiumDriver<WebElement> driver,String target) throws InterruptedException{
+		
+		try{
+			WebElement element = element(driver, target);
+			return element.isDisplayed();
+		}
+		catch(Exception e){
+			return false;
+		}
+	}
+	
+	public static void clickIfItemDisplayed(AppiumDriver<WebElement> driver,String target) throws InterruptedException{
+		WebElement element = null;
+		try {
+			element = element(driver, target);
+			element.click();
+			LogUtil.step("Clicked at '" + target + "', Passed");
+		} catch (Exception e) {
+			LogUtil.info(target + " is not displayed.");
+		}
+	}
+	
+	public static void clickByLabelText(AppiumDriver<WebElement> driver,String target) throws InterruptedException{
+		
+		try{
+			List<WebElement> elements = elementsByLabel(driver, target);
+			for (int i = 0; i < elements.size(); i++) {
+				 if (elements.get(i).getAttribute("label").contains(target)) {
+					 elements.get(i).click();
+					 break;
+				 }
+			}
 			LogUtil.step("Clicked at '" + target + ", Passed");
 		}
 		catch(Exception e){
@@ -157,12 +282,13 @@ public class Locate extends AndroidInit {
 		Reporter.log(log);*/
 		
 		try{
-			WebElement element = isDisplayed(driver, target);
+			WebElement element = element(driver, target);
 			
 			
 		//	element.sendKeys(content);
 			
 		//	WebElement element = driver.findElement(By.xpath(target));
+			element.clear();
 			element.sendKeys(content);
 			LogUtil.step("Send Key '" + content + "' to " + target + ", Passed");
 		}
@@ -228,7 +354,7 @@ public class Locate extends AndroidInit {
 	
 	public static String pageText(AppiumDriver<WebElement> driver,String target){
 		
-		WebElement dr = isDisplayed(driver, target);
+		WebElement dr = element(driver, target);
 		Reporter.log("[Info] Page text has returned as : '" + dr.getText() + "' at " + SystemRelated.returnNowTime(timeFormat));
 		return dr.getText();		
 	}
@@ -273,14 +399,15 @@ public class Locate extends AndroidInit {
 	 * @notice no need to care the screen size, it will calculate the current size of screen then give swipe action
 	 */
 	
-//    private static void swipeAction(AppiumDriver<WebElement> driver, String direction) {
-//    	
-//    	int width = driver.manage().window().getSize().width;	
-//        int height = driver.manage().window().getSize().height;
-//        
-//    	switch (direction) {    	
-//			case "up":
-//				driver.swipe(width / 2, height * 3 / 4, width / 2, height / 4, 2000);break;
+    private static void swipeAction(AppiumDriver<WebElement> driver, String direction) {
+    	
+    	int width = driver.manage().window().getSize().width;	
+        int height = driver.manage().window().getSize().height;
+        
+    	switch (direction) {    	
+			case "up":
+
+				driver.swipe(width / 2, height * 3 / 4, width / 2, height / 4, 2000);break;
 //			case "down":
 //				driver.swipe(width / 2, height / 4, width / 2, height * 3 / 4, 2000);break;
 //			case "left":
@@ -292,17 +419,17 @@ public class Locate extends AndroidInit {
 //				driver.swipe(width / 4, height / 2, width * 3 / 4, height / 2, 2000);break;
 //			default:
 //				break;			
-//		}
-//	}
-//    
-//    public static void swipeAction(String direction) {
-//    	
-//		if (SystemRelated.mobileType() == true){
-//			swipeAction(androidDriver,direction);
-//		}else{
-//			swipeAction(IOSDriver,direction);
-//		}
-//    }
+		}
+	}
+    
+    public static void swipeAction(String direction) {
+    	
+		if (SystemRelated.mobileType() == true){
+			swipeAction(androidDriver,direction);
+		}else{
+			swipeAction(IOSDriver,direction);
+		}
+    }
   
     /**
      * @purpose to move from one element to another
@@ -312,8 +439,8 @@ public class Locate extends AndroidInit {
      */
     public static void slide(AppiumDriver<WebElement> driver, String start, String end) {
     	
-    	WebElement origin = isDisplayed(driver, start);
-    	WebElement destination = isDisplayed(driver, end);    	
+    	WebElement origin = element(driver, start);
+    	WebElement destination = element(driver, end);    	
         TouchAction action = new TouchAction(driver);
         action.longPress(origin).moveTo(destination).release().perform();
     }
@@ -326,7 +453,7 @@ public class Locate extends AndroidInit {
      */
     private static void longPress(AppiumDriver<WebElement> driver,String target,int duration){
     	
-      WebElement dr = isDisplayed(driver, target);
+      WebElement dr = element(driver, target);
   	  TouchAction action = new TouchAction(driver);  
   	 
   	//  action.longPress(dr).waitAction(duration * 1000).release().perform();
@@ -351,7 +478,7 @@ public class Locate extends AndroidInit {
   
     
     private static void longTap(AppiumDriver<WebElement> driver, String target , int duration){
-    	WebElement dr = isDisplayed(driver, target);
+    	WebElement dr = element(driver, target);
     //	driver.tap(1,dr,duration);
     	LogUtil.info("[Info] LongTap at : " + target + " at " + SystemRelated.returnNowTime(timeFormat)); 	
     }
