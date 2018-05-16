@@ -3,6 +3,7 @@ package frame.com.pp.auto.base;
 import java.util.HashMap;
 import java.util.List;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
@@ -20,11 +21,13 @@ import frame.com.pp.auto.report.FrameReporter;
 import frame.com.pp.auto.report.html.HtmlReportGenerator;
 import frame.com.pp.auto.report.model.CaseModel;
 //import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.AppiumDriver;
 
 @Listeners(FrameListener.class)
 public class TestBase {
 	
 	protected WebDriver driver;
+	protected AppiumDriver<WebElement> appiumDriver;
 //	protected AppiumDriver driver_;
 	protected FrameAction action;
 	protected TestData data;
@@ -41,13 +44,13 @@ public class TestBase {
 	public void setMobileDriver(WebDriver d) {
 		this.driver = d;
 		this.action = new FrameAction(this.driver);
-		this.assertion = new FrameAssertion();
+		this.assertion = new FrameAssertion(appiumDriver);
 	}
 	
 	public void setBrowser(BrowserType browserType) {
 		this.driver = new DriverSelector().setDriver(browserType);
 		this.action = new FrameAction(this.driver);
-		this.assertion = new FrameAssertion();
+		this.assertion = new FrameAssertion(appiumDriver);
 	}
 	
 	public WebDriver getDriver() {

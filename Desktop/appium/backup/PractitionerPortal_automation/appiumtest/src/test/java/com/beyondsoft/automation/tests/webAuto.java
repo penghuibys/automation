@@ -1,4 +1,4 @@
-package scripts.com.ibm.automation;
+package com.beyondsoft.automation.tests;
 
 import org.openqa.selenium.By;
 import org.testng.annotations.BeforeClass;

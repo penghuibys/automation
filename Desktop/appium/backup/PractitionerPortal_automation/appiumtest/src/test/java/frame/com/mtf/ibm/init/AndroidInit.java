@@ -23,7 +23,7 @@ import frame.com.mtf.ibm.universal.ReadFile;
 import frame.com.mtf.ibm.init.IOSInit;
 
 
-public class AndroidInit extends IOSInit{
+public class AndroidInit {
 		
 	/**
 	 * @notice what's the difference between  AppiunDriver, IOSDriver and AndroidDriver

@@ -1,14 +1,21 @@
 package frame.com.pp.auto.action;
 
 import java.util.Arrays;
+
+import org.openqa.selenium.WebElement;
 import org.testng.asserts.Assertion;
 import frame.com.mtf.ibm.operation.Locate;
 import frame.com.mtf.ibm.universal.SystemRelated;
 import frame.com.pp.auto.log.LogUtil;
+import io.appium.java_client.AppiumDriver;
 
 public class FrameAssertion extends Locate{
 	
 	
+	public FrameAssertion(AppiumDriver<WebElement> iOSDriver) {
+		super(iOSDriver);
+	}
+
 	public static void fail(String...message){
 		LogUtil.error(message);
 		new Assertion().fail(message[0]);
@@ -84,7 +91,7 @@ public class FrameAssertion extends Locate{
 				fail("The element :"+ target +" is Not displayed, Failed", "Checkpoint: " + description);
 				}
 		}else{
-			if(verifyDisplay(IOSDriver, target, timeout)){
+			if(verifyDisplay(iOSDriver, target, timeout)){
 				LogUtil.step("The element :"+ target +" is displayed, Passed", "Checkpoint: " + description);
 			}
 			else{

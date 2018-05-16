@@ -1,32 +1,29 @@
 
-package scripts.com.ibm.automation;
+package com.beyondsoft.automation.tests;
 
-import io.appium.java_client.android.AndroidDriver;
+
 import io.appium.java_client.ios.IOSDriver;
-
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import frame.com.mtf.ibm.init.AndroidInit;
 import frame.com.mtf.ibm.init.IOSInit;
-import frame.com.mtf.ibm.operation.Locate;
 import frame.com.pp.auto.action.FrameAssertion;
 import frame.com.pp.auto.base.TestBase;
 
 import java.net.MalformedURLException;
+import java.util.List;
 import org.openqa.selenium.WebDriver;
+import com.beyondsoft.automation.pages.Login;
+import com.beyondsoft.automation.pages.MainPage;
+import com.beyondsoft.automation.pages.RichJayCoffee;
+import com.beyondsoft.automation.pages.Exchange;
 
 
-public class mobileAuto extends TestBase{
+public class poc003 extends TestBase{
 	
 	public String username;
 	public String password;
-	public String username_l;
-	public String password_l;
-	public String year1;
-	public String year2;
-	public AndroidInit android;
 	public IOSDriver<WebElement> iosDriver;
 	public IOSInit ios;
     public WebDriver mobileDriver = null;
@@ -48,28 +45,28 @@ public class mobileAuto extends TestBase{
 	
   @Test
   public void mobileTestDemo() throws InterruptedException, MalformedURLException {
-	  signIn();
-	  Locate.click(iosDriver, "安利云购");
-
-	  Locate.clickIfItemDisplayed(iosDriver, "我知道了");
+	  Login loign = new Login(iosDriver);
+	  loign.signIn("", "");
 	  
-	  Locate.click(iosDriver, "搜索");
-	  Locate.send(iosDriver,  "输入框", "饮品券");
-	  Locate.click(iosDriver, "搜索");
-	  boolean isSearchResultDisplayed = Locate.validateElementDisplayed(iosDriver, "RICHJAY咖啡饮品券");
-	  FrameAssertion.isTrue(isSearchResultDisplayed, "搜索结果显示.");
+	  MainPage mainPage = new MainPage(iosDriver);
+	  mainPage.navigateToAmywayCloudShopping();
+	  mainPage.searchRichJayCoffee();
 	  
-
-	//  action.sleep(5, "");
+	  RichJayCoffee richJayCoffee = new RichJayCoffee(iosDriver);
+	  richJayCoffee.setExchange();
+	  
+	  Exchange exchange = new Exchange(iosDriver);
+	  exchange.confirmExchange();
+	  List<String> exchangeCount = exchange.getExchangeCount("兑换数量");
+	  FrameAssertion.contains(exchangeCount.toString(), "2", "验证兑换数量");
+	  exchange.submitExchange();
+	  
+	  List<String> moneyToPay = exchange.getMoneyToPay("应付总金额");
+	  List<String> bonuspointsToDeduct = exchange.getBonuspointsToDeduct("扣减悦享分");
+	  FrameAssertion.contains(moneyToPay.toString(), "￥ 20.00", "验证应付总金额");
+	  FrameAssertion.contains(bonuspointsToDeduct.toString(), "20.0", "扣减悦享分");
 	  
   }
-  
-  public void signIn() throws InterruptedException {
-	  Locate.send(iosDriver, "username", "58374544");
-	  Locate.send(iosDriver, "password", "123456");
-	  Locate.clickByLabelText(iosDriver, "登   录");
-  }
-  
   
 }
 
