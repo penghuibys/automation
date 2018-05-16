@@ -71,8 +71,10 @@ public class IOSInit {
 		capabilities.setCapability(CapabilityType.PLATFORM, "iOS");
 		capabilities.setCapability("udid", "8522f4c2c74501a6c29c36846b7c4db50679bd7b");
 		capabilities.setCapability("bundleid", "com.amway.amhubPhone");
+	//	capabilities.setCapability("bundleid", "com.tencent.xin");
 		capabilities.setCapability("automationName", "XCUITest");
 		capabilities.setCapability("noReset", true);
+	//	capabilities.setCapability("app", "/Users/devicepass/git/automation/Desktop/appium/backup/PractitionerPortal_automation/appiumtest/mobileApp/com.tencent.xin_6.0.2.22.ipa");
 		capabilities.setCapability("app", "/Users/devicepass/Desktop/appium/AmwayHubML_iPhone_v3.49.0_QA_out_2.ipa");
 		driver = new IOSDriver<WebElement>( new URL("http://127.0.0.1:4723/wd/hub"), capabilities); 
 		

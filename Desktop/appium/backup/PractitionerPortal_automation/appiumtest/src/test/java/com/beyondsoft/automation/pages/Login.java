@@ -12,11 +12,11 @@ public class Login {
 	
 	public static AppiumDriver<WebElement> iOSDriver;
 
-  public void signIn(String username, String password) throws InterruptedException {
+  public void signIn(String amwayId, String password) throws InterruptedException {
 	  Locate locate = new Locate(iOSDriver);
 	  
-	  locate.send("username", "58374544");
-	  locate.send("password", "123456");
+	  locate.send("安利号码", amwayId);
+	  locate.send("密码", password);
 	  locate.click("登   录");
   }
   

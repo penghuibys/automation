@@ -11,18 +11,22 @@ import frame.com.mtf.ibm.init.IOSInit;
 import frame.com.pp.auto.action.FrameAssertion;
 import frame.com.pp.auto.base.TestBase;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.util.List;
 import org.openqa.selenium.WebDriver;
 import com.beyondsoft.automation.pages.Login;
 import com.beyondsoft.automation.pages.MainPage;
 import com.beyondsoft.automation.pages.RichJayCoffee;
+import com.sun.jna.platform.win32.Netapi32Util.UserInfo;
 import com.beyondsoft.automation.pages.Exchange;
+import com.beyondsoft.automation.model.userInfo;
+import mobile.appiumtest.Utilities;
 
 
 public class poc003 extends TestBase{
 	
-	public String username;
+	public String amwayId;
 	public String password;
 	public IOSDriver<WebElement> iosDriver;
 	public IOSInit ios;
@@ -35,10 +39,11 @@ public class poc003 extends TestBase{
 	  	
 	  	iosDriver = ios.launchRealApp();
 	  	setMobileDriver(iosDriver); 
-	  	
-		data.loadData("testdata.xlsx", "mobile");
-		username = data.getData("mobileTest", "username");
-		password = data.getData("mobileTest", "password");
+		File app = new File("test-data/" + "user.json");
+	  	userInfo user = Utilities.load(app.getAbsolutePath(), "user", userInfo.class);
+
+		amwayId = user.getAmwayId();
+		password = user.getPassword();
   }
 
 
@@ -46,7 +51,7 @@ public class poc003 extends TestBase{
   @Test
   public void mobileTestDemo() throws InterruptedException, MalformedURLException {
 	  Login loign = new Login(iosDriver);
-	  loign.signIn("", "");
+	  loign.signIn(amwayId, password);
 	  
 	  MainPage mainPage = new MainPage(iosDriver);
 	  mainPage.navigateToAmywayCloudShopping();
