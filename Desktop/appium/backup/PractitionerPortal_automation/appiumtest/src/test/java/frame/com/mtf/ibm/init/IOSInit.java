@@ -1,6 +1,8 @@
 package frame.com.mtf.ibm.init;
 
 import io.appium.java_client.ios.IOSDriver;
+
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import org.openqa.selenium.WebElement;
@@ -59,7 +61,9 @@ public class IOSInit {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-//        
+//       	
+		File app = new File("mobileApp/" + "AmwayHubML_iPhone_v3.49.0_QA_out_2.ipa");
+		System.out.println(app.getAbsolutePath());
         
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability("deviceName", "iPhone 7");
@@ -69,9 +73,8 @@ public class IOSInit {
 		capabilities.setCapability("bundleid", "com.amway.amhubPhone");
 		capabilities.setCapability("automationName", "XCUITest");
 		capabilities.setCapability("noReset", true);
-		
 		capabilities.setCapability("app", "/Users/devicepass/Desktop/appium/AmwayHubML_iPhone_v3.49.0_QA_out_2.ipa");
-		driver = new IOSDriver( new URL("http://127.0.0.1:4723/wd/hub"), capabilities); 
+		driver = new IOSDriver<WebElement>( new URL("http://127.0.0.1:4723/wd/hub"), capabilities); 
 		
         return driver; 
 	}
