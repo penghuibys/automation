@@ -6,11 +6,9 @@ import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
 import frame.com.mtf.ibm.init.IOSInit;
 import frame.com.pp.auto.action.FrameAssertion;
 import frame.com.pp.auto.base.TestBase;
-
 import java.io.File;
 import java.net.MalformedURLException;
 import java.util.List;
@@ -18,13 +16,12 @@ import org.openqa.selenium.WebDriver;
 import com.beyondsoft.automation.pages.Login;
 import com.beyondsoft.automation.pages.MainPage;
 import com.beyondsoft.automation.pages.RichJayCoffee;
-import com.sun.jna.platform.win32.Netapi32Util.UserInfo;
 import com.beyondsoft.automation.pages.Exchange;
 import com.beyondsoft.automation.model.userInfo;
 import mobile.appiumtest.Utilities;
 
 
-public class poc003 extends TestBase{
+public class POC003 extends TestBase{
 	
 	public String amwayId;
 	public String password;
@@ -41,7 +38,6 @@ public class poc003 extends TestBase{
 	  	setMobileDriver(iosDriver); 
 		File app = new File("test-data/" + "user.json");
 	  	userInfo user = Utilities.load(app.getAbsolutePath(), "user", userInfo.class);
-
 		amwayId = user.getAmwayId();
 		password = user.getPassword();
   }
@@ -49,7 +45,7 @@ public class poc003 extends TestBase{
 
 	
   @Test
-  public void mobileTestDemo() throws InterruptedException, MalformedURLException {
+  public void mobileTestPOC003() throws InterruptedException, MalformedURLException {
 	  Login loign = new Login(iosDriver);
 	  loign.signIn(amwayId, password);
 	  

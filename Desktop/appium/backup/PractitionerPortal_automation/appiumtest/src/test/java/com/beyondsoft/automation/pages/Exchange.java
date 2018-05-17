@@ -48,14 +48,8 @@ public class Exchange {
 	
 
 	public List<String> getValidationInfo(AppiumDriver<WebElement> driver,String target) throws InterruptedException{
-		Locate locate = new Locate(iOSDriver, null);
-		List<WebElement> elements = locate.elements(driver, target);
-		List<String> texts = new ArrayList<>();
-		for (int i = 0; i < elements.size(); i++) {
-			String name = elements.get(i).getAttribute("name");
-			texts.add(name);
-		}
-		return texts;
+		Base base = new Base(iOSDriver, null);
+		return base.getAllValidationInfo(target);
 	}
 
 

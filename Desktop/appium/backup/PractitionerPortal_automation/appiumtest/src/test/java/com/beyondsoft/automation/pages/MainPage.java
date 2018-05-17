@@ -26,5 +26,13 @@ public class MainPage {
 		locate.click("搜索");
 		locate.atScreen("RICHJAY咖啡饮品券");
 	}
+	
+	public void searchHuangHouChaoGuo() throws InterruptedException {
+		Locate locate = new Locate(iOSDriver, null);
+		locate.click("搜索");
+		locate.send("输入框", "皇后中式炒锅");
+		locate.click("搜索");
+		locate.atScreen("搜索结果");
+	}
 
 }
