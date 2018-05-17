@@ -15,6 +15,7 @@ import java.util.List;
 import org.openqa.selenium.WebDriver;
 import com.beyondsoft.automation.pages.Login;
 import com.beyondsoft.automation.pages.MainPage;
+import com.beyondsoft.automation.pages.Payment;
 import com.beyondsoft.automation.pages.RichJayCoffee;
 import com.beyondsoft.automation.pages.Exchange;
 import com.beyondsoft.automation.model.userInfo;
@@ -56,6 +57,7 @@ public class POC003 extends TestBase{
 	  RichJayCoffee richJayCoffee = new RichJayCoffee(iosDriver);
 	  richJayCoffee.setExchange();
 	  
+	  
 	  Exchange exchange = new Exchange(iosDriver);
 	  exchange.confirmExchange();
 	  List<String> exchangeCount = exchange.getExchangeCount("兑换数量");
@@ -66,6 +68,17 @@ public class POC003 extends TestBase{
 	  List<String> bonuspointsToDeduct = exchange.getBonuspointsToDeduct("扣减悦享分");
 	  FrameAssertion.contains(moneyToPay.toString(), "￥ 20.00", "验证应付总金额");
 	  FrameAssertion.contains(bonuspointsToDeduct.toString(), "20.0", "扣减悦享分");
+	  
+	  Payment payment = new Payment(iosDriver);
+	  payment.goToPayment();
+	  payment.paymentSelection("poc003支付选择");// 支付宝
+	  payment.paymentConfirmation();
+	  payment.paymentCompletion();
+	  List<String> validation = payment.paymentValidation();
+	  FrameAssertion.contains(validation.toString(), "成功兑换", "验证支付成功信息");
+	  FrameAssertion.contains(validation.toString(), "RICH & JAY电子咖啡券 2 张", "验证支付成功信息");
+	  FrameAssertion.contains(validation.toString(), "成功扣除", "验证支付成功信息");
+	  FrameAssertion.contains(validation.toString(), "20.0 悦享分", "验证支付成功信息");
 	  
   }
   

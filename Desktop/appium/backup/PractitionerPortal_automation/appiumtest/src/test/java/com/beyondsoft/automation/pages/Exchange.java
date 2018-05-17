@@ -1,6 +1,5 @@
 package com.beyondsoft.automation.pages;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.WebElement;

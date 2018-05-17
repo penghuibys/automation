@@ -10,9 +10,10 @@ import org.openqa.selenium.WebElement;
 import frame.com.mtf.ibm.operation.Locate;
 import com.beyondsoft.automation.pages.Base;
 
-public class Pay {
-	public Pay(AppiumDriver<WebElement> iOSDriver) {
-		Pay.iOSDriver = iOSDriver;
+//PrePay : 支付前配货地址选择、发票选择等
+public class PrePay {
+	public PrePay(AppiumDriver<WebElement> iOSDriver) {
+		PrePay.iOSDriver = iOSDriver;
 	}
 
 	public static AppiumDriver<WebElement> iOSDriver;

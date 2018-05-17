@@ -18,7 +18,7 @@ import com.beyondsoft.automation.pages.Login;
 import com.beyondsoft.automation.pages.MainPage;
 import com.beyondsoft.automation.pages.HuangHouChaoGuo;
 import com.beyondsoft.automation.pages.ShoppingCart;
-import com.beyondsoft.automation.pages.Pay;
+import com.beyondsoft.automation.pages.PrePay;
 import com.beyondsoft.automation.model.userInfo;
 import mobile.appiumtest.Utilities;
 
@@ -74,13 +74,13 @@ public class POC004 extends TestBase{
 	  
 	  shoppingCart.confirm();
 	  
-	  Pay pay = new Pay(iosDriver);
-	  String defaultDelivery = pay.getDefaultDelivery();
+	  PrePay prePay = new PrePay(iosDriver);
+	  String defaultDelivery = prePay.getDefaultDelivery();
 	  FrameAssertion.equals(defaultDelivery, "1", "默认配送方式");//默认配送方式周一至周日：选中为1, 未选则为0
 	  
-	  pay.requireInvoice();
-	  pay.selectVATSpecialInvoice();
-	  List<String> totalAmount = pay.getTotalAmount();
+	  prePay.requireInvoice();
+	  prePay.selectVATSpecialInvoice();
+	  List<String> totalAmount = prePay.getTotalAmount();
 	  FrameAssertion.contains(totalAmount.toString(), "2,500", "验证总金额");
 
   }
