@@ -8,6 +8,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ScreenOrientation;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -17,6 +18,10 @@ import frame.com.mtf.ibm.universal.SystemRelated;
 import frame.com.pp.auto.action.FrameAssertion;
 import frame.com.pp.auto.log.LogUtil;
 import frame.com.pp.auto.util.SysUtil;
+import mobile.appiumtest.AppiumDriverWait;
+import mobile.appiumtest.AppiumDriverWait.AppiumExpectedCondition;;
+
+
 
 
 public class Locate  {
@@ -36,9 +41,11 @@ public class Locate  {
 	
 	//Forbidden to create an object
 //	private Locate(){}
-	public Locate(AppiumDriver<WebElement> iOSDriver){
+	public Locate(AppiumDriver<WebElement> iOSDriver, AppiumDriver<WebElement> androidDriver){
 		Locate.iOSDriver = iOSDriver;
+		Locate.androidDriver = androidDriver;
 	}
+	
 	
 	private static ReadFile RF = new ReadFile();
 	private static int timeout = 30;//second
@@ -110,7 +117,18 @@ public class Locate  {
 	        case "css":
 	    		new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(object)));
 	    		element = (WebElement) dr.findElement(By.cssSelector(object));
-	    		break;      		
+	    		break;   
+	        case "accessibilityId":
+	        	final String test = "aa";
+	        	AppiumDriverWait wait= new AppiumDriverWait(dr);
+	            List<WebElement> ele= wait.until( new AppiumExpectedCondition<List<WebElement>>(){
+	                public List<WebElement> apply(AppiumDriver driver){
+	                    return driver.findElementsByAccessibilityId(test);
+	                }
+	            });
+	            
+	            element = ele.get(0);
+		    	break;    
 	        default : 
 	        	System.out.println("[Info:] Your attribute " + attribute + " is not correct or empty for selenium,the API such as: id,name,etc");
 	        	break;
@@ -124,6 +142,19 @@ public class Locate  {
 		} else {
 			return null;
 		}
+	}
+	
+public static WebElement isDisplayed(AppiumDriver<WebElement> dr, final String target){
+		
+    	AppiumDriverWait wait= new AppiumDriverWait(dr);
+        List<WebElement> elements= wait.until( new AppiumExpectedCondition<List<WebElement>>(){
+            public List<WebElement> apply(AppiumDriver driver){
+                return driver.findElementsByAccessibilityId(target);
+            }
+        });
+        
+        WebElement element = elements.get(0);
+		return element;
 	}
 	
 	public static List<WebElement> elements(AppiumDriver<WebElement> dr, String by, String target, int timeout){
@@ -167,7 +198,7 @@ public class Locate  {
 	        case "css":
 	    		new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(object)));
 	        	elements = dr.findElements(By.cssSelector(object));
-	    		break;      		
+	    		break;   
 	        default : 
 	        	System.out.println("[Info:] Your attribute " + attribute + " is not correct or empty for selenium,the API such as: id,name,etc");
 	        	break;
@@ -205,6 +236,18 @@ public class Locate  {
 		
 		try{
 			WebElement element = element(driver, target);
+			element.click();
+			LogUtil.step("Clicked at '" + target + "', Passed");
+		}
+		catch(Exception e){
+			FrameAssertion.fail("Clicked at '" + target + "', Failed");
+		}
+	}
+	
+	public static void click_(AppiumDriver<WebElement> driver,String target) throws InterruptedException{
+		
+		try{
+			WebElement element = isDisplayed(driver, target);
 			element.click();
 			LogUtil.step("Clicked at '" + target + "', Passed");
 		}
@@ -269,6 +312,15 @@ public class Locate  {
 		
 		if (SystemRelated.mobileType() == true){
 			click(androidDriver,target);
+		}else{
+			click(iOSDriver,target);
+		}
+	}
+	
+	public void click_(String target) throws InterruptedException{
+		
+		if (SystemRelated.mobileType() == true){
+			click_(androidDriver,target);
 		}else{
 			click(iOSDriver,target);
 		}

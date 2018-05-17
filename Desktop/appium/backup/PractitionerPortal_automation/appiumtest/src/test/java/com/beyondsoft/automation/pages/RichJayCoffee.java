@@ -14,7 +14,7 @@ public class RichJayCoffee {
 	}
 	
 	public void setExchange () throws InterruptedException {
-		  Locate locate = new Locate(iOSDriver);
+		  Locate locate = new Locate(iOSDriver, null);
 		  locate.click("RICHJAY咖啡饮品券");
 		  locate.atScreen("立即兑换");
 		  locate.swipeAction("up");

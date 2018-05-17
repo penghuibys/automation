@@ -9,11 +9,13 @@ import frame.com.mtf.ibm.universal.SystemRelated;
 import frame.com.pp.auto.log.LogUtil;
 import io.appium.java_client.AppiumDriver;
 
-public class FrameAssertion extends Locate{
+public class FrameAssertion extends Locate {
+	public static AppiumDriver<WebElement> iOSDriver;
+	public static AppiumDriver<WebElement> androidDriver;
 	
 	
-	public FrameAssertion(AppiumDriver<WebElement> iOSDriver) {
-		super(iOSDriver);
+	public FrameAssertion(AppiumDriver<WebElement> iOSDriver, AppiumDriver<WebElement> androidDriver) {
+		super(iOSDriver, androidDriver);
 	}
 
 	public static void fail(String...message){

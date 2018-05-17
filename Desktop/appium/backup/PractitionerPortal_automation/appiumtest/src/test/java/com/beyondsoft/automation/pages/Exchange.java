@@ -18,12 +18,12 @@ public class Exchange {
 	
 	
 	public void confirmExchange () throws InterruptedException {
-		  Locate locate = new Locate(iOSDriver);
+		  Locate locate = new Locate(iOSDriver, null);
 		  locate.click("立即兑换");
 	}
 	
 	public void submitExchange () throws InterruptedException {
-		  Locate locate = new Locate(iOSDriver);
+		  Locate locate = new Locate(iOSDriver, null);
 		  locate.send("输入手机号", "13434122152");
 		  locate.send("确认手机号", "13434122152");
 		  locate.click("兑换数量"); //workaround to dismiss keyboard
@@ -48,7 +48,7 @@ public class Exchange {
 	
 
 	public List<String> getValidationInfo(AppiumDriver<WebElement> driver,String target) throws InterruptedException{
-		Locate locate = new Locate(iOSDriver);
+		Locate locate = new Locate(iOSDriver, null);
 		List<WebElement> elements = locate.elements(driver, target);
 		List<String> texts = new ArrayList<>();
 		for (int i = 0; i < elements.size(); i++) {
