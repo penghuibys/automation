@@ -55,7 +55,7 @@ public class Locate  {
 	 */
 
 	
-	public static WebElement isDisplayed(AppiumDriver<WebElement> dr, String by, String target, int timeout){
+	public WebElement isDisplayed(AppiumDriver<WebElement> dr, String by, String target, int timeout){
 		
 		WebElement element = null;
 		String attribute = null;
@@ -175,22 +175,22 @@ public class Locate  {
 		return elements;
 	}
 	//overloading for time out which can be adjustment for mobile only
-	public static WebElement isDisplayed(AppiumDriver<WebElement> driver,String by,String target){
+	public  WebElement isDisplayed(AppiumDriver<WebElement> driver,String by,String target){
 		
 		return isDisplayed(driver,by,target,timeout);
 	}
 		
-	public static WebElement isDisplayed(AppiumDriver<WebElement> driver,String target,int timeout){
+	public  WebElement isDisplayed(AppiumDriver<WebElement> driver,String target,int timeout){
 		
 		return isDisplayed(driver,null,target,timeout);
 	}
 	
 	
-	public static WebElement isDisplayed(String target){
+	public WebElement isDisplayed(String target){
 		return isDisplayed(androidDriver,null,target,timeout);
 	}
 	
-	public static WebElement element(AppiumDriver<WebElement> driver,String target){
+	public WebElement element(AppiumDriver<WebElement> driver,String target){
 		
 		return isDisplayed(driver,null,target,timeout);
 	}
@@ -201,7 +201,7 @@ public class Locate  {
 	}
 	
 
-	public static void click(AppiumDriver<WebElement> driver,String target) throws InterruptedException{
+	public void click(AppiumDriver<WebElement> driver,String target) throws InterruptedException{
 		
 		try{
 			WebElement element = element(driver, target);
@@ -213,14 +213,14 @@ public class Locate  {
 		}
 	}
 	
-	public static void atScreen(AppiumDriver<WebElement> driver,String target) throws InterruptedException{
+	public void atScreen(AppiumDriver<WebElement> driver,String target) throws InterruptedException{
 		
 		try{
 			element(driver, target);
-			LogUtil.step("Current Screen is dislayed, contains '" + target + "', Passed");
+			LogUtil.step("Current Screen is dislayed,  contains text '" + target + "', Passed");
 		}
 		catch(Exception e){
-			FrameAssertion.fail("Current Screen is Not contains '" + target + "', Failed");
+			FrameAssertion.fail("Current Screen is Not contains text '" + target + "', Failed");
 		}
 	}
 	
@@ -313,7 +313,7 @@ public class Locate  {
 	 * 
 	 * @notice this method will help to find the element and the page will swipe automatically until the element found or out of swipe time
 	 */
-	public static void swipeLocate(AppiumDriver<WebElement> driver, String by, String name, int swipeTime) throws InterruptedException{		
+	public void swipeLocate(AppiumDriver<WebElement> driver, String by, String name, int swipeTime) throws InterruptedException{		
 		int countTime = 0;
 		while (true){
 			try {
@@ -335,23 +335,23 @@ public class Locate  {
 	}
 		
 	// post other By method, such as id , className, xpath
-	public static void swipeLocate(AppiumDriver<WebElement> driver, String by,String name) throws InterruptedException{
+	public void swipeLocate(AppiumDriver<WebElement> driver, String by,String name) throws InterruptedException{
 		
 		swipeLocate(driver , by, name, 20);
 	}
 	
 	//By name , always to use as swipe locate, so create one method for it only
-	public static void swipeLocate(AppiumDriver<WebElement> driver,String name, int swipeTime) throws InterruptedException{
+	public void swipeLocate(AppiumDriver<WebElement> driver,String name, int swipeTime) throws InterruptedException{
 		
 		swipeLocate(driver,"name", name , swipeTime);
 	}
 	
-	public static void swipeLocate(AppiumDriver<WebElement> driver,String name) throws InterruptedException{
+	public void swipeLocate(AppiumDriver<WebElement> driver,String name) throws InterruptedException{
 		
 		swipeLocate(driver,"name", name , 20);
 	}
 	
-	public static String pageText(AppiumDriver<WebElement> driver,String target){
+	public String pageText(AppiumDriver<WebElement> driver,String target){
 		
 		WebElement dr = element(driver, target);
 		Reporter.log("[Info] Page text has returned as : '" + dr.getText() + "' at " + SystemRelated.returnNowTime(timeFormat));
@@ -440,7 +440,7 @@ public class Locate  {
      * @param start
      * @param end
      */
-    public static void slide(AppiumDriver<WebElement> driver, String start, String end) {
+    public void slide(AppiumDriver<WebElement> driver, String start, String end) {
     	
     	WebElement origin = element(driver, start);
     	WebElement destination = element(driver, end);    	
@@ -454,7 +454,7 @@ public class Locate  {
      * @param target
      * @param duration
      */
-    private static void longPress(AppiumDriver<WebElement> driver,String target,int duration){
+    private void longPress(AppiumDriver<WebElement> driver,String target,int duration){
     	
       WebElement dr = element(driver, target);
   	  TouchAction action = new TouchAction(driver);  
@@ -464,13 +464,13 @@ public class Locate  {
  	  
     }
     
-    private static void longPress(AppiumDriver<WebElement> driver,String target){
+    private void longPress(AppiumDriver<WebElement> driver,String target){
     	
     	longPress(driver,target,1);
     	
       }
     
-    public static void longPress(String target) {
+    public void longPress(String target) {
     	
 		if (SystemRelated.mobileType() == true) {
 			longPress(androidDriver,target);
@@ -480,17 +480,17 @@ public class Locate  {
     }
   
     
-    private static void longTap(AppiumDriver<WebElement> driver, String target , int duration){
+    private void longTap(AppiumDriver<WebElement> driver, String target , int duration){
     	WebElement dr = element(driver, target);
     //	driver.tap(1,dr,duration);
     	LogUtil.info("[Info] LongTap at : " + target + " at " + SystemRelated.returnNowTime(timeFormat)); 	
     }
     
-    private static void longTap(AppiumDriver<WebElement> driver, String target){
+    private void longTap(AppiumDriver<WebElement> driver, String target){
     	longTap(driver,target,2000);
     }
     
-    public static void longTap(String target){
+    public void longTap(String target){
     	
 		if (SystemRelated.mobileType() == true) {
 			longTap(androidDriver,target);
@@ -499,7 +499,7 @@ public class Locate  {
 		}
     }
     
-    public static boolean verifyDisplay(AppiumDriver<WebElement> driver, String target, int timeout){
+    public boolean verifyDisplay(AppiumDriver<WebElement> driver, String target, int timeout){
     	
 		for(int i = 1; i <= 5; i++){
 			try{

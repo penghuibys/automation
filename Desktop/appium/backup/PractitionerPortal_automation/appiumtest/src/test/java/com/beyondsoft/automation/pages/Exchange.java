@@ -32,30 +32,18 @@ public class Exchange {
 	}
 	
 	public List<String> getExchangeCount(String target) throws InterruptedException {
-
-		return getValidationInfo(iOSDriver, target);
+		Base base = new Base(iOSDriver);
+		return base.getAllValidationInfo(target);
 	}
 	
 	public List<String> getMoneyToPay(String target) throws InterruptedException {
-
-		return getValidationInfo(iOSDriver, target);
+		Base base = new Base(iOSDriver);
+		return base.getAllValidationInfo(target);
 	}
 
 	public List<String> getBonuspointsToDeduct(String target) throws InterruptedException {
-
-		return getValidationInfo(iOSDriver, target);
-	}
-	
-
-	public List<String> getValidationInfo(AppiumDriver<WebElement> driver,String target) throws InterruptedException{
-		Locate locate = new Locate(iOSDriver);
-		List<WebElement> elements = locate.elements(driver, target);
-		List<String> texts = new ArrayList<>();
-		for (int i = 0; i < elements.size(); i++) {
-			String name = elements.get(i).getAttribute("name");
-			texts.add(name);
-		}
-		return texts;
+		Base base = new Base(iOSDriver);
+		return base.getAllValidationInfo(target);
 	}
 
 
