@@ -73,7 +73,7 @@ public class POC003 extends TestBase{
 	  
 	  Payment payment = new Payment(iosDriver);
 	  payment.goToPayment();
-	  payment.paymentSelection("poc003支付选择");// 支付宝
+	  payment.paymentSelection("支付宝");
 	  payment.paymentConfirmation();
 	  payment.paymentCompletion();
 	  List<String> validation = payment.paymentValidation();

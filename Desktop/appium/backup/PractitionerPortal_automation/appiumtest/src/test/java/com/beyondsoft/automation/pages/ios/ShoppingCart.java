@@ -4,6 +4,7 @@ import java.util.List;
 import org.openqa.selenium.WebElement;
 import frame.com.mtf.ibm.operation.Locate;
 import io.appium.java_client.AppiumDriver;
+import com.beyondsoft.automation.basevalidation.Base;
 
 public class ShoppingCart {
 	public static AppiumDriver<WebElement> iOSDriver;

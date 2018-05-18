@@ -14,14 +14,13 @@ import java.net.MalformedURLException;
 import java.util.List;
 
 import org.openqa.selenium.WebDriver;
-
-import com.beyondsoft.automation.model.userInfo;
-import com.beyondsoft.automation.pages.ios.HuangHouChaoGuo;
 import com.beyondsoft.automation.pages.ios.Login;
 import com.beyondsoft.automation.pages.ios.MainPage;
-import com.beyondsoft.automation.pages.ios.PrePay;
+import com.beyondsoft.automation.pages.ios.Payment;
+import com.beyondsoft.automation.pages.ios.HuangHouChaoGuo;
 import com.beyondsoft.automation.pages.ios.ShoppingCart;
-
+import com.beyondsoft.automation.pages.ios.Settlement;
+import com.beyondsoft.automation.model.userInfo;
 import mobile.appiumtest.Utilities;
 
 
@@ -58,32 +57,43 @@ public class POC004 extends TestBase{
 	  HuangHouChaoGuo chaoGuo = new HuangHouChaoGuo(iosDriver);
 	  chaoGuo.addToShoppingCart();
 	  ShoppingCart shoppingCart = new ShoppingCart(iosDriver);
-	  String shoppingCount = shoppingCart.getShoppingCount();
-	  FrameAssertion.contains(shoppingCount, "1", "验证加入购物车数量");
+//	  String shoppingCount = shoppingCart.getShoppingCount();
+//	  FrameAssertion.contains(shoppingCount, "1", "验证加入购物车数量");
 	  
 	  shoppingCart.goToShoppingCart();
-	  List<String> goodsAmount = shoppingCart.getGoodsAmount();
-	  FrameAssertion.contains(goodsAmount.toString(), "4", "验证商品总数");
-	  
-	  List<String> getCurrentBuyer = shoppingCart.getCurrentBuyer();
-	  FrameAssertion.contains(getCurrentBuyer.toString(), amwayId, "验证当前购货人");
-	  
-	  List<String> moneyAmount = shoppingCart.getMoneyAmount();
-	  FrameAssertion.contains(moneyAmount.toString(), "2,500", "验证总金额");//
-	  
-	  List<String> promotionGifts = shoppingCart.getPromotionGift();
-	  FrameAssertion.equals(promotionGifts.size(), 3, "验证附件个数");
+//	  List<String> goodsAmount = shoppingCart.getGoodsAmount();
+//	  FrameAssertion.contains(goodsAmount.toString(), "4", "验证商品总数");
+//	  
+//	  List<String> getCurrentBuyer = shoppingCart.getCurrentBuyer();//
+//	  FrameAssertion.contains(getCurrentBuyer.toString(), amwayId, "验证当前购货人");
+//	  
+//	  List<String> moneyAmount = shoppingCart.getMoneyAmount();//
+//	  FrameAssertion.contains(moneyAmount.toString(), "2,500", "验证总金额");//
+//	  
+//	  List<String> promotionGifts = shoppingCart.getPromotionGift();
+//	  FrameAssertion.equals(promotionGifts.size(), 3, "验证附件个数");
 	  
 	  shoppingCart.confirm();
 	  
-	  PrePay prePay = new PrePay(iosDriver);
-	  String defaultDelivery = prePay.getDefaultDelivery();
-	  FrameAssertion.equals(defaultDelivery, "1", "默认配送方式");//默认配送方式周一至周日：选中为1, 未选则为0
+	  Settlement settlement = new Settlement(iosDriver);
+	  String defaultDelivery = settlement.getDefaultDelivery();
+//	  FrameAssertion.equals(defaultDelivery, "1", "默认配送方式");//默认配送方式周一至周日：选中为1, 未选则为0
 	  
-	  prePay.requireInvoice();
-	  prePay.selectVATSpecialInvoice();
-	  List<String> totalAmount = prePay.getTotalAmount();
-	  FrameAssertion.contains(totalAmount.toString(), "2,500", "验证总金额");
+	  settlement.requireInvoice();
+	  settlement.selectVATSpecialInvoice();
+	  List<String> totalAmount = settlement.getTotalAmount();
+//	  FrameAssertion.contains(totalAmount.toString(), "2,500", "验证总金额");
+	  
+	  Payment payment = new Payment(iosDriver);
+	  payment.goToPayment();
+	  payment.doPayment();
+	  payment.paymentSelection("支付宝");
+	  payment.paymentConfirmation();
+	  payment.paymentCompletion();
+	  List<String> validation = payment.paymentValidation();
+	  List<String> amount =  payment.paymentAmount();
+	  FrameAssertion.contains(validation.toString(), "您已成功支付", "验证支付成功信息");
+	  FrameAssertion.contains(amount.toString(), "2,500", "验证支付成功信息");
 
   }
   

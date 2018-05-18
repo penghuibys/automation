@@ -2,19 +2,14 @@
 package com.beyondsoft.automation.pages.ios;
 
 import io.appium.java_client.AppiumDriver;
-
 import java.util.List;
-
 import org.openqa.selenium.WebElement;
-
-import com.beyondsoft.automation.pages.ios.Base;
-
+import com.beyondsoft.automation.basevalidation.Base;
 import frame.com.mtf.ibm.operation.Locate;
 
-//PrePay : 支付前配货地址选择、发票选择等
-public class PrePay {
-	public PrePay(AppiumDriver<WebElement> iOSDriver) {
-		PrePay.iOSDriver = iOSDriver;
+public class Settlement {
+	public Settlement(AppiumDriver<WebElement> iOSDriver) {
+		Settlement.iOSDriver = iOSDriver;
 	}
 
 	public static AppiumDriver<WebElement> iOSDriver;
