@@ -17,12 +17,12 @@ public class Exchange {
 	
 	
 	public void confirmExchange () throws InterruptedException {
-		  Locate locate = new Locate(iOSDriver);
+		  Locate locate = new Locate(iOSDriver, null);
 		  locate.click("立即兑换");
 	}
 	
 	public void submitExchange () throws InterruptedException {
-		  Locate locate = new Locate(iOSDriver);
+		  Locate locate = new Locate(iOSDriver, null);
 		  locate.send("输入手机号", "13434122152");
 		  locate.send("确认手机号", "13434122152");
 		  locate.click("兑换数量"); //workaround to dismiss keyboard
@@ -31,17 +31,23 @@ public class Exchange {
 	}
 	
 	public List<String> getExchangeCount(String target) throws InterruptedException {
-		Base base = new Base(iOSDriver);
-		return base.getAllValidationInfo(target);
+
+		return getValidationInfo(iOSDriver, target);
 	}
 	
 	public List<String> getMoneyToPay(String target) throws InterruptedException {
-		Base base = new Base(iOSDriver);
-		return base.getAllValidationInfo(target);
+
+		return getValidationInfo(iOSDriver, target);
 	}
 
 	public List<String> getBonuspointsToDeduct(String target) throws InterruptedException {
-		Base base = new Base(iOSDriver);
+
+		return getValidationInfo(iOSDriver, target);
+	}
+	
+
+	public List<String> getValidationInfo(AppiumDriver<WebElement> driver,String target) throws InterruptedException{
+		Base base = new Base(iOSDriver, null);
 		return base.getAllValidationInfo(target);
 	}
 

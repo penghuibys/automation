@@ -14,13 +14,13 @@ public class MainPage {
 	}
 	
 	public void navigateToAmywayCloudShopping() throws InterruptedException {
-		Locate locate = new Locate(iOSDriver);
+		Locate locate = new Locate(iOSDriver, null);
 		locate.click("安利云购");
 		locate.clickIfItemDisplayed("我知道了");
 	}
 
 	public void searchRichJayCoffee() throws InterruptedException {
-		Locate locate = new Locate(iOSDriver);
+		Locate locate = new Locate(iOSDriver, null);
 		locate.click("搜索");
 		locate.send("输入框", "饮品券");
 		locate.click("搜索");
@@ -28,7 +28,7 @@ public class MainPage {
 	}
 	
 	public void searchHuangHouChaoGuo() throws InterruptedException {
-		Locate locate = new Locate(iOSDriver);
+		Locate locate = new Locate(iOSDriver, null);
 		locate.click("搜索");
 		locate.send("输入框", "皇后中式炒锅");
 		locate.click("搜索");

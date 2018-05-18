@@ -19,22 +19,22 @@ public class Payment {
 	public static AppiumDriver<WebElement> iOSDriver;
 	
 	public void goToPayment() throws InterruptedException {
-		Locate locate = new Locate(iOSDriver);
+		Locate locate = new Locate(iOSDriver, null);
 		locate.click("立即支付");
 	}
 	
 	public void paymentSelection(String payment) throws InterruptedException {
-		Locate locate = new Locate(iOSDriver);
+		Locate locate = new Locate(iOSDriver, null);
 		locate.clickIfItemDisplayed(payment);
 	}
 	
 	public void paymentConfirmation() throws InterruptedException {
-		Locate locate = new Locate(iOSDriver);
+		Locate locate = new Locate(iOSDriver, null);
 		locate.click("确认付款");
 	}
 	
 	public void paymentCompletion() throws InterruptedException {
-		Locate locate = new Locate(iOSDriver);
+		Locate locate = new Locate(iOSDriver, null);
 		List<WebElement> elements = locate.elements(iOSDriver, "密码输入框");
 		if (elements.size() == 6) {
 			elements.get(0).click();//打开键盘, workaround
@@ -49,7 +49,7 @@ public class Payment {
 	}
 	
 	public List<String> paymentValidation() throws InterruptedException {
-		Base base = new Base(iOSDriver);
+		Base base = new Base(iOSDriver, null);
 		return base.getAllValidationInfo("兑换成功信息");
 	}
 

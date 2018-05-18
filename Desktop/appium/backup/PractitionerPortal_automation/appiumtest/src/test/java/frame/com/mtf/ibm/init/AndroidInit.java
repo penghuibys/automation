@@ -43,16 +43,18 @@ public class AndroidInit {
 	
 	
 	public AndroidDriver<WebElement>launchApp(){
-		File app = new File("mobileApp/" + appName);
+	//	File app = new File("mobileApp/" + appName);
+		File app = new File("mobileApp/" + "weixin_1300.apk");//
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("deviceName","Android Emulator");
-        capabilities.setCapability("platformVersion", "5.1");
-        capabilities.setCapability("appPackage", appPackage);
-        capabilities.setCapability("appActivity",appActivity);
-//        capabilities.setCapability("app", app.getAbsolutePath());
+        capabilities.setCapability("deviceName","huawei mate9");
+        capabilities.setCapability("platformName", "android");
+   //     capabilities.setCapability("appPackage", appPackage);
+   //     capabilities.setCapability("appActivity",appActivity);
+        capabilities.setCapability("app", app.getAbsolutePath());
         //capabilities.setCapability("appWaitActivity","."+appActivity);       
         capabilities.setCapability("unicodeKeyboard", true);//Chinese input 
-        //capabilities.setCapability("resetKeyboard", true);//hide keyboard
+        capabilities.setCapability("resetKeyboard", true);//hide keyboard
+        capabilities.setCapability("noReset", true);
 		try {
 			androidDriver = new AndroidDriver<WebElement>(new URL("http://" + URL +"/wd/hub"), capabilities);
 		} catch (MalformedURLException e) {

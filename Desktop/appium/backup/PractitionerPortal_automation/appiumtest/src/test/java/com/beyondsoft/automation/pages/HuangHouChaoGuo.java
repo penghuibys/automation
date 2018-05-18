@@ -15,7 +15,7 @@ public class HuangHouChaoGuo {
 	}
 	
 	public void addToShoppingCart() throws InterruptedException {
-		  Locate locate = new Locate(iOSDriver);
+		  Locate locate = new Locate(iOSDriver, null);
 		  ShoppingCart shoppingCart = new ShoppingCart(iOSDriver);
 		  locate.click("皇后中式炒锅");
 		  shoppingCart.addToShoppingCart();

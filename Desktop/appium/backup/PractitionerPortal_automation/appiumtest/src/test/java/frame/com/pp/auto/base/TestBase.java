@@ -27,7 +27,8 @@ import io.appium.java_client.AppiumDriver;
 public class TestBase {
 	
 	protected WebDriver driver;
-	protected AppiumDriver<WebElement> appiumDriver;
+	protected AppiumDriver<WebElement> iosDriver;
+	protected AppiumDriver<WebElement> androidDriver;
 //	protected AppiumDriver driver_;
 	protected FrameAction action;
 	protected TestData data;
@@ -44,13 +45,13 @@ public class TestBase {
 	public void setMobileDriver(WebDriver d) {
 		this.driver = d;
 		this.action = new FrameAction(this.driver);
-		this.assertion = new FrameAssertion(appiumDriver);
+		this.assertion = new FrameAssertion(iosDriver, androidDriver);
 	}
 	
 	public void setBrowser(BrowserType browserType) {
 		this.driver = new DriverSelector().setDriver(browserType);
 		this.action = new FrameAction(this.driver);
-		this.assertion = new FrameAssertion(appiumDriver);
+		this.assertion = new FrameAssertion(iosDriver, androidDriver);
 	}
 	
 	public WebDriver getDriver() {

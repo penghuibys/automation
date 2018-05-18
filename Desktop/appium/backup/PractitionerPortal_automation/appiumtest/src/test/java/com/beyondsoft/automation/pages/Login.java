@@ -13,7 +13,7 @@ public class Login {
 	public static AppiumDriver<WebElement> iOSDriver;
 
   public void signIn(String amwayId, String password) throws InterruptedException {
-	  Locate locate = new Locate(iOSDriver);
+	  Locate locate = new Locate(iOSDriver, null);
 	  
 	  locate.send("安利号码", amwayId);
 	  locate.send("密码", password);
