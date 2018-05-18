@@ -31,15 +31,17 @@ public class AndroidInit {
 	 * 2,The AppiumDriver class contains all methods shared by iOS and Android
 	 * 3,IOSDriver and AndroidDriver both extend AppiumDriver and provide more methods, and specific implementations for some methods
 	 */
+	public static AndroidDriver<WebElement> androidDriver;
+	public static IOSDriver<WebElement> IOSDriver;
 	
-	ReadFile RF = new ReadFile();
-
+	ReadFile RF = new ReadFile(null, androidDriver);
 	private final String appPackage =  RF.xmlValue("androidAppPackage");
 	private final String appActivity =  RF.xmlValue("androidAppActivity");
 	private final String appName =  RF.xmlValue("androidAppName");
 	private final String URL = RF.xmlValue("URL");
-	public static AndroidDriver<WebElement> androidDriver;
-	public static IOSDriver<WebElement> IOSDriver;
+
+	
+	
 	
 	
 	public AndroidDriver<WebElement>launchApp(){

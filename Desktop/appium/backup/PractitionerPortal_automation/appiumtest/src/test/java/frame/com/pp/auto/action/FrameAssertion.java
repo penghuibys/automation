@@ -85,7 +85,7 @@ public class FrameAssertion extends Locate {
 	//For mobile
 	public void verifyDisplay(String target, String description, int timeout) throws InterruptedException{
 		
-		if (SystemRelated.mobileType() == true){
+		if (androidDriver != null){
 			if(verifyDisplay(androidDriver, target, timeout)){
 				LogUtil.step("The element :"+ target +" is displayed, Passed", "Checkpoint: " + description);
 			}

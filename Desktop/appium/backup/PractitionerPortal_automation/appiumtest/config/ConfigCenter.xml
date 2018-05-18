@@ -26,7 +26,6 @@
 		<URL>127.0.0.1:4723</URL>
 	</defaultApp>
 
-	<objectSheet>AndroidObject</objectSheet>
 
 	<driverName>webDriver</driverName>
 	

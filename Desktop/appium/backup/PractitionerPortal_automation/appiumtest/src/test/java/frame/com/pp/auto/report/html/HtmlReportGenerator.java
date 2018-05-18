@@ -29,9 +29,7 @@ public class HtmlReportGenerator {
 	}
 	
 	public void createHtmlReport(){
-		String p = this.getPath();
-		p = "/Users/devicepass/Desktop/appium/PractitionerPortal_automation/frame-output/report/index.html";
-		createHtml(p);
+		createHtml(this.getPath().replace("\\", "/"));
 		this.sb = new HtmlReportUtil(caseList, overview).writeHtml();
 		saveHtml();
 		new CopyResource().createCss();
@@ -39,10 +37,7 @@ public class HtmlReportGenerator {
 	
 	
 	private String getPath(){
-		String path = FrameConfig.getInstance().getConfig("ReportPath");
 		FileUtil.createPath(FrameConfig.getInstance().getConfig("ReportPath"));
-		
-		String path_ = NameUtil.getERepotrName() + ".html";
 		return FileUtil.getAbsolutelyPath(FrameConfig.getInstance().getConfig("ReportPath"), NameUtil.getERepotrName() + ".html");
 	}
 	

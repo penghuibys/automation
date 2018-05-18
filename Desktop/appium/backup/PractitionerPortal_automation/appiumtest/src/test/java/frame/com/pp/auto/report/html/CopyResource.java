@@ -16,14 +16,11 @@ public class CopyResource {
 	 * 
 	************************************************************************************************/
 	public void createCss(){
-//		String file = this.getCssPath();
-//		FileUtil.copyFile(FileUtil.getAbsolutelyPath("resource/css", "report.css"), getCssPath());
-//		FileUtil.copyFile(FileUtil.getAbsolutelyPath("resource/image", "Failed.png"), getFailImagePath());
-//		FileUtil.copyFile(FileUtil.getAbsolutelyPath("resource/image", "Passed.png"), getPassImagePath());
-		
-		FileUtil.copyFile("/Users/devicepass/Desktop/appium/PractitionerPortal_automation/resource/css/report.css", getCssPath());
-		FileUtil.copyFile("/Users/devicepass/Desktop/appium/PractitionerPortal_automation/resource/image/Failed.png", getFailImagePath());
-		FileUtil.copyFile("/Users/devicepass/Desktop/appium/PractitionerPortal_automation/resource/image/Passed.png", getPassImagePath());
+
+		FileUtil.copyFile(FileUtil.getAbsolutelyPath("resource/css", "report.css").replace("\\", "/"), getCssPath());
+		FileUtil.copyFile(FileUtil.getAbsolutelyPath("resource/image", "Failed.png").replace("\\", "/"), getFailImagePath());
+		FileUtil.copyFile(FileUtil.getAbsolutelyPath("resource/image", "Passed.png").replace("\\", "/"), getPassImagePath());
+
 	}
 	
 	

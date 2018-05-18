@@ -43,36 +43,36 @@ public class SystemRelated {
 	 * @notice to identify mobile device type according the xml tag and this tag related with xlsx sheet name
 	 * 		   true is Android, false is iOS
 	 */
-	public static boolean mobileType(){
-		
-		ReadFile rf = new ReadFile();
-		String type = rf.xmlValue("objectSheet");
-		Boolean osType = null;
-		if (type.equals("AndroidObject")){
-			osType = true;
-		}else if (type.equals("iOSObject")){
-			osType = false;
-		} else {
-			System.out.println("[Caution]: Your object.xlsx or ConfigCenter.xml file has wrong name, neither “AndroidObject” nor “iOSObject”");
-		}
-		return osType;
-	}
+//	public static boolean mobileType(){
+//		
+//		ReadFile rf = new ReadFile();
+//		String type = rf.xmlValue("objectSheet");
+//		Boolean osType = null;
+//		if (type.equals("AndroidObject")){
+//			osType = true;
+//		}else if (type.equals("iOSObject")){
+//			osType = false;
+//		} else {
+//			System.out.println("[Caution]: Your object.xlsx or ConfigCenter.xml file has wrong name, neither “AndroidObject” nor “iOSObject”");
+//		}
+//		return osType;
+//	}
 	
-	public static String driverType(){
-		
-		ReadFile rf = new ReadFile();
-		String type = rf.xmlValue("objectSheet");
-		String driverType = null;
-		if (type.equals("AndroidObject") || type.equals("iOSObject")){
-			driverType = "mobile";
-		}else if (type.equals("webObject")){
-			driverType = "web";
-		} else {
-			System.out.println("[Caution]: Your object.xlsx or ConfigCenter.xml file has wrong name, neither 'appiumDriver' nor 'webDriver'.");
-		}
-		return driverType;
-	}
-	
+//	public static String driverType(){
+//		
+//		ReadFile rf = new ReadFile();
+//		String type = rf.xmlValue("objectSheet");
+//		String driverType = null;
+//		if (type.equals("AndroidObject") || type.equals("iOSObject")){
+//			driverType = "mobile";
+//		}else if (type.equals("webObject")){
+//			driverType = "web";
+//		} else {
+//			System.out.println("[Caution]: Your object.xlsx or ConfigCenter.xml file has wrong name, neither 'appiumDriver' nor 'webDriver'.");
+//		}
+//		return driverType;
+//	}
+//	
 
 	public static String returnNowTime(String dateFormat){
 		
@@ -86,22 +86,22 @@ public class SystemRelated {
 		return returnNowTime("yyyy-MM-dd HH-mm-ss");
 	}
 
-	public static String createUniqueFolder(String folderName){
-		String osReportLocation;
-		if (mobileType() == true){
-			osReportLocation = "/Implement/TestReport/Android/";
-		}else{
-			osReportLocation = "/Implement/TestReport/iOS/";
-		}
-		String curLocation = System.getProperty("user.dir");
-        File dir=new File(curLocation + osReportLocation + folderName +"_"+ returnNowTime("yyyyMMddHHmmss"));
-        String folderPath = dir.toString();//convert type from file to string
-        if(!dir.exists()){
-        	dir.mkdir();//create root folder only 
-        	return folderPath;    
-	}
-		return folderPath;
-	}
+//	public static String createUniqueFolder(String folderName){
+//		String osReportLocation;
+//		if (mobileType() == true){
+//			osReportLocation = "/Implement/TestReport/Android/";
+//		}else{
+//			osReportLocation = "/Implement/TestReport/iOS/";
+//		}
+//		String curLocation = System.getProperty("user.dir");
+//        File dir=new File(curLocation + osReportLocation + folderName +"_"+ returnNowTime("yyyyMMddHHmmss"));
+//        String folderPath = dir.toString();//convert type from file to string
+//        if(!dir.exists()){
+//        	dir.mkdir();//create root folder only 
+//        	return folderPath;    
+//	}
+//		return folderPath;
+//	}
 	
 	
 	/**

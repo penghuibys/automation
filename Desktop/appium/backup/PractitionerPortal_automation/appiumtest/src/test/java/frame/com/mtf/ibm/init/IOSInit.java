@@ -15,8 +15,9 @@ import frame.com.mtf.ibm.universal.ReadFile;
 
 public class IOSInit {
 	
-	ReadFile RF = new ReadFile();
 	private IOSDriver<WebElement> driver;
+	ReadFile RF = new ReadFile(driver, null);
+	
 	private String URL = RF.xmlValue("URL");
 	private String simuAppLocation = RF.xmlValue("iOSsimuAppLocation");
 	private String udid = RF.xmlValue("iOSudid");

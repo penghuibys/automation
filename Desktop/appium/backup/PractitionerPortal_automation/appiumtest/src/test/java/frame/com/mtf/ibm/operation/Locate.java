@@ -46,11 +46,12 @@ public class Locate  {
 	}
 	
 	
-	private static ReadFile RF = new ReadFile();
+
 	private static int timeout = 30;//second
 	public static AppiumDriver<WebElement> androidDriver;
 	public static AppiumDriver<WebElement> iOSDriver;
 	private static String timeFormat = "yyyy/MM/dd/ HH:mm:ss";
+	private static ReadFile RF = new ReadFile(iOSDriver, androidDriver);
 	
 	
 	/**
@@ -309,27 +310,33 @@ public static WebElement isDisplayed(AppiumDriver<WebElement> dr, final String t
 	
 	public void click(String target) throws InterruptedException{
 		
-		if (SystemRelated.mobileType() == true){
+		if (androidDriver != null) {
 			click(androidDriver,target);
-		}else{
+		}
+		
+		if (iOSDriver != null) {
 			click(iOSDriver,target);
 		}
 	}
 	
 	public void click_(String target) throws InterruptedException{
 		
-		if (SystemRelated.mobileType() == true){
+		if (androidDriver != null) {
 			click_(androidDriver,target);
-		}else{
+		}
+		
+		if (iOSDriver != null) {
 			click(iOSDriver,target);
 		}
 	}
 	
 	public void atScreen(String target) throws InterruptedException{
 		
-		if (SystemRelated.mobileType() == true){
+		if (androidDriver != null) {
 			atScreen(androidDriver,target);
-		}else{
+		}
+		
+		if (iOSDriver != null) {
 			atScreen(iOSDriver,target);
 		}
 	}
@@ -349,11 +356,15 @@ public static WebElement isDisplayed(AppiumDriver<WebElement> dr, final String t
 	
 	public void send(String target, String content) throws InterruptedException{
 		
-		if (SystemRelated.mobileType() == true){
-			send(androidDriver,target,content);
-		}else{
+		
+		if (androidDriver != null) {
 			send(iOSDriver,target,content);
 		}
+		
+		if (iOSDriver != null) {
+			send(iOSDriver,target,content);
+		}
+
 	}
 	
 	/**
@@ -477,10 +488,13 @@ public static WebElement isDisplayed(AppiumDriver<WebElement> dr, final String t
 	}
     
     public void swipeAction(String direction) {
-    	
-		if (SystemRelated.mobileType() == true){
+    
+		
+		if (androidDriver != null) {
 			swipeAction(androidDriver,direction);
-		}else{
+		}
+		
+		if (iOSDriver != null) {
 			swipeAction(iOSDriver,direction);
 		}
     }
@@ -522,10 +536,12 @@ public static WebElement isDisplayed(AppiumDriver<WebElement> dr, final String t
       }
     
     public void longPress(String target) {
-    	
-		if (SystemRelated.mobileType() == true) {
+   
+		if (androidDriver != null) {
 			longPress(androidDriver,target);
-		} else {
+		}
+		
+		if (iOSDriver != null) {
 			longPress(iOSDriver,target);
 		}
     }
@@ -542,10 +558,12 @@ public static WebElement isDisplayed(AppiumDriver<WebElement> dr, final String t
     }
     
     public void longTap(String target){
-    	
-		if (SystemRelated.mobileType() == true) {
+		
+		if (androidDriver != null) {
 			longTap(androidDriver,target);
-		} else {
+		}
+		
+		if (iOSDriver != null) {
 			longTap(iOSDriver,target);
 		}
     }

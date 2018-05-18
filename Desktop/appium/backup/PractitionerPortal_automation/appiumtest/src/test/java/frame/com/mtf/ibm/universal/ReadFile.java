@@ -12,6 +12,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.WebElement;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -20,6 +21,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
+import frame.com.mtf.ibm.operation.Locate;
+import io.appium.java_client.AppiumDriver;
+
 /**
  * @Created :  java
  * @Date    :  10/24/2015
@@ -27,6 +31,13 @@ import org.xml.sax.SAXException;
  */
 
 public class ReadFile {
+	public ReadFile(AppiumDriver<WebElement> iOSDriver, AppiumDriver<WebElement> androidDriver) {
+		Locate.iOSDriver = iOSDriver;
+		Locate.androidDriver = androidDriver;
+	}
+	
+	public static AppiumDriver<WebElement> androidDriver;
+	public static AppiumDriver<WebElement> iOSDriver;
 	
 	/**
 	 * @purpose to get value from xml file according the tag name and index
@@ -87,7 +98,14 @@ public class ReadFile {
 			e.printStackTrace();
 		}
 		// to tell Android or iOS object sheet in xlsx
-		XSSFSheet sheet = workbook.getSheet(xmlValue("objectSheet"));	
+		
+		String objectSheet = null;
+		if (androidDriver != null) {
+			objectSheet = "AndroidObject";
+		} else {
+			objectSheet = "iOSObject";
+		}
+		XSSFSheet sheet = workbook.getSheet(objectSheet);	
 
 		/**
 		 * @purpose if the column name is unique in the sheet that easy to locate element and improve performance and avoid null pointer exception
