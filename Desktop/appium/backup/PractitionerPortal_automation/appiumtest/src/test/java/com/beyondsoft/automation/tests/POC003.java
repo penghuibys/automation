@@ -13,12 +13,14 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.util.List;
 import org.openqa.selenium.WebDriver;
-import com.beyondsoft.automation.pages.Login;
-import com.beyondsoft.automation.pages.MainPage;
-import com.beyondsoft.automation.pages.Payment;
-import com.beyondsoft.automation.pages.RichJayCoffee;
-import com.beyondsoft.automation.pages.Exchange;
+
 import com.beyondsoft.automation.model.userInfo;
+import com.beyondsoft.automation.pages.ios.Exchange;
+import com.beyondsoft.automation.pages.ios.Login;
+import com.beyondsoft.automation.pages.ios.MainPage;
+import com.beyondsoft.automation.pages.ios.Payment;
+import com.beyondsoft.automation.pages.ios.RichJayCoffee;
+
 import mobile.appiumtest.Utilities;
 
 

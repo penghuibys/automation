@@ -14,12 +14,14 @@ import java.net.MalformedURLException;
 import java.util.List;
 
 import org.openqa.selenium.WebDriver;
-import com.beyondsoft.automation.pages.Login;
-import com.beyondsoft.automation.pages.MainPage;
-import com.beyondsoft.automation.pages.HuangHouChaoGuo;
-import com.beyondsoft.automation.pages.ShoppingCart;
-import com.beyondsoft.automation.pages.PrePay;
+
 import com.beyondsoft.automation.model.userInfo;
+import com.beyondsoft.automation.pages.ios.HuangHouChaoGuo;
+import com.beyondsoft.automation.pages.ios.Login;
+import com.beyondsoft.automation.pages.ios.MainPage;
+import com.beyondsoft.automation.pages.ios.PrePay;
+import com.beyondsoft.automation.pages.ios.ShoppingCart;
+
 import mobile.appiumtest.Utilities;
 
 

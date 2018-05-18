@@ -1,8 +1,6 @@
 
 package com.beyondsoft.automation.tests;
 
-
-import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeTest;
@@ -17,11 +15,15 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.util.List;
 import org.openqa.selenium.WebDriver;
-import com.beyondsoft.automation.pages.Login;
-import com.beyondsoft.automation.pages.MainPage;
-import com.beyondsoft.automation.pages.RichJayCoffee;
-import com.beyondsoft.automation.pages.Exchange;
+
 import com.beyondsoft.automation.model.userInfo;
+import com.beyondsoft.automation.pages.android.MainPage;
+import com.beyondsoft.automation.pages.android.PersonalCare;
+import com.beyondsoft.automation.pages.android.ShoppingCart;
+import com.beyondsoft.automation.pages.android.Settlement;
+
+
+
 import mobile.appiumtest.Utilities;
 import frame.com.mtf.ibm.operation.Locate;
 
@@ -30,7 +32,6 @@ public class POC005 extends TestBase{
 	
 	public String amwayId;
 	public String password;
-	public IOSDriver<WebElement> iosDriver;
 	public AndroidDriver<WebElement> androidDriver;
 	public IOSInit ios;
 	public AndroidInit android;
@@ -39,36 +40,44 @@ public class POC005 extends TestBase{
   
   @BeforeTest
   public void setUp() throws MalformedURLException{
-	  	ios = new IOSInit();
 	  	android = new AndroidInit();
-	  	
 	  	androidDriver = android.launchApp();
-//	  	List<WebElement> ele = androidDriver.findElementsByAccessibilityId("搜索");
-//	  	ele.get(0).click();
-//	  	WebElement elem = androidDriver.findElementById("com.tencent.mm:id/hx");
-//	  	elem.sendKeys("安利");
-	  	
-	  	
-	  	setMobileDriver(androidDriver); 
-		File app = new File("test-data/" + "user.json");
-	  	userInfo user = Utilities.load(app.getAbsolutePath(), "user", userInfo.class);
 
-		amwayId = user.getAmwayId();
-		password = user.getPassword();
+	  	setMobileDriver(androidDriver); 
   }
 
 
 	
   @Test
-  public void mobileTestDemo() throws InterruptedException, MalformedURLException {
-	  Locate locate = new Locate(null, androidDriver);
-	  locate.click_("搜索");
-	  locate.send("输入框", "安利");
+  public void mobileTestPOC005() throws InterruptedException, MalformedURLException {
+	  MainPage mainPage = new MainPage(androidDriver);
+	  mainPage.navigateToAmywayCloudShopping();
 	  
+	  PersonalCare personCare = new PersonalCare(androidDriver);
+	  personCare.addBabyShampoo();
 	  
+	  ShoppingCart shoppingCart = new ShoppingCart(androidDriver);
+	  shoppingCart.addToShoppingCart();
+	  shoppingCart.goToShoppingCart();
 	  
+
+	  List<String> getCurrentBuyer = shoppingCart.getCurrentBuyer();
+	  FrameAssertion.contains(getCurrentBuyer.toString(), amwayId, "验证当前购货人");
 	  
+	  List<String> goodsAmount = shoppingCart.getGoodsAmount();
+	  FrameAssertion.contains(goodsAmount.toString(), "2", "验证商品总数");
 	  
+	  List<String> moneyAmount = shoppingCart.getMoneyAmount();
+	  FrameAssertion.contains(moneyAmount.toString(), "320", "验证总金额");
+	  
+	  shoppingCart.confirm();
+	  
+	  Settlement settlement = new Settlement(androidDriver);
+	  goodsAmount = settlement.getGoodsAmount();
+	  FrameAssertion.contains(goodsAmount.toString(), "2", "验证商品总数");
+	  
+	  moneyAmount = settlement.getMoneyAmount();
+	  FrameAssertion.contains(moneyAmount.toString(), "320", "验证总金额");
 	  
   }
   

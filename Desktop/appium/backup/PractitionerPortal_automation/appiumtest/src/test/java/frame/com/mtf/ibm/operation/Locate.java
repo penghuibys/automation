@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.TouchAction;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ScreenOrientation;
@@ -18,7 +19,8 @@ import frame.com.pp.auto.action.FrameAssertion;
 import frame.com.pp.auto.log.LogUtil;
 import frame.com.pp.auto.util.SysUtil;
 import mobile.appiumtest.AppiumDriverWait;
-import mobile.appiumtest.AppiumDriverWait.AppiumExpectedCondition;;
+import mobile.appiumtest.AppiumDriverWait.AppiumExpectedCondition;
+import frame.com.pp.auto.action.PageAction;
 
 
 
@@ -51,7 +53,6 @@ public class Locate  {
 	public static AppiumDriver<WebElement> androidDriver;
 	public static AppiumDriver<WebElement> iOSDriver;
 	private static String timeFormat = "yyyy/MM/dd/ HH:mm:ss";
-	private static ReadFile RF = new ReadFile(iOSDriver, androidDriver);
 	
 	
 	/**
@@ -72,8 +73,9 @@ public class Locate  {
 			object = target;
 			attribute = by;
 		} else {
-			object = RF.getObject(target).get(0);
-			attribute = RF.getObject(target).get(1);
+			ReadFile rf = new ReadFile(iOSDriver, androidDriver);
+			object = rf.getObject(target).get(0);
+			attribute = rf.getObject(target).get(1);
 		}
 		switch (attribute.toLowerCase()) {	
 	    	case "id":
@@ -118,16 +120,11 @@ public class Locate  {
 	    		new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(object)));
 	    		element = (WebElement) dr.findElement(By.cssSelector(object));
 	    		break;   
-	        case "accessibilityId":
-	        	final String test = "aa";
-	        	AppiumDriverWait wait= new AppiumDriverWait(dr);
-	            List<WebElement> ele= wait.until( new AppiumExpectedCondition<List<WebElement>>(){
-	                public List<WebElement> apply(AppiumDriver driver){
-	                    return driver.findElementsByAccessibilityId(test);
-	                }
-	            });
-	            
-	            element = ele.get(0);
+	        case "accessibilityid":
+	        	new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId(object)));
+	  		  	SysUtil.sleep(5);
+	        	List<WebElement> elements =  dr.findElementsByAccessibilityId(object);
+	            element = elements.get(0);
 		    	break;    
 	        default : 
 	        	System.out.println("[Info:] Your attribute " + attribute + " is not correct or empty for selenium,the API such as: id,name,etc");
@@ -144,18 +141,6 @@ public class Locate  {
 		}
 	}
 	
-public static WebElement isDisplayed(AppiumDriver<WebElement> dr, final String target){
-		
-    	AppiumDriverWait wait= new AppiumDriverWait(dr);
-        List<WebElement> elements= wait.until( new AppiumExpectedCondition<List<WebElement>>(){
-            public List<WebElement> apply(AppiumDriver driver){
-                return driver.findElementsByAccessibilityId(target);
-            }
-        });
-        
-        WebElement element = elements.get(0);
-		return element;
-	}
 	
 	public static List<WebElement> elements(AppiumDriver<WebElement> dr, String by, String target, int timeout){
 		
@@ -167,8 +152,9 @@ public static WebElement isDisplayed(AppiumDriver<WebElement> dr, final String t
 			object = target;
 			attribute = by;
 		} else {
-			object = RF.getObject(target).get(0);
-			attribute = RF.getObject(target).get(1);
+			ReadFile rf = new ReadFile(iOSDriver, androidDriver);
+			object = rf.getObject(target).get(0);
+			attribute = rf.getObject(target).get(1);
 		}
 		switch (attribute.toLowerCase()) {	
 	    	case "id":
@@ -243,18 +229,7 @@ public static WebElement isDisplayed(AppiumDriver<WebElement> dr, final String t
 			FrameAssertion.fail("Clicked at '" + target + "', Failed");
 		}
 	}
-	
-	public static void click_(AppiumDriver<WebElement> driver,String target) throws InterruptedException{
-		
-		try{
-			WebElement element = isDisplayed(driver, target);
-			element.click();
-			LogUtil.step("Clicked at '" + target + "', Passed");
-		}
-		catch(Exception e){
-			FrameAssertion.fail("Clicked at '" + target + "', Failed");
-		}
-	}
+
 	
 	public void atScreen(AppiumDriver<WebElement> driver,String target) throws InterruptedException{
 		
@@ -267,7 +242,17 @@ public static WebElement isDisplayed(AppiumDriver<WebElement> dr, final String t
 		}
 	}
 	
-
+	public void clickIfItemDisplayed(AppiumDriver<WebElement> driver,String target) throws InterruptedException{
+		
+		WebElement element = null;
+		try {
+			element = element(driver, target);
+			element.click();
+			LogUtil.step("Clicked at '" + target + "', Passed");
+		} catch (Exception e) {
+			LogUtil.info(target + " is not displayed.");
+		}
+	}
 	
 	public boolean validateElementDisplayed(String target) throws InterruptedException{
 		
@@ -280,14 +265,14 @@ public static WebElement isDisplayed(AppiumDriver<WebElement> dr, final String t
 		}
 	}
 	
-	public void clickIfItemDisplayed(String target) throws InterruptedException{
-		WebElement element = null;
-		try {
-			element = element(iOSDriver, target);
-			element.click();
-			LogUtil.step("Clicked at '" + target + "', Passed");
-		} catch (Exception e) {
-			LogUtil.info(target + " is not displayed.");
+	public void clickIfItemDisplayed(String target) throws InterruptedException {
+
+		if (androidDriver != null) {
+			clickIfItemDisplayed(androidDriver, target);
+		}
+		
+		if (iOSDriver != null) {
+			clickIfItemDisplayed(iOSDriver, target);
 		}
 	}
 	
@@ -319,16 +304,6 @@ public static WebElement isDisplayed(AppiumDriver<WebElement> dr, final String t
 		}
 	}
 	
-	public void click_(String target) throws InterruptedException{
-		
-		if (androidDriver != null) {
-			click_(androidDriver,target);
-		}
-		
-		if (iOSDriver != null) {
-			click(iOSDriver,target);
-		}
-	}
 	
 	public void atScreen(String target) throws InterruptedException{
 		
@@ -358,7 +333,7 @@ public static WebElement isDisplayed(AppiumDriver<WebElement> dr, final String t
 		
 		
 		if (androidDriver != null) {
-			send(iOSDriver,target,content);
+			send(androidDriver,target,content);
 		}
 		
 		if (iOSDriver != null) {

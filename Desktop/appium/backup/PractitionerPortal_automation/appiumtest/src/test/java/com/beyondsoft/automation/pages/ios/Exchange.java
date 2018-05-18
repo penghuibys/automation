@@ -1,4 +1,4 @@
-package com.beyondsoft.automation.pages;
+package com.beyondsoft.automation.pages.ios;
 
 import java.util.List;
 

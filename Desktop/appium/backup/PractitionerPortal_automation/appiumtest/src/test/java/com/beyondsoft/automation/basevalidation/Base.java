@@ -1,5 +1,5 @@
 
-package com.beyondsoft.automation.pages;
+package com.beyondsoft.automation.basevalidation;
 
 import io.appium.java_client.AppiumDriver;
 
@@ -17,22 +17,32 @@ public class Base {
 	
 	public static AppiumDriver<WebElement> iOSDriver;
 	public static AppiumDriver<WebElement> androidDriver;
+	public static Locate locate;
+	public static WebElement element;
 	
-	public void swipeUp() {
-		Locate locate = new Locate(iOSDriver, null);
-		locate.swipeAction("up");
-	}
-
   
 	public String getValidationInfo(String target) throws InterruptedException{
-		Locate locate = new Locate(iOSDriver, null);
-		WebElement element = locate.element(iOSDriver, target);
+		if (androidDriver != null) {
+			locate = new Locate(null, androidDriver);
+			element = locate.element(androidDriver, target);
+		} else {
+			locate = new Locate(iOSDriver, null);
+			element = locate.element(iOSDriver, target);
+		}
+		
 		return element.getAttribute("name");
 	}
 	
 	public List<String> getAllValidationInfo(String target) throws InterruptedException{
-		Locate locate = new Locate(iOSDriver, null);
-		List<WebElement> elements = locate.elements(iOSDriver, target);
+		List<WebElement> elements;
+		if (androidDriver != null) {
+			locate = new Locate(null, androidDriver);
+			elements = locate.elements(androidDriver, target);
+		} else {
+			locate = new Locate(iOSDriver, null);
+			elements = locate.elements(iOSDriver, target);
+		}
+		
 		List<String> texts = new ArrayList<>();
 		for (int i = 0; i < elements.size(); i++) {
 			String name = elements.get(i).getAttribute("name");
@@ -42,8 +52,13 @@ public class Base {
 	}
 	
 	public String getValidationValue(String target) throws InterruptedException{
-		Locate locate = new Locate(iOSDriver, null);
-		WebElement element = locate.element(iOSDriver, target);
+		if (androidDriver != null) {
+			locate = new Locate(null, androidDriver);
+			element = locate.element(androidDriver, target);
+		} else {
+			locate = new Locate(iOSDriver, null);
+			element = locate.element(iOSDriver, target);
+		}
 		return element.getAttribute("value");
 	}
   

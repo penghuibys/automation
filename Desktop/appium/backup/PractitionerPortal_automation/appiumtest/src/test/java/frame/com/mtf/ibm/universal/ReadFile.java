@@ -24,20 +24,16 @@ import org.xml.sax.SAXException;
 import frame.com.mtf.ibm.operation.Locate;
 import io.appium.java_client.AppiumDriver;
 
-/**
- * @Created :  java
- * @Date    :  10/24/2015
- * @author  :  zxyzhan@cn.ibm.com(JamesZhan)
- */
-
 public class ReadFile {
-	public ReadFile(AppiumDriver<WebElement> iOSDriver, AppiumDriver<WebElement> androidDriver) {
-		Locate.iOSDriver = iOSDriver;
-		Locate.androidDriver = androidDriver;
-	}
-	
 	public static AppiumDriver<WebElement> androidDriver;
 	public static AppiumDriver<WebElement> iOSDriver;
+	
+	public ReadFile(AppiumDriver<WebElement> iOSDriver, AppiumDriver<WebElement> androidDriver) {
+		ReadFile.iOSDriver = iOSDriver;
+		ReadFile.androidDriver = androidDriver;
+	}
+	
+
 	
 	/**
 	 * @purpose to get value from xml file according the tag name and index

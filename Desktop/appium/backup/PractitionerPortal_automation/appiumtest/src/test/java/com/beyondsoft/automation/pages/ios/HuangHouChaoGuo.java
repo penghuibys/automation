@@ -1,9 +1,10 @@
-package com.beyondsoft.automation.pages;
+package com.beyondsoft.automation.pages.ios;
 
 import org.openqa.selenium.WebElement;
 
+import com.beyondsoft.automation.pages.ios.ShoppingCart;
+
 import frame.com.mtf.ibm.operation.Locate;
-import com.beyondsoft.automation.pages.ShoppingCart;
 import io.appium.java_client.AppiumDriver;
 
 public class HuangHouChaoGuo {

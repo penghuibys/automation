@@ -1,5 +1,5 @@
 
-package com.beyondsoft.automation.pages;
+package com.beyondsoft.automation.pages.ios;
 
 import io.appium.java_client.AppiumDriver;
 
@@ -7,8 +7,9 @@ import java.util.List;
 
 import org.openqa.selenium.WebElement;
 
+import com.beyondsoft.automation.pages.ios.Base;
+
 import frame.com.mtf.ibm.operation.Locate;
-import com.beyondsoft.automation.pages.Base;
 
 
 public class Payment {
