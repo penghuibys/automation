@@ -57,32 +57,32 @@ public class POC004 extends TestBase{
 	  HuangHouChaoGuo chaoGuo = new HuangHouChaoGuo(iosDriver);
 	  chaoGuo.addToShoppingCart();
 	  ShoppingCart shoppingCart = new ShoppingCart(iosDriver);
-//	  String shoppingCount = shoppingCart.getShoppingCount();
-//	  FrameAssertion.contains(shoppingCount, "1", "验证加入购物车数量");
+	  String shoppingCount = shoppingCart.getShoppingCount();
+	  FrameAssertion.contains(shoppingCount, "1", "验证加入购物车数量");
 	  
 	  shoppingCart.goToShoppingCart();
-//	  List<String> goodsAmount = shoppingCart.getGoodsAmount();
-//	  FrameAssertion.contains(goodsAmount.toString(), "4", "验证商品总数");
-//	  
-//	  List<String> getCurrentBuyer = shoppingCart.getCurrentBuyer();//
-//	  FrameAssertion.contains(getCurrentBuyer.toString(), amwayId, "验证当前购货人");
-//	  
-//	  List<String> moneyAmount = shoppingCart.getMoneyAmount();//
-//	  FrameAssertion.contains(moneyAmount.toString(), "2,500", "验证总金额");//
-//	  
-//	  List<String> promotionGifts = shoppingCart.getPromotionGift();
-//	  FrameAssertion.equals(promotionGifts.size(), 3, "验证附件个数");
+	  List<String> goodsAmount = shoppingCart.getGoodsAmount();
+	  FrameAssertion.contains(goodsAmount.toString(), "4", "验证商品总数");
+	  
+	  List<String> getCurrentBuyer = shoppingCart.getCurrentBuyer();//
+	  FrameAssertion.contains(getCurrentBuyer.toString(), amwayId, "验证当前购货人");
+	  
+	  List<String> moneyAmount = shoppingCart.getMoneyAmount();//
+	  FrameAssertion.contains(moneyAmount.toString(), "2,500", "验证总金额");//
+	  
+	  List<String> promotionGifts = shoppingCart.getPromotionGift();
+	  FrameAssertion.equals(promotionGifts.size(), 3, "验证附件个数");
 	  
 	  shoppingCart.confirm();
 	  
 	  Settlement settlement = new Settlement(iosDriver);
 	  String defaultDelivery = settlement.getDefaultDelivery();
-//	  FrameAssertion.equals(defaultDelivery, "1", "默认配送方式");//默认配送方式周一至周日：选中为1, 未选则为0
+	  FrameAssertion.equals(defaultDelivery, "1", "默认配送方式");//默认配送方式周一至周日：选中为1, 未选则为0
 	  
 	  settlement.requireInvoice();
 	  settlement.selectVATSpecialInvoice();
 	  List<String> totalAmount = settlement.getTotalAmount();
-//	  FrameAssertion.contains(totalAmount.toString(), "2,500", "验证总金额");
+	  FrameAssertion.contains(totalAmount.toString(), "2,500", "验证总金额");
 	  
 	  Payment payment = new Payment(iosDriver);
 	  payment.goToPayment();

@@ -77,7 +77,7 @@ public class IOSInit {
 		capabilities.setCapability("noReset", true);
 	//	capabilities.setCapability("app", "/Users/devicepass/git/automation/Desktop/appium/backup/PractitionerPortal_automation/appiumtest/mobileApp/com.tencent.xin_6.0.2.22.ipa");
 		capabilities.setCapability("app", "/Users/devicepass/Desktop/appium/AmwayHubML_iPhone_v3.49.0_QA_out_2.ipa");
-		driver = new IOSDriver<WebElement>( new URL("http://127.0.0.1:4723/wd/hub"), capabilities); 
+		driver = new IOSDriver<WebElement>( new URL("http://127.0.0.1:4724/wd/hub"), capabilities); 
 		
         return driver; 
 	}
