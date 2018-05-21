@@ -5,13 +5,7 @@
 	
 	<test name="PractitionerPortal_TestDemo_android">
 		<classes>
-			<class name="com.ibm.automation.mobileAuto" />
-		</classes>
-	</test>
-	
-	<test name="PractitionerPortal_TestDemo_firefox">
-		<classes>
-			<class name="com.ibm.automation.webAuto" />
+			<class name="com.beyondsoft.automation.tests.POC003" />
 		</classes>
 	</test>
 	

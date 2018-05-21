@@ -49,35 +49,70 @@ public class IOSInit {
 		 * 3, the mobile device have to enable UI Automation from developer
 		 * 4, deviceName can not empty , the device name is hard code but can be wrong name
 		 * 5, if hybrid page,input ios_webkit_debug_proxy -c e51f816ea8511c59bcc631fe89b7049599d2f21a:27753 -d under command
-		 */			
-//        DesiredCapabilities capabilities = new DesiredCapabilities();
-//        capabilities.setCapability("platformName","iOS"); 
-//        capabilities.setCapability("deviceName","iOS Device");
-//        capabilities.setCapability("platformVersion", "8.3");
-//        capabilities.setCapability("udid", udid);
-//        capabilities.setCapability("bundleId", bundleID);
-//        try {
-//        	driver = new IOSDriver<WebElement>(new URL("http://" + URL +"/wd/hub"), capabilities);
-//		} catch (MalformedURLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//       	
-		File app = new File("mobileApp/" + "AmwayHubML_iPhone_v3.49.0_QA_out_2.ipa");
-		System.out.println(app.getAbsolutePath());
-        
+		 */			 	
+ 
+		//local run
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability("deviceName", "iPhone 7");
 		capabilities.setCapability(CapabilityType.VERSION, "10.3");
 		capabilities.setCapability(CapabilityType.PLATFORM, "iOS");
 		capabilities.setCapability("udid", "8522f4c2c74501a6c29c36846b7c4db50679bd7b");
 		capabilities.setCapability("bundleid", "com.amway.amhubPhone");
-	//	capabilities.setCapability("bundleid", "com.tencent.xin");
 		capabilities.setCapability("automationName", "XCUITest");
 		capabilities.setCapability("noReset", true);
-	//	capabilities.setCapability("app", "/Users/devicepass/git/automation/Desktop/appium/backup/PractitionerPortal_automation/appiumtest/mobileApp/com.tencent.xin_6.0.2.22.ipa");
 		capabilities.setCapability("app", "/Users/devicepass/Desktop/appium/AmwayHubML_iPhone_v3.49.0_QA_out_2.ipa");
-		driver = new IOSDriver<WebElement>( new URL("http://127.0.0.1:4724/wd/hub"), capabilities); 
+		driver = new IOSDriver<WebElement>( new URL("http://127.0.0.1:4723/wd/hub"), capabilities); 
+		
+
+//		DesiredCapabilities capabilities = new DesiredCapabilities();
+//		capabilities.setCapability(CapabilityType.VERSION, "10.3");
+//		capabilities.setCapability(CapabilityType.PLATFORM, "iOS");
+//		capabilities.setCapability("automationName", "XCUITest");
+//
+//
+//		String BROSWER_NAME = System.getProperty("BROSWER_NAME");
+//		String APPIUM_PLATFORM = System.getProperty("APPIUM_PLATFORM");
+//		String APPIUM_DEVICE_VERSION = System.getProperty("APPIUM_DEVICE_VERSION");
+//		String APPIUM_DEVICE_NAME = System.getProperty("APPIUM_DEVICE_NAME");
+//		String APPIUM_DEVICE_UDID = System.getProperty("APPIUM_DEVICE_UDID");
+//		String APPIUM_APP_FILE = System.getProperty("APPIUM_APP_FILE");
+//		String APPIUM_URL = System.getProperty("APPIUM_URL");
+//		
+//		File app = new File(APPIUM_APP_FILE);
+//		System.out.println(app.getAbsolutePath());
+//		
+//		if (!isEmpty(BROSWER_NAME))
+//		{
+//		    capabilities.setCapability(CapabilityType.BROWSER_NAME, BROSWER_NAME);
+//		}
+//		if (!isEmpty(APPIUM_PLATFORM))
+//		{
+//		    capabilities.setCapability("platformName", APPIUM_PLATFORM);
+//		}
+//		if (!isEmpty(app.getAbsolutePath()))
+//		{
+//			capabilities.setCapability("app", app.getAbsolutePath());
+//		}
+//		capabilities.setCapability("noReset", true);
+//
+//		if (!isEmpty(APPIUM_DEVICE_VERSION))
+//		{
+//			capabilities.setCapability("platformVersion", APPIUM_DEVICE_VERSION);
+//		}
+//		if (!isEmpty(APPIUM_DEVICE_NAME))
+//		{
+//			capabilities.setCapability("deviceName", APPIUM_DEVICE_NAME);
+//		}
+//
+//		if (!isEmpty(APPIUM_DEVICE_UDID))
+//		{
+//			capabilities.setCapability("udid", APPIUM_DEVICE_UDID);
+//		}
+//		
+//		
+//		driver = new IOSDriver<WebElement>( new URL(APPIUM_URL), capabilities); 
+
+		
 		
         return driver; 
 	}
@@ -118,5 +153,14 @@ public class IOSInit {
 		e.printStackTrace();
 	}
 	return driver;
+	}
+	
+	private boolean isEmpty(String str) {
+		if (str == null || str.length() == 0) {
+			
+			return true;
+		} 
+		return false;
+		
 	}
 }

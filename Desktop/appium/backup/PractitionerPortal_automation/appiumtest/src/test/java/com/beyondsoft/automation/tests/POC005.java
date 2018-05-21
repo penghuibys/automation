@@ -45,10 +45,8 @@ public class POC005 extends TestBase{
 
 	  	setMobileDriver(androidDriver); 
   }
-
-
 	
-  @Test
+//  @Test
   public void mobileTestPOC005() throws InterruptedException, MalformedURLException {
 	  MainPage mainPage = new MainPage(androidDriver);
 	  mainPage.navigateToAmywayCloudShopping();
