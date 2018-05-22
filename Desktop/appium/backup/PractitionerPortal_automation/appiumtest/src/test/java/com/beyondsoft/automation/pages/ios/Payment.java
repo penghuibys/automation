@@ -43,11 +43,11 @@ public class Payment {
 		if (elements.size() == 6) {
 			elements.get(0).click();//打开键盘, workaround
 			iOSDriver.getKeyboard().sendKeys("1");
-			iOSDriver.getKeyboard().sendKeys("0");
-			iOSDriver.getKeyboard().sendKeys("2");
 			iOSDriver.getKeyboard().sendKeys("6");
-			iOSDriver.getKeyboard().sendKeys("8");
+			iOSDriver.getKeyboard().sendKeys("0");
 			iOSDriver.getKeyboard().sendKeys("1");
+			iOSDriver.getKeyboard().sendKeys("0");
+			iOSDriver.getKeyboard().sendKeys("4");
 		}
 		SysUtil.sleep(5);
 		locate.click("完成支付");

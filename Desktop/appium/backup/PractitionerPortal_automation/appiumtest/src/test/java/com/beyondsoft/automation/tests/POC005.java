@@ -45,10 +45,8 @@ public class POC005 extends TestBase{
 	  	userInfo user = Utilities.load(app.getAbsolutePath(), "user", userInfo.class);
 		amwayId = user.getAmwayId();
   }
-
-
 	
-  @Test
+//  @Test
   public void mobileTestPOC005() throws InterruptedException, MalformedURLException {
 	  MainPage mainPage = new MainPage(androidDriver);
 	  mainPage.navigateToAmywayCloudShopping();
