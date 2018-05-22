@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.openqa.selenium.WebElement;
 import frame.com.mtf.ibm.operation.Locate;
+import frame.com.pp.auto.util.SysUtil;
 
 public class Base {
 	public Base(AppiumDriver<WebElement> iOSDriver, AppiumDriver<WebElement> androidDriver){
@@ -24,28 +25,33 @@ public class Base {
 	public String getValidationInfo(String target) throws InterruptedException{
 		if (androidDriver != null) {
 			locate = new Locate(null, androidDriver);
+			SysUtil.sleep(5);
 			element = locate.element(androidDriver, target);
+			SysUtil.sleep(5);
+			System.out.println(element.getAttribute("name"));
+		//	return element.getAttribute("content-desc");
 		} else {
 			locate = new Locate(iOSDriver, null);
 			element = locate.element(iOSDriver, target);
 		}
-		
 		return element.getAttribute("name");
 	}
 	
 	public List<String> getAllValidationInfo(String target) throws InterruptedException{
 		List<WebElement> elements;
+		SysUtil.sleep(5);
 		if (androidDriver != null) {
 			locate = new Locate(null, androidDriver);
 			elements = locate.elements(androidDriver, target);
 		} else {
 			locate = new Locate(iOSDriver, null);
 			elements = locate.elements(iOSDriver, target);
+
 		}
-		
-		List<String> texts = new ArrayList<>();
+		List<String>texts = new ArrayList<>();
 		for (int i = 0; i < elements.size(); i++) {
 			String name = elements.get(i).getAttribute("name");
+			System.out.println(name);
 			texts.add(name);
 		}
 		return texts;
@@ -55,11 +61,13 @@ public class Base {
 		if (androidDriver != null) {
 			locate = new Locate(null, androidDriver);
 			element = locate.element(androidDriver, target);
+			return element.getAttribute("content-desc");
 		} else {
 			locate = new Locate(iOSDriver, null);
 			element = locate.element(iOSDriver, target);
+			return element.getAttribute("value");
 		}
-		return element.getAttribute("value");
+		
 	}
   
   

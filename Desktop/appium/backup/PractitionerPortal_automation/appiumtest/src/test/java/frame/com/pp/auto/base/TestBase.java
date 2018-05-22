@@ -38,9 +38,9 @@ public class TestBase {
 		this.data = new TestData();
 	}
 	
-	public void setBrowser() {
-		setBrowser(BrowserType.FIREFOX);
-	}
+//	public void setBrowser() {
+//		setBrowser(BrowserType.FIREFOX);
+//	}
 	
 	public void setMobileDriver(WebDriver d) {
 		this.driver = d;

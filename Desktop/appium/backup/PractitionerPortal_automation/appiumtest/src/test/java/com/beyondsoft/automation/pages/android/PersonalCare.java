@@ -1,8 +1,14 @@
 package com.beyondsoft.automation.pages.android;
 
+
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
 
+import com.google.inject.spi.Element;
+
 import frame.com.mtf.ibm.operation.Locate;
+import frame.com.pp.auto.util.SysUtil;
 import io.appium.java_client.AppiumDriver;
 
 
@@ -15,15 +21,28 @@ public class PersonalCare {
 	}
 
 	//添加婴儿沐浴露
-	public void addBabyShampoo() throws InterruptedException {
+	public void searchBabyShampoo() throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
-		locate.click("搜索");
+		SysUtil.sleep(2);
+		try {
+			if (androidDriver.findElementById("searchBtn").isDisplayed()){
+				locate.send("商品输入框", "39597");
+			}
+		} catch (Exception e) {
+			WebElement search = androidDriver.findElementsByAccessibilityId("@").get(0);
+			SysUtil.sleep(2);
+			search.click();
+		}
 		locate.send("商品输入框", "39597");
-		locate.click("搜索");
-		
-	//	locate.send("数量", "2");
-		locate.click("添加");
+		androidDriver.findElementById("searchBtn").click();
+
+		locate.atScreen("婴儿沐浴露");
 	}
 	
+	public void setQuantity() throws InterruptedException {
+		Locate locate = new Locate(null, androidDriver);
+	//	locate.send("数量", "2"); Not working
+		locate.click("数量添加");
+	}
 
 }

@@ -34,26 +34,6 @@ public class MainPage extends TestBase{
 		  Locate locate = new Locate(null, androidDriver);
 		  locate.click("个人护理");
 	}
-
-	//添加婴儿沐浴露
-	public void addBabyShampoo() throws InterruptedException {
-		Locate locate = new Locate(null, androidDriver);
-		locate.click("搜索");
-		locate.send("商品输入框", "39597");
-		locate.click("搜索");
-
-		locate.click("婴儿沐浴露");
-		locate.swipeAction("up");
-		locate.send("数量", "2");
-		locate.click("加入购物车");
-	}
 	
-	public void searchHuangHouChaoGuo() throws InterruptedException {
-		Locate locate = new Locate(null, androidDriver);
-		locate.click("搜索");
-		locate.send("输入框", "皇后中式炒锅");
-		locate.click("搜索");
-		locate.atScreen("搜索结果");
-	}
 
 }

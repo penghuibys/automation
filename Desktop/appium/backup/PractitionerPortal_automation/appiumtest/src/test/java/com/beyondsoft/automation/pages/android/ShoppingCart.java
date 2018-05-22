@@ -35,14 +35,14 @@ public class ShoppingCart {
 		return base.getAllValidationInfo("当前购货人");
 	}
 
-	public List<String> getGoodsAmount() throws InterruptedException {
+	public String getGoodsAmount() throws InterruptedException {
 		Base base = new Base(null, androidDriver);
-		return base.getAllValidationInfo("商品总数");
+		return base.getValidationInfo("商品总数");
 	}
 
 	public List<String> getMoneyAmount() throws InterruptedException {
 		Base base = new Base(null, androidDriver);
-		return base.getAllValidationInfo("总金额");
+		return base.getAllValidationInfo("金额小计");
 	}
 
 

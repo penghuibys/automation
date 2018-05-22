@@ -26,7 +26,7 @@ import com.beyondsoft.automation.pages.android.Settlement;
 import mobile.appiumtest.Utilities;
 
 
-public class POC005 extends TestBase{
+public class POC6 extends TestBase{
 	
 	public String amwayId;
 	public String password;
@@ -79,17 +79,14 @@ public class POC005 extends TestBase{
 	  payment.goToPayment();
 	  List<String> totalMoneyAmount_order = payment.getTotalMoneyAmount();
 	  System.out.println(totalMoneyAmount_order.toString());
-	  FrameAssertion.equals(totalMoneyAmount_order.toString(), totalMoneyAmount.toString().split("订单金额:")[1].trim(), "验证应付总金额");
+	  FrameAssertion.contains(totalMoneyAmount_order.toString(), totalMoneyAmount.toString().split("订单金额:")[1].trim(), "验证应付总金额");
 	  
 	  payment.paymentSelection("微信支付");
 	  payment.doPayment();
-	  payment.paymentCompletion();
-	  List<String> validation = payment.paymentValidation();
-	  List<String> amount =  payment.getTotalMoneyAmount();
-	  System.out.println(amount.toString());
-	  FrameAssertion.contains(validation.toString(), "您已成功支付", "验证支付成功信息");
-	  FrameAssertion.equals(totalMoneyAmount_order.toString(), amount.toString(), "验证应付总金额");
-
+	  payment.cancelPayment();
+	  List<String> validation = payment.paymentIncompleteValidation();
+	  System.out.println(validation.toString());
+	  FrameAssertion.contains(validation.toString(), "您的支付未完成", "验证支付成功信息");
 	  
   }
   

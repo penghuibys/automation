@@ -325,7 +325,7 @@ public class Locate  {
 			LogUtil.step("Send Key '" + content + "' to " + target + ", Passed");
 		}
 		catch(Exception e){
-			FrameAssertion.fail("Send Key '" + content + "' to " + target + ", Passed");
+			FrameAssertion.fail("Send Key '" + content + "' to " + target + ", Failed");
 		}
 	}
 	
