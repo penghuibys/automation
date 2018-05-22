@@ -26,7 +26,7 @@ import com.beyondsoft.automation.pages.android.Settlement;
 import mobile.appiumtest.Utilities;
 
 
-public class POC005 extends TestBase{
+public class TestPOC005 extends TestBase{
 	
 	public String amwayId;
 	public String password;

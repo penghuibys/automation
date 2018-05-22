@@ -24,7 +24,7 @@ import com.beyondsoft.automation.model.userInfo;
 import mobile.appiumtest.Utilities;
 
 
-public class POC004 extends TestBase{
+public class TestPOC004 extends TestBase{
 	
 	public String amwayId;
 	public String password;
