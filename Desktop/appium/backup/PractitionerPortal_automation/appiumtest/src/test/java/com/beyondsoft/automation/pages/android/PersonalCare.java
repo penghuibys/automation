@@ -1,11 +1,7 @@
 package com.beyondsoft.automation.pages.android;
 
 
-import java.util.List;
-
 import org.openqa.selenium.WebElement;
-
-import com.google.inject.spi.Element;
 
 import frame.com.mtf.ibm.operation.Locate;
 import frame.com.pp.auto.util.SysUtil;

@@ -8,7 +8,6 @@ import io.appium.java_client.MobileBy;
 import io.appium.java_client.TouchAction;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ScreenOrientation;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,9 +17,6 @@ import frame.com.mtf.ibm.universal.SystemRelated;
 import frame.com.pp.auto.action.FrameAssertion;
 import frame.com.pp.auto.log.LogUtil;
 import frame.com.pp.auto.util.SysUtil;
-import mobile.appiumtest.AppiumDriverWait;
-import mobile.appiumtest.AppiumDriverWait.AppiumExpectedCondition;
-import frame.com.pp.auto.action.PageAction;
 
 
 

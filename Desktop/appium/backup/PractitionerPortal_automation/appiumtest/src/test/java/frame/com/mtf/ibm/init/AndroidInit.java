@@ -16,6 +16,7 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import frame.com.mtf.ibm.universal.ReadFile;
@@ -45,23 +46,75 @@ public class AndroidInit {
 	
 	
 	public AndroidDriver<WebElement>launchApp(){
-	//	File app = new File("mobileApp/" + appName);
-		File app = new File("mobileApp/" + "weixin_1300.apk");//
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("deviceName","huawei mate9");
-        capabilities.setCapability("platformName", "android");
-   //     capabilities.setCapability("appPackage", appPackage);
-   //     capabilities.setCapability("appActivity",appActivity);
-        capabilities.setCapability("app", app.getAbsolutePath());
-        //capabilities.setCapability("appWaitActivity","."+appActivity);       
-        capabilities.setCapability("unicodeKeyboard", true);//Chinese input 
-        capabilities.setCapability("resetKeyboard", true);//hide keyboard
-        capabilities.setCapability("noReset", true);
+
+//		File app = new File("mobileApp/" + "weixin_1300.apk");//
+//        DesiredCapabilities capabilities = new DesiredCapabilities();
+//        capabilities.setCapability("deviceName","huawei mate9");
+//        capabilities.setCapability("platformName", "android");
+//        capabilities.setCapability("app", app.getAbsolutePath());   
+//        capabilities.setCapability("unicodeKeyboard", true);//Chinese input 
+//        capabilities.setCapability("resetKeyboard", true);//hide keyboard
+//        capabilities.setCapability("noReset", true);
+		
+//		try {
+//			androidDriver = new AndroidDriver<WebElement>(new URL("http://" + URL +"/wd/hub"), capabilities);
+//		} catch (MalformedURLException e) {
+//			e.printStackTrace();
+//		}	
+        
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+		capabilities.setCapability(CapabilityType.PLATFORM, "android");
+
+
+		String BROSWER_NAME = System.getProperty("BROSWER_NAME");
+		String APPIUM_PLATFORM = System.getProperty("APPIUM_PLATFORM");
+		String APPIUM_DEVICE_VERSION = System.getProperty("APPIUM_DEVICE_VERSION");
+		String APPIUM_DEVICE_NAME = System.getProperty("APPIUM_DEVICE_NAME");
+		String APPIUM_DEVICE_UDID = System.getProperty("APPIUM_DEVICE_UDID");
+		String APPIUM_APP_FILE = System.getProperty("APPIUM_APP_FILE");
+		String APPIUM_URL = System.getProperty("APPIUM_URL");
+		
+		File app = new File(APPIUM_APP_FILE);
+		System.out.println(app.getAbsolutePath());
+		
+		if (!isEmpty(BROSWER_NAME))
+		{
+		    capabilities.setCapability(CapabilityType.BROWSER_NAME, BROSWER_NAME);
+		}
+		if (!isEmpty(APPIUM_PLATFORM))
+		{
+		    capabilities.setCapability("platformName", APPIUM_PLATFORM);
+		}
+		if (!isEmpty(app.getAbsolutePath()))
+		{
+			capabilities.setCapability("app", app.getAbsolutePath());
+		}
+		capabilities.setCapability("noReset", true);
+
+		if (!isEmpty(APPIUM_DEVICE_VERSION))
+		{
+			capabilities.setCapability("platformVersion", APPIUM_DEVICE_VERSION);
+		}
+		if (!isEmpty(APPIUM_DEVICE_NAME))
+		{
+			capabilities.setCapability("deviceName", APPIUM_DEVICE_NAME);
+		}
+
+		if (!isEmpty(APPIUM_DEVICE_UDID))
+		{
+			capabilities.setCapability("udid", APPIUM_DEVICE_UDID);
+		}
+		
+		
 		try {
-			androidDriver = new AndroidDriver<WebElement>(new URL("http://" + URL +"/wd/hub"), capabilities);
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}	
+			androidDriver = new AndroidDriver<WebElement>( new URL(APPIUM_URL), capabilities);
+		} catch (MalformedURLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} 
+        
+        
+       
 		return androidDriver;
 	}
 	
@@ -191,6 +244,14 @@ public class AndroidInit {
 		String[] reApkName = apkName.split(".apk");		
 		String appName = reApkName[0] + "_" + getNowTime + ".apk";		
 		return appName;
+	}
+	
+	private boolean isEmpty(String str) {
+		if (str == null || str.length() == 0) {
+			
+			return true;
+		} 
+		return false;
 	}
 	
 }
