@@ -1,7 +1,10 @@
 package com.beyondsoft.automation.pages.android;
 
-import java.util.List;
+import static org.testng.Assert.assertEquals;
 
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.openqa.selenium.WebElement;
 import io.appium.java_client.AppiumDriver;
@@ -59,10 +62,30 @@ public class Payment {
 		locate.click("完成支付");
 	}
 
-	public List<String> getTotalMoneyAmount() throws InterruptedException {
+	public String getTotalMoneyAmount() throws InterruptedException {
 		Base base = new Base(null, androidDriver);
 		SysUtil.sleep(5);
-		return base.getAllValidationInfo("总金额");
+		String amount;
+		int retry = 5;
+		for (int i = 0; i< retry; i++) {
+			amount = base.getAllValidationInfo("总金额").toString();
+			if (!amount.contains("总金额")) {
+				SysUtil.sleep(5);
+				continue;
+			}
+			String rep = "[^0-9]";
+			Pattern p = Pattern.compile(rep); 
+			Matcher m = p.matcher(amount);  
+			  
+			String string = m.replaceAll(" ").trim();
+			String[] x = string.split(" ");
+			System.out.println(x[0].trim());
+			if (x[0].trim() != "") {
+				return x[0].trim();
+			}
+			SysUtil.sleep(5);
+		}
+		return null;
 	}
 
 
