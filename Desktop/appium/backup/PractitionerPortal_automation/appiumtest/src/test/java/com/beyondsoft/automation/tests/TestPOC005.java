@@ -37,6 +37,7 @@ public class TestPOC005 extends TestBase{
   
   @BeforeTest
   public void setUp() throws MalformedURLException{
+
 	  	android = new AndroidInit();
 	  	androidDriver = android.launchApp();
 
@@ -46,7 +47,7 @@ public class TestPOC005 extends TestBase{
 		amwayId = user.getAmwayId();
   }
 	
-//  @Test
+  @Test
   public void mobileTestPOC005() throws InterruptedException, MalformedURLException {
 	  MainPage mainPage = new MainPage(androidDriver);
 	  mainPage.navigateToAmywayCloudShopping();
@@ -76,15 +77,13 @@ public class TestPOC005 extends TestBase{
 	  Payment payment = new Payment(androidDriver);
 	  payment.goToPayment();
 	  List<String> totalMoneyAmount_order = payment.getTotalMoneyAmount();
-	  System.out.println(totalMoneyAmount_order.toString());
-	  FrameAssertion.equals(totalMoneyAmount_order.toString(), totalMoneyAmount.toString().split("订单金额:")[1].trim(), "验证应付总金额");
+	  FrameAssertion.contains(totalMoneyAmount_order.toString().split(",")[1].trim(), totalMoneyAmount.toString().split("订单金额：")[1].trim(), "验证应付总金额");
 	  
 	  payment.paymentSelection("微信支付");
 	  payment.doPayment();
 	  payment.paymentCompletion();
 	  List<String> validation = payment.paymentValidation();
 	  List<String> amount =  payment.getTotalMoneyAmount();
-	  System.out.println(amount.toString());
 	  FrameAssertion.contains(validation.toString(), "您已成功支付", "验证支付成功信息");
 	  FrameAssertion.equals(totalMoneyAmount_order.toString(), amount.toString(), "验证应付总金额");
 
