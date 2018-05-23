@@ -55,13 +55,13 @@ public class AndroidInit {
 //        capabilities.setCapability("unicodeKeyboard", true);//Chinese input 
 //        capabilities.setCapability("resetKeyboard", true);//hide keyboard
 //        capabilities.setCapability("noReset", true);
-		
+//		
 //		try {
 //			androidDriver = new AndroidDriver<WebElement>(new URL("http://" + URL +"/wd/hub"), capabilities);
 //		} catch (MalformedURLException e) {
 //			e.printStackTrace();
 //		}	
-        
+      
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability(CapabilityType.PLATFORM, "android");
 
@@ -90,6 +90,8 @@ public class AndroidInit {
 			capabilities.setCapability("app", app.getAbsolutePath());
 		}
 		capabilities.setCapability("noReset", true);
+		capabilities.setCapability("unicodeKeyboard", true);//Chinese input 
+		capabilities.setCapability("resetKeyboard", true);//hide keyboard
 
 		if (!isEmpty(APPIUM_DEVICE_VERSION))
 		{
@@ -112,7 +114,7 @@ public class AndroidInit {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} 
-        
+       
         
        
 		return androidDriver;

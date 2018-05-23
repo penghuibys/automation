@@ -51,7 +51,6 @@ public class Base {
 		List<String>texts = new ArrayList<>();
 		for (int i = 0; i < elements.size(); i++) {
 			String name = elements.get(i).getAttribute("name");
-			System.out.println(name);
 			texts.add(name);
 		}
 		return texts;

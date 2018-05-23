@@ -20,6 +20,7 @@ public class Payment {
 		Locate locate = new Locate(null, androidDriver);
 		locate.click("去支付");
 		locate.atScreen("提交成功");
+		SysUtil.sleep(5); 
 	}
 	
 	public void doPayment() throws InterruptedException {

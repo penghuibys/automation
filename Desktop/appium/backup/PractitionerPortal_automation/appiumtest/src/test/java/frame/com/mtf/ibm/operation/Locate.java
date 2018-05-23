@@ -6,6 +6,8 @@ import java.util.Set;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.TouchAction;
+
+import org.apache.log4j.DailyRollingFileAppender;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebElement;
@@ -99,6 +101,7 @@ public class Locate  {
 	    	//		element = dr.findElement(By.xpath(object));
 	    	//		element(element);
 			//	} catch (Exception e) {
+
 		    		new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(By.xpath(object)));
 		    		element = dr.findElement(By.xpath(object));
 		    		element(element);
