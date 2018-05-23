@@ -1,52 +1,29 @@
 
 package com.beyondsoft.automation.tests;
 
-
-import io.appium.java_client.ios.IOSDriver;
-import org.openqa.selenium.WebElement;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import frame.com.mtf.ibm.init.IOSInit;
 import frame.com.pp.auto.action.FrameAssertion;
-import frame.com.pp.auto.base.TestBase;
-import java.io.File;
 import java.net.MalformedURLException;
 import java.util.List;
-
-import org.openqa.selenium.WebDriver;
 import com.beyondsoft.automation.pages.ios.Login;
 import com.beyondsoft.automation.pages.ios.MainPage;
 import com.beyondsoft.automation.pages.ios.Payment;
 import com.beyondsoft.automation.pages.ios.HuangHouChaoGuo;
 import com.beyondsoft.automation.pages.ios.ShoppingCart;
 import com.beyondsoft.automation.pages.ios.Settlement;
-import com.beyondsoft.automation.model.userInfo;
-import mobile.appiumtest.Utilities;
+import com.beyondsoft.automation.tests.base.Base;
 
 
-public class TestPOC004 extends TestBase{
+public class TestPOC004 extends Base{
 	
-	public String amwayId;
-	public String password;
-	public IOSDriver<WebElement> iosDriver;
-    public WebDriver mobileDriver = null;
-
-  
-  @BeforeTest
-  public void setUp() throws MalformedURLException{
-	  	IOSInit ios = new IOSInit();
-	  	iosDriver = ios.launchRealApp();
-	  	setMobileDriver(iosDriver); 
-		File app = new File("test-data/" + "user.json");
-	  	userInfo user = Utilities.load(app.getAbsolutePath(), "user", userInfo.class);
-		amwayId = user.getAmwayId();
-		password = user.getPassword();
-  }
-
 
 	
   @Test
   public void mobileTestPOC004() throws InterruptedException, MalformedURLException {
+	  setUpIosDriver();
+	  setUpUser();
+	  
+	  
 	  Login loign = new Login(iosDriver);
 	  loign.signIn(amwayId, password);
 	  
