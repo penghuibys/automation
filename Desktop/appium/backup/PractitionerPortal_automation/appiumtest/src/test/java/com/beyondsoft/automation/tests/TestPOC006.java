@@ -17,7 +17,7 @@ public class TestPOC006 extends Base{
 	
 	
   @Test
-  public void mobileTestPOC005() throws InterruptedException, MalformedURLException {
+  public void mobileTestPOC006() throws InterruptedException, MalformedURLException {
 	  setUpAndroidDriver();
 	  setUpUser();
 	  
@@ -49,14 +49,12 @@ public class TestPOC006 extends Base{
 	  Payment payment = new Payment(androidDriver);
 	  payment.goToPayment();
 	  List<String> totalMoneyAmount_order = payment.getTotalMoneyAmount();
-	  System.out.println(totalMoneyAmount_order.toString());
-	  FrameAssertion.contains(totalMoneyAmount_order.toString(), totalMoneyAmount.toString().split("订单金额:")[1].trim(), "验证应付总金额");
+	  FrameAssertion.contains(totalMoneyAmount_order.toString().split(",")[1].trim(), totalMoneyAmount.toString().split("订单金额：")[1].trim(), "验证应付总金额");
 	  
 	  payment.paymentSelection("微信支付");
 	  payment.doPayment();
 	  payment.cancelPayment();
 	  List<String> validation = payment.paymentIncompleteValidation();
-	  System.out.println(validation.toString());
 	  FrameAssertion.contains(validation.toString(), "您的支付未完成", "验证支付成功信息");
 	  
   }

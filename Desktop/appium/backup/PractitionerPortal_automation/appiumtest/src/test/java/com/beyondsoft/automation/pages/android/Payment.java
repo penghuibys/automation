@@ -19,6 +19,7 @@ public class Payment {
 	public void goToPayment() throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
 		locate.click("去支付");
+		SysUtil.sleep(5); 
 		locate.atScreen("提交成功");
 		SysUtil.sleep(5); 
 	}
@@ -31,6 +32,7 @@ public class Payment {
 	public void cancelPayment() throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
 		locate.click("取消支付");
+		SysUtil.sleep(5); 
 	}
 	
 	public void paymentSelection(String payment) throws InterruptedException {
@@ -59,6 +61,7 @@ public class Payment {
 
 	public List<String> getTotalMoneyAmount() throws InterruptedException {
 		Base base = new Base(null, androidDriver);
+		SysUtil.sleep(5);
 		return base.getAllValidationInfo("总金额");
 	}
 

@@ -28,8 +28,6 @@ public class Base {
 			SysUtil.sleep(5);
 			element = locate.element(androidDriver, target);
 			SysUtil.sleep(5);
-			System.out.println(element.getAttribute("name"));
-		//	return element.getAttribute("content-desc");
 		} else {
 			locate = new Locate(iOSDriver, null);
 			element = locate.element(iOSDriver, target);
