@@ -18,7 +18,7 @@ public class TestPOC006 extends Base{
 	
   @Test
   public void mobileTestPOC005() throws InterruptedException, MalformedURLException {
-	  setUpIosDriver();
+	  setUpAndroidDriver();
 	  setUpUser();
 	  
 	  MainPage mainPage = new MainPage(androidDriver);
