@@ -39,21 +39,8 @@ public class ShoppingCart {
 		Base base = new Base(iOSDriver, null);
 		SysUtil.sleep(5);
 		String buyer = null;
-		buyer = base.getAllValidationInfo("当前购货人").toString();
+		buyer = base.getValidationInfo("当前购货人").toString();
 		System.out.println(buyer);
-//		int retry = 5;
-//		for (int i = 0; i < retry; i++) {
-//			buyer = base.getAllValidationInfo("当前购货人").toString();
-//			System.out.println(buyer);
-//			if (buyer.split("当前购货人:").length == 2) {
-//				SysUtil.sleep(5);
-//				iOSDriver.findElementByXPath("//XCUIElementTypeLink[contains(@name,'返回')]").click();
-//				SysUtil.sleep(5);
-//				this.goToShoppingCart();
-//			} else {
-//				break;
-//			}
-//		}
 		return buyer;
 	}
 

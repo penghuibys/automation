@@ -116,11 +116,14 @@ public class IOSInit {
 //	        capabilities.setCapability("noSign", true);
 	        if (!isEmpty(WEBDRIVER_REMOTE))
 	        {
-	        	driver= new IOSDriver(new URL(WEBDRIVERAGENT_URL), capabilities);
+	        	driver= new IOSDriver<WebElement>(new URL(WEBDRIVER_REMOTE), capabilities);
 	        //    System.out.println("driver -> :" + driver);
 	        //    String pageSource = driver.getPageSource();
 	       //     System.out.println(pageSource);
 	        }
+	         else {
+	        	 driver= new IOSDriver<WebElement>(new URL(WEBDRIVERAGENT_URL), capabilities);
+			}
 		
 		
         return driver; 

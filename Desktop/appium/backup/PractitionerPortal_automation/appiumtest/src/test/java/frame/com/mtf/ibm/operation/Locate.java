@@ -9,6 +9,7 @@ import io.appium.java_client.TouchAction;
 
 import org.apache.log4j.DailyRollingFileAppender;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -441,10 +442,15 @@ public class Locate  {
         
     	switch (direction) {    	
 			case "up":
-			//	driver.swipe(width / 2, height * 3 / 4, width / 2, height / 4, 2000);break;
+//				driver.swipe(width / 2, height * 3 / 4, width / 2, height / 4, 2000);break;
+//				HashMap<String, String> scrollObject = new HashMap<String, String>();
+//				scrollObject.put("direction", "up");
+//				driver.executeScript("mobile: swipe", scrollObject);
+				
+				JavascriptExecutor js = (JavascriptExecutor) driver;
 				HashMap<String, String> scrollObject = new HashMap<String, String>();
 				scrollObject.put("direction", "up");
-				driver.executeScript("mobile: swipe", scrollObject);
+				js.executeScript("mobile: swipe", scrollObject);
 				break;
 			case "down":
 				driver.swipe(width / 2, height / 4, width / 2, height * 3 / 4, 2000);break;
