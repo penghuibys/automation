@@ -67,37 +67,6 @@ public class IOSInit {
 //		driver = new IOSDriver<WebElement>( new URL("http://127.0.0.1:4723/wd/hub"), capabilities); 
 		
 
-//	       String APP_DEVICE_PLATFORMNAME = System.getProperty("APP_DEVICE_PLATFORMNAME");
-//	        String APP_DEVICE_VERSION = System.getProperty("APP_DEVICE_VERSION");
-//	        String APP_DEVICE_NAME = System.getProperty("APP_DEVICE_NAME");
-//	        String APP_UDID = System.getProperty("APP_UDID");
-//	        String APP_PATH = System.getProperty("APP_PATH");
-//	        String APP_BUNDLEIDENTIFIER = System.getProperty("APP_BUNDLEIDENTIFIER");
-//	        String WEBDRIVERAGENT_URL = System.getProperty("WEBDRIVERAGENT_URL");
-//	        String WEBDRIVER_REMOTE = System.getProperty("WEBDRIVER_REMOTE");
-//
-//
-//	        System.out.println(APP_DEVICE_PLATFORMNAME);
-//	        System.out.println(APP_DEVICE_VERSION);
-//	        System.out.println(APP_DEVICE_NAME);
-//	        System.out.println(APP_UDID);
-//	        System.out.println(APP_PATH);
-//	        System.out.println(APP_BUNDLEIDENTIFIER);
-//	        System.out.println(WEBDRIVERAGENT_URL);
-//	        System.out.println(WEBDRIVER_REMOTE);
-//	        DesiredCapabilities cap = new DesiredCapabilities();
-//	        File classpathRoot = new File(System.getProperty("user.dir"));
-//	        File app = new File(APP_PATH);
-//	        DesiredCapabilities capabilities = new DesiredCapabilities();
-//	        capabilities.setCapability("platformName", APP_DEVICE_PLATFORMNAME);
-//	        capabilities.setCapability("noReset", true);
-//	        capabilities.setCapability("automationName", "XCUITest");
-//	        capabilities.setCapability("platformVersion", APP_DEVICE_NAME);
-//	        capabilities.setCapability("deviceName", APP_DEVICE_NAME);
-//	        capabilities.setCapability("udid", APP_UDID);
-//	        capabilities.setCapability("bundleId", APP_BUNDLEIDENTIFIER);
-//	        capabilities.setCapability("webDriverAgentUrl",WEBDRIVERAGENT_URL);
-//	        driver = new IOSDriver(new URL(WEBDRIVER_REMOTE), capabilities);
 	        Properties properties = System.getProperties();
 	        Set<Object> k = properties.keySet();
 	        for (Object ok : k)

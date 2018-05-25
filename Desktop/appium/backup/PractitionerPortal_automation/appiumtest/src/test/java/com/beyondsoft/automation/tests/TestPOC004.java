@@ -40,13 +40,10 @@ public class TestPOC004 extends Base{
 	  shoppingCart.goToShoppingCart();
 	  List<String> goodsAmount = shoppingCart.getGoodsAmount();
 	  FrameAssertion.contains(goodsAmount.toString(), "4", "验证商品总数");
-	  
-	  List<String> getCurrentBuyer = shoppingCart.getCurrentBuyer();//
+	  String getCurrentBuyer = shoppingCart.getCurrentBuyer();
 	  FrameAssertion.contains(getCurrentBuyer.toString(), amwayId, "验证当前购货人");
-	  
-	  List<String> moneyAmount = shoppingCart.getMoneyAmount();//
-	  FrameAssertion.contains(moneyAmount.toString(), "2,500", "验证总金额");//
-	  
+	  List<String> moneyAmount = shoppingCart.getMoneyAmount();
+	  FrameAssertion.contains(moneyAmount.toString(), "2,500", "验证总金额");
 	  List<String> promotionGifts = shoppingCart.getPromotionGift();
 	  FrameAssertion.equals(promotionGifts.size(), 3, "验证附件个数");
 	  
