@@ -65,7 +65,7 @@ public class Payment {
 	
 	public List<String> paymentAmount() throws InterruptedException {
 		Base base = new Base(iOSDriver, null);
-		return base.getAllValidationInfo("购货总额");
+		return base.getAllValidationInfo("应付总金额");
 	}
 
 

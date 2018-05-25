@@ -49,7 +49,6 @@ public class TestPOC003 extends Base{
 	  payment.paymentConfirmation();
 	  payment.paymentCompletion();
 	  List<String> validation = payment.paymentValidation();
-	  System.out.println(validation.toString());
 	  FrameAssertion.contains(validation.toString(), "成功支付", "验证支付成功信息");
 //	  FrameAssertion.contains(validation.toString(), "RICH & JAY电子咖啡券 2 张", "验证支付成功信息");
 //	  FrameAssertion.contains(validation.toString(), "成功扣除", "验证支付成功信息");

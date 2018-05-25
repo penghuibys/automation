@@ -3,6 +3,7 @@ package com.beyondsoft.automation.pages.ios;
 import java.util.List;
 import org.openqa.selenium.WebElement;
 import frame.com.mtf.ibm.operation.Locate;
+import frame.com.pp.auto.util.SysUtil;
 import io.appium.java_client.AppiumDriver;
 import com.beyondsoft.automation.basevalidation.Base;
 
@@ -34,9 +35,26 @@ public class ShoppingCart {
 		return base.getValidationInfo("购物数量");
 	}
 
-	public List<String> getCurrentBuyer() throws InterruptedException {
+	public String getCurrentBuyer() throws InterruptedException {
 		Base base = new Base(iOSDriver, null);
-		return base.getAllValidationInfo("当前购货人");
+		SysUtil.sleep(5);
+		String buyer = null;
+		buyer = base.getAllValidationInfo("当前购货人").toString();
+		System.out.println(buyer);
+//		int retry = 5;
+//		for (int i = 0; i < retry; i++) {
+//			buyer = base.getAllValidationInfo("当前购货人").toString();
+//			System.out.println(buyer);
+//			if (buyer.split("当前购货人:").length == 2) {
+//				SysUtil.sleep(5);
+//				iOSDriver.findElementByXPath("//XCUIElementTypeLink[contains(@name,'返回')]").click();
+//				SysUtil.sleep(5);
+//				this.goToShoppingCart();
+//			} else {
+//				break;
+//			}
+//		}
+		return buyer;
 	}
 
 	public List<String> getGoodsAmount() throws InterruptedException {

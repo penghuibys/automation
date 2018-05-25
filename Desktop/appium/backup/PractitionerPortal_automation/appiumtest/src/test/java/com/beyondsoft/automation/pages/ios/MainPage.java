@@ -3,6 +3,7 @@ package com.beyondsoft.automation.pages.ios;
 import org.openqa.selenium.WebElement;
 
 import frame.com.mtf.ibm.operation.Locate;
+import frame.com.pp.auto.util.SysUtil;
 import io.appium.java_client.AppiumDriver;
 
 public class MainPage {
@@ -16,6 +17,7 @@ public class MainPage {
 	public void navigateToAmywayCloudShopping() throws InterruptedException {
 		Locate locate = new Locate(iOSDriver, null);
 		locate.click("安利云购");
+		SysUtil.sleep(5);
 		locate.clickIfItemDisplayed("我知道了");
 	}
 
