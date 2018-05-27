@@ -29,8 +29,15 @@ public class MainPage {
 
 	public void searchRichJayCoffee() throws InterruptedException {
 		Locate locate = new Locate(iOSDriver, null);
+		SysUtil.sleep(5);
 		locate.click("搜索");
-		locate.send("输入框", "饮品券");
+		try {
+			locate.send("输入框", "饮品券");
+		} catch (Exception e) {
+			SysUtil.sleep(5);
+			locate.click("搜索");
+			locate.send("输入框", "饮品券");
+		}
 		locate.click("搜索");
 		locate.atScreen("RICHJAY咖啡饮品券");
 	}
