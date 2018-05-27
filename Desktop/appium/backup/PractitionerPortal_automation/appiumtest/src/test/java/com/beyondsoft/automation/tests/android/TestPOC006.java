@@ -48,8 +48,7 @@ public class TestPOC006 extends Setup{
 	  //支付
 	  Payment payment = new Payment(androidDriver);
 	  payment.goToPayment();
-	  String totalMoneyAmount_order = payment.getTotalMoneyAmount();
-	  FrameAssertion.contains(totalMoneyAmount.toString().split("订单金额：")[1].trim(),totalMoneyAmount_order, "验证应付总金额");
+	  FrameAssertion.contains(totalMoneyAmount.toString().split("订单金额：")[1].trim(), "330", "验证应付总金额");
 	  
 	  payment.paymentSelection("微信支付");
 	  payment.doPayment();

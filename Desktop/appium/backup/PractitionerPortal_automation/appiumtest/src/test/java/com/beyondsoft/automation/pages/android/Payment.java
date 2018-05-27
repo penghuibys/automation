@@ -95,11 +95,13 @@ public class Payment {
 
 	public List<String> paymentValidation() throws InterruptedException {
 		Validation validation = new Validation(null, androidDriver);
+		SysUtil.sleep(10);
 		return validation.getAllValidationInfo("支付成功信息");
 	}
 	
 	public List<String> paymentIncompleteValidation() throws InterruptedException {
 		Validation validation = new Validation(null, androidDriver);
+		SysUtil.sleep(5);
 		return validation.getAllValidationInfo("支付未完成信息");
 	}
 	
