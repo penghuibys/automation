@@ -85,7 +85,7 @@ public class ReadFile {
 		XSSFWorkbook workbook = null;
 		
 		try {
-			workbook = new XSSFWorkbook(new FileInputStream("Implement/PageObject/Object.xlsx"));
+			workbook = new XSSFWorkbook(new FileInputStream("resource/pageobject/Object.xlsx"));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

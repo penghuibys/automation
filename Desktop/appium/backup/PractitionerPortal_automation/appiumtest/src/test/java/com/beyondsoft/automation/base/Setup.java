@@ -42,7 +42,7 @@ public class Setup extends TestBase{
   }
 
   public void setUpUser() throws MalformedURLException{
-		File app = new File("test-data/" + "user.json");
+		File app = new File("resource/test-data/" + "user.json");
 	  	UserInfo user = Utilities.load(app.getAbsolutePath(), "user", UserInfo.class);
 		amwayId = user.getAmwayId();
 		password = user.getPassword();

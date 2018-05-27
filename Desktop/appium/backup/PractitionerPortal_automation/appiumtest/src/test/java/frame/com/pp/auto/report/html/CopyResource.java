@@ -17,9 +17,9 @@ public class CopyResource {
 	************************************************************************************************/
 	public void createCss(){
 
-		FileUtil.copyFile(FileUtil.getAbsolutelyPath("resource/css", "report.css").replace("\\", "/"), getCssPath());
-		FileUtil.copyFile(FileUtil.getAbsolutelyPath("resource/image", "Failed.png").replace("\\", "/"), getFailImagePath());
-		FileUtil.copyFile(FileUtil.getAbsolutelyPath("resource/image", "Passed.png").replace("\\", "/"), getPassImagePath());
+		FileUtil.copyFile(FileUtil.getAbsolutelyPath("resource/html-res/css", "report.css").replace("\\", "/"), getCssPath());
+		FileUtil.copyFile(FileUtil.getAbsolutelyPath("resource/html-res/image", "Failed.png").replace("\\", "/"), getFailImagePath());
+		FileUtil.copyFile(FileUtil.getAbsolutelyPath("resource/html-res/image", "Passed.png").replace("\\", "/"), getPassImagePath());
 
 	}
 	
