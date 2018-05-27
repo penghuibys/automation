@@ -44,20 +44,18 @@ public class TestPOC005 extends Setup{
 	  shoppingCart.confirm();
 	  Settlement settlement = new Settlement(androidDriver);
 	  List<String> totalMoneyAmount = settlement.getTotalMoneyAmount();
+	  FrameAssertion.contains(totalMoneyAmount.toString().split("订单金额：")[1].trim(), "330", "验证应付总金额");
 	  
 	  //支付
 	  Payment payment = new Payment(androidDriver);
 	  payment.goToPayment();
-	  String totalMoneyAmount_order = payment.getTotalMoneyAmount();
-	  FrameAssertion.contains(totalMoneyAmount.toString().split("订单金额：")[1].trim(), "330", "验证应付总金额");
-	  
 	  payment.paymentSelection("微信支付");
 	  payment.doPayment();
 	  payment.paymentCompletion();
 	  List<String> validation = payment.paymentValidation();
 	  String amount =  payment.getTotalMoneyAmount();
 	  FrameAssertion.contains(validation.toString(), "您已成功支付", "验证支付成功信息");
-	  FrameAssertion.contains(totalMoneyAmount_order.toString(), amount.toString(), "验证应付总金额");
+	  FrameAssertion.contains(amount.toString(), "330", "验证应付总金额");
 
 	  
   }
