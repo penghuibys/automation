@@ -18,7 +18,13 @@ public class MainPage {
 		Locate locate = new Locate(iOSDriver, null);
 		locate.click("安利云购");
 		SysUtil.sleep(5);
-		locate.clickIfItemDisplayed("我知道了");
+		try {
+			locate.clickIfItemDisplayed("我知道了");
+		} catch (Exception e) {
+			SysUtil.sleep(5);
+			locate.clickIfItemDisplayed("我知道了");
+		}
+		
 	}
 
 	public void searchRichJayCoffee() throws InterruptedException {
