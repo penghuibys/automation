@@ -18,8 +18,14 @@ public class Settlement {
 	
 	public void requireInvoice() throws InterruptedException {
 		Locate locate = new Locate(iOSDriver, null);
-		locate.swipeAction("up");
-		locate.click("需要发票");
+		WebElement element = locate.element(iOSDriver, "需要发票");
+		locate.swipeAction("up", element);
+		try {
+			locate.click("需要发票");
+		} catch (Exception e) {
+			locate.swipeAction("up");
+			locate.click("需要发票");
+		}
 	}
 	
 	public void selectVATSpecialInvoice() throws InterruptedException {

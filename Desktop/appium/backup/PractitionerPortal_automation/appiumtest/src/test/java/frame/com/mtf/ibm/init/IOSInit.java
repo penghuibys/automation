@@ -68,11 +68,11 @@ public class IOSInit {
 		
 
 	        Properties properties = System.getProperties();
-	        Set<Object> k = properties.keySet();
-	        for (Object ok : k)
-	        {
-	            System.out.println("k=" + ok.toString() + ", value=" + properties.get(ok));
-	        }
+//	        Set<Object> k = properties.keySet();
+//	        for (Object ok : k)
+//	        {
+//	            System.out.println("k=" + ok.toString() + ", value=" + properties.get(ok));
+//	        }
 
 	        String APP_DEVICE_PLATFORMNAME = System.getProperty("APP_DEVICE_PLATFORMNAME");
 	        String APP_DEVICE_VERSION = System.getProperty("APP_DEVICE_VERSION");
@@ -98,7 +98,7 @@ public class IOSInit {
 	        DesiredCapabilities capabilities = new DesiredCapabilities();
 	        capabilities.setCapability("platformName", APP_DEVICE_PLATFORMNAME);
 	        // capabilities.setCapability("app", app.getAbsolutePath());
-	        capabilities.setCapability("noReset", false);
+	        capabilities.setCapability("noReset", true);
 	        capabilities.setCapability("automationName", "XCUITest");
 	        capabilities.setCapability("platformVersion", APP_DEVICE_NAME);
 	        capabilities.setCapability("deviceName", APP_DEVICE_NAME);
@@ -112,7 +112,7 @@ public class IOSInit {
 	        }
 	        capabilities.setCapability("webDriverAgentUrl",WEBDRIVERAGENT_URL);
 	        //Runtime.getRuntime().exec("adb -s 2a2db6a shell input text 789012");
-	        capabilities.setCapability("unicodeKeyboard", true);
+//	        capabilities.setCapability("unicodeKeyboard", true);
 //	        capabilities.setCapability("noSign", true);
 	        if (!isEmpty(WEBDRIVER_REMOTE))
 	        {

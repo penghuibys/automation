@@ -31,8 +31,15 @@ public class MainPage {
 	
 	public void searchHuangHouChaoGuo() throws InterruptedException {
 		Locate locate = new Locate(iOSDriver, null);
+		SysUtil.sleep(5);
 		locate.click("搜索");
-		locate.send("输入框", "皇后中式炒锅");
+		try {
+			locate.send("输入框", "皇后中式炒锅");
+		} catch (Exception e) {
+			SysUtil.sleep(5);
+			locate.click("搜索");
+			locate.send("输入框", "皇后中式炒锅");
+		}
 		locate.click("搜索");
 		locate.atScreen("搜索结果");
 	}

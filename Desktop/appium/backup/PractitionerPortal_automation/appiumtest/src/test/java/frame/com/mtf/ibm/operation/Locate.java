@@ -12,6 +12,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
@@ -435,6 +436,34 @@ public class Locate  {
 	 * @notice no need to care the screen size, it will calculate the current size of screen then give swipe action
 	 */
 	
+    private static void swipeAction(AppiumDriver<WebElement> driver, String direction, WebElement element) {
+    	
+    	int width = driver.manage().window().getSize().width;	
+        int height = driver.manage().window().getSize().height;
+        
+    	switch (direction) {    	
+			case "up":
+				JavascriptExecutor js = (JavascriptExecutor) driver;
+				HashMap<String, String> scrollObject = new HashMap<String, String>();
+				scrollObject.put("direction", "up");
+				scrollObject.put("element", ((RemoteWebElement) element).getId());
+				js.executeScript("mobile: swipe", scrollObject);
+				break;
+			case "down":
+				driver.swipe(width / 2, height / 4, width / 2, height * 3 / 4, 2000);break;
+			case "left":
+			//	driver.swipe(width * 3 / 4, height / 2, width / 4, height / 2, 6000);
+				driver.swipe(width * 5 / 6, height / 2, width / 6, height / 2, 6000);
+				LogUtil.info("[Info] Swipe left");
+				break;
+			case "right":
+				driver.swipe(width / 4, height / 2, width * 3 / 4, height / 2, 2000);break;
+			default:
+				break;			
+		}
+   
+	}
+    
     private static void swipeAction(AppiumDriver<WebElement> driver, String direction) {
     	
     	int width = driver.manage().window().getSize().width;	
@@ -442,11 +471,6 @@ public class Locate  {
         
     	switch (direction) {    	
 			case "up":
-//				driver.swipe(width / 2, height * 3 / 4, width / 2, height / 4, 2000);break;
-//				HashMap<String, String> scrollObject = new HashMap<String, String>();
-//				scrollObject.put("direction", "up");
-//				driver.executeScript("mobile: swipe", scrollObject);
-				
 				JavascriptExecutor js = (JavascriptExecutor) driver;
 				HashMap<String, String> scrollObject = new HashMap<String, String>();
 				scrollObject.put("direction", "up");
@@ -476,6 +500,18 @@ public class Locate  {
 		
 		if (iOSDriver != null) {
 			swipeAction(iOSDriver,direction);
+		}
+    }
+    
+    public void swipeAction(String direction, WebElement element) {
+    
+		
+		if (androidDriver != null) {
+			swipeAction(androidDriver,direction, element);
+		}
+		
+		if (iOSDriver != null) {
+			swipeAction(iOSDriver,direction, element);
 		}
     }
   
