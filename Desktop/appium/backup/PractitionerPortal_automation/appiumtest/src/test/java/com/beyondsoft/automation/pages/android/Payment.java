@@ -67,27 +67,29 @@ public class Payment {
 	public String getTotalMoneyAmount() throws InterruptedException {
 		Validation validation = new Validation(null, androidDriver);
 		SysUtil.sleep(5);
-		String amount;
-		int retry = 5;
-		for (int i = 0; i< retry; i++) {
-			amount = validation.getAllValidationInfo("总金额").toString();
-			if (!amount.contains("总金额")) {
-				SysUtil.sleep(5);
-				continue;
-			}
-			String rep = "[^0-9]";
-			Pattern p = Pattern.compile(rep); 
-			Matcher m = p.matcher(amount);  
-			  
-			String string = m.replaceAll(" ").trim();
-			String[] x = string.split(" ");
-			System.out.println(x[0].trim());
-			if (x[0].trim() != "") {
-				return x[0].trim();
-			}
-			SysUtil.sleep(5);
-		}
-		return null;
+		
+		String amount = validation.getValidationInfo("总金额").toString();
+//		String amount;
+//		int retry = 5;
+//		for (int i = 0; i< retry; i++) {
+//			amount = validation.getValidationInfo("总金额").toString();
+//			if (!amount.contains("总金额")) {
+//				SysUtil.sleep(5);
+//				continue;
+//			}
+//			String rep = "[^0-9]";
+//			Pattern p = Pattern.compile(rep); 
+//			Matcher m = p.matcher(amount);  
+//			  
+//			String string = m.replaceAll(" ").trim();
+//			String[] x = string.split(" ");
+//			System.out.println(x[0].trim());
+//			if (x[0].trim() != "") {
+//				return x[0].trim();
+//			}
+//			SysUtil.sleep(5);
+//		}
+		return amount;
 	}
 
 
