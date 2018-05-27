@@ -27,7 +27,7 @@ public class Settlement {
 	
 	public List<String> getTotalMoneyAmount() throws InterruptedException {
 		Validation validation = new Validation(null, androidDriver);
-		SysUtil.sleep(6);
+		SysUtil.sleep(10);
 		return validation.getAllValidationInfo("订单总金额");
 	}
 
