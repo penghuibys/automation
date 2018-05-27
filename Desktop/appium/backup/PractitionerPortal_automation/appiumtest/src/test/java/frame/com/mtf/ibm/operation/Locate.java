@@ -248,6 +248,7 @@ public class Locate  {
 		WebElement element = null;
 		try {
 			element = element(driver, target);
+			SysUtil.sleep(5);
 			element.click();
 			LogUtil.step("Clicked at '" + target + "', Passed");
 		} catch (Exception e) {
@@ -317,28 +318,22 @@ public class Locate  {
 		}
 	}
 		
-	public void send(AppiumDriver<WebElement> driver, String target, String content) throws InterruptedException{
-		
-		try{
-			WebElement element = element(driver, target);
-			element.clear();
-			element.sendKeys(content);
-			LogUtil.step("Send Key '" + content + "' to " + target + ", Passed");
-		}
-		catch(Exception e){
-			FrameAssertion.fail("Send Key '" + content + "' to " + target + ", Failed");
-		}
+	public void send(AppiumDriver<WebElement> driver, String target, String content) throws InterruptedException {
+		WebElement element = element(driver, target);
+		element.clear();
+		element.sendKeys(content);
+		LogUtil.step("Send Key '" + content + "' to " + target + ", Passed");
 	}
 	
 	public void send(String target, String content) throws InterruptedException{
 		
 		
 		if (androidDriver != null) {
-			send(androidDriver,target,content);
+			send(androidDriver, target, content);
 		}
-		
+
 		if (iOSDriver != null) {
-			send(iOSDriver,target,content);
+			send(iOSDriver, target, content);
 		}
 
 	}
