@@ -2,10 +2,12 @@ package com.beyondsoft.automation.pages.ios;
 
 import java.util.List;
 import org.openqa.selenium.WebElement;
+
+import com.beyondsoft.automation.base.Validation;
+
 import frame.com.mtf.ibm.operation.Locate;
 import frame.com.pp.auto.util.SysUtil;
 import io.appium.java_client.AppiumDriver;
-import com.beyondsoft.automation.basevalidation.Base;
 
 public class ShoppingCart {
 	public static AppiumDriver<WebElement> iOSDriver;
@@ -31,34 +33,34 @@ public class ShoppingCart {
 	}
 
 	public String getShoppingCount() throws InterruptedException {
-		Base base = new Base(iOSDriver, null);
-		return base.getValidationInfo("购物数量");
+		Validation Validation = new Validation(iOSDriver, null);
+		return Validation.getValidationInfo("购物数量");
 	}
 
 	public String getCurrentBuyer() throws InterruptedException {
-		Base base = new Base(iOSDriver, null);
+		Validation validation = new Validation(iOSDriver, null);
 		SysUtil.sleep(5);
 		String buyer = null;
-		buyer = base.getValidationInfo("当前购货人").toString();
+		buyer = validation.getValidationInfo("当前购货人").toString();
 		System.out.println(buyer);
 		return buyer;
 	}
 
 	public List<String> getGoodsAmount() throws InterruptedException {
-		Base base = new Base(iOSDriver, null);
-		return base.getAllValidationInfo("商品总数");
+		Validation validation = new Validation(iOSDriver, null);
+		return validation.getAllValidationInfo("商品总数");
 	}
 
 	public List<String> getMoneyAmount() throws InterruptedException {
-		Base base = new Base(iOSDriver, null);
-		return base.getAllValidationInfo("总金额");
+		Validation validation = new Validation(iOSDriver, null);
+		return validation.getAllValidationInfo("总金额");
 	}
 
 	public List<String> getPromotionGift() throws InterruptedException {
 		Locate locate = new Locate(iOSDriver, null);
 		locate.swipeAction("up");
-		Base base = new Base(iOSDriver, null);
-		return base.getAllValidationInfo("促销赠品");
+		Validation validation = new Validation(iOSDriver, null);
+		return validation.getAllValidationInfo("促销赠品");
 	}
 
 }

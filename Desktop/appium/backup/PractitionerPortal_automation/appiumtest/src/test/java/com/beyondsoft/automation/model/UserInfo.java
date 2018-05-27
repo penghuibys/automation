@@ -1,6 +1,6 @@
 package com.beyondsoft.automation.model;
 
-public class userInfo {
+public class UserInfo {
 	public String amwayId;
 	public String password;
 	

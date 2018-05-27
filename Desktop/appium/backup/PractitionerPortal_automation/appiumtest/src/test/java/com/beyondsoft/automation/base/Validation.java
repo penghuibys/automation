@@ -1,19 +1,18 @@
 
-package com.beyondsoft.automation.basevalidation;
+package com.beyondsoft.automation.base;
 
 import io.appium.java_client.AppiumDriver;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.openqa.selenium.WebElement;
 import frame.com.mtf.ibm.operation.Locate;
+import frame.com.pp.auto.base.TestBase;
 import frame.com.pp.auto.util.SysUtil;
 
-public class Base {
-	public Base(AppiumDriver<WebElement> iOSDriver, AppiumDriver<WebElement> androidDriver){
-		Base.iOSDriver = iOSDriver;
-		Base.androidDriver = androidDriver;
+public class Validation extends TestBase{
+	public Validation(AppiumDriver<WebElement> iOSDriver, AppiumDriver<WebElement> androidDriver){
+		Validation.iOSDriver = iOSDriver;
+		Validation.androidDriver = androidDriver;
 	}
 	
 	public static AppiumDriver<WebElement> iOSDriver;

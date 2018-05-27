@@ -4,7 +4,9 @@ package com.beyondsoft.automation.pages.ios;
 import io.appium.java_client.AppiumDriver;
 import java.util.List;
 import org.openqa.selenium.WebElement;
-import com.beyondsoft.automation.basevalidation.Base;
+
+import com.beyondsoft.automation.base.Validation;
+
 import frame.com.mtf.ibm.operation.Locate;
 import frame.com.pp.auto.util.SysUtil;
 
@@ -54,18 +56,18 @@ public class Payment {
 	}
 	
 	public List<String> exchangeValidation() throws InterruptedException {
-		Base base = new Base(iOSDriver, null);
-		return base.getAllValidationInfo("兑换成功信息");
+		Validation validation = new Validation(iOSDriver, null);
+		return validation.getAllValidationInfo("兑换成功信息");
 	}
 	
 	public List<String> paymentValidation() throws InterruptedException {
-		Base base = new Base(iOSDriver, null);
-		return base.getAllValidationInfo("支付成功信息");
+		Validation validation = new Validation(iOSDriver, null);
+		return validation.getAllValidationInfo("支付成功信息");
 	}
 	
 	public List<String> paymentAmount() throws InterruptedException {
-		Base base = new Base(iOSDriver, null);
-		return base.getAllValidationInfo("应付总金额");
+		Validation validation = new Validation(iOSDriver, null);
+		return validation.getAllValidationInfo("应付总金额");
 	}
 
 

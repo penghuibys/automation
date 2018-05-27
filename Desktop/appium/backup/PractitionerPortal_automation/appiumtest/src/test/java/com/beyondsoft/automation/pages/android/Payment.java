@@ -1,14 +1,16 @@
 package com.beyondsoft.automation.pages.android;
 
-import static org.testng.Assert.assertEquals;
+
 
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.openqa.selenium.WebElement;
+
+import com.beyondsoft.automation.base.Validation;
+
 import io.appium.java_client.AppiumDriver;
-import com.beyondsoft.automation.basevalidation.Base;
 import frame.com.mtf.ibm.operation.Locate;
 import frame.com.pp.auto.util.SysUtil;
 
@@ -63,12 +65,12 @@ public class Payment {
 	}
 
 	public String getTotalMoneyAmount() throws InterruptedException {
-		Base base = new Base(null, androidDriver);
+		Validation validation = new Validation(null, androidDriver);
 		SysUtil.sleep(5);
 		String amount;
 		int retry = 5;
 		for (int i = 0; i< retry; i++) {
-			amount = base.getAllValidationInfo("总金额").toString();
+			amount = validation.getAllValidationInfo("总金额").toString();
 			if (!amount.contains("总金额")) {
 				SysUtil.sleep(5);
 				continue;
@@ -90,13 +92,13 @@ public class Payment {
 
 
 	public List<String> paymentValidation() throws InterruptedException {
-		Base base = new Base(null, androidDriver);
-		return base.getAllValidationInfo("支付成功信息");
+		Validation validation = new Validation(null, androidDriver);
+		return validation.getAllValidationInfo("支付成功信息");
 	}
 	
 	public List<String> paymentIncompleteValidation() throws InterruptedException {
-		Base base = new Base(null, androidDriver);
-		return base.getAllValidationInfo("支付未完成信息");
+		Validation validation = new Validation(null, androidDriver);
+		return validation.getAllValidationInfo("支付未完成信息");
 	}
 	
 

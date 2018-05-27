@@ -5,7 +5,7 @@
 	
 	<test name="PractitionerPortal_TestDemo_android">
 		<classes>
-			<class name="com.beyondsoft.automation.tests.POC003" />
+			<class name="com.beyondsoft.automation.tests.android" />
 		</classes>
 	</test>
 	

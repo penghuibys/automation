@@ -4,7 +4,9 @@ package com.beyondsoft.automation.pages.ios;
 import io.appium.java_client.AppiumDriver;
 import java.util.List;
 import org.openqa.selenium.WebElement;
-import com.beyondsoft.automation.basevalidation.Base;
+
+import com.beyondsoft.automation.base.Validation;
+
 import frame.com.mtf.ibm.operation.Locate;
 
 public class Settlement {
@@ -33,16 +35,16 @@ public class Settlement {
 		Locate locate = new Locate(iOSDriver, null);
 		locate.atScreen("配送方式");
 		
-		Base base = new Base(iOSDriver, null);
-		return base.getValidationValue("默认配送方式");
+		Validation validation = new Validation(iOSDriver, null);
+		return validation.getValidationValue("默认配送方式");
 	}
 	
 	public List<String> getTotalAmount() throws InterruptedException {
 		Locate locate = new Locate(iOSDriver, null);
 		locate.swipeAction("up");
 		
-		Base base = new Base(iOSDriver, null);
-		return base.getAllValidationInfo("购货总额");
+		Validation validation = new Validation(iOSDriver, null);
+		return validation.getAllValidationInfo("购货总额");
 	}
 
 }

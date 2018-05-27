@@ -2,9 +2,10 @@ package com.beyondsoft.automation.pages.android;
 
 import java.util.List;
 import org.openqa.selenium.WebElement;
-import io.appium.java_client.AppiumDriver;
-import com.beyondsoft.automation.basevalidation.Base;
 
+import com.beyondsoft.automation.base.Validation;
+
+import io.appium.java_client.AppiumDriver;
 import frame.com.pp.auto.util.SysUtil;
 
 public class Settlement {
@@ -15,19 +16,19 @@ public class Settlement {
 	}
 
 	public String getGoodsAmount() throws InterruptedException {
-		Base base = new Base(null, androidDriver);
-		return base.getValidationInfo("商品总数");
+		Validation validation = new Validation(null, androidDriver);
+		return validation.getValidationInfo("商品总数");
 	}
 
 	public List<String> getMoneyAmount() throws InterruptedException {
-		Base base = new Base(null, androidDriver);
-		return base.getAllValidationInfo("金额小计");
+		Validation validation = new Validation(null, androidDriver);
+		return validation.getAllValidationInfo("金额小计");
 	}
 	
 	public List<String> getTotalMoneyAmount() throws InterruptedException {
-		Base base = new Base(null, androidDriver);
+		Validation validation = new Validation(null, androidDriver);
 		SysUtil.sleep(6);
-		return base.getAllValidationInfo("订单总金额");
+		return validation.getAllValidationInfo("订单总金额");
 	}
 
 

@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.openqa.selenium.WebElement;
 
+import com.beyondsoft.automation.base.Validation;
+
 import frame.com.mtf.ibm.operation.Locate;
 import io.appium.java_client.AppiumDriver;
-import com.beyondsoft.automation.basevalidation.Base;
 
 public class Exchange {
 	
@@ -48,8 +49,8 @@ public class Exchange {
 	
 
 	public List<String> getValidationInfo(AppiumDriver<WebElement> driver,String target) throws InterruptedException{
-		Base base = new Base(iOSDriver, null);
-		return base.getAllValidationInfo(target);
+		Validation validation = new Validation(iOSDriver, null);
+		return validation.getAllValidationInfo(target);
 	}
 
 

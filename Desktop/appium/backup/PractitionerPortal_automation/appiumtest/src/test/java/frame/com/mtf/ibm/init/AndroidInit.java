@@ -61,7 +61,7 @@ public class AndroidInit {
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}	
-      
+   
 //		DesiredCapabilities capabilities = new DesiredCapabilities();
 //		capabilities.setCapability(CapabilityType.PLATFORM, "android");
 //
@@ -114,7 +114,7 @@ public class AndroidInit {
 //			// TODO Auto-generated catch block
 //			e1.printStackTrace();
 //		} 
-       
+//       
         
        
 		return androidDriver;

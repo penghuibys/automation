@@ -1,5 +1,5 @@
 
-package com.beyondsoft.automation.tests;
+package com.beyondsoft.automation.tests.ios;
 
 import org.testng.annotations.Test;
 import frame.com.pp.auto.action.FrameAssertion;
@@ -10,11 +10,11 @@ import com.beyondsoft.automation.pages.ios.MainPage;
 import com.beyondsoft.automation.pages.ios.Payment;
 import com.beyondsoft.automation.pages.ios.HuangHouChaoGuo;
 import com.beyondsoft.automation.pages.ios.ShoppingCart;
+import com.beyondsoft.automation.base.Setup;
 import com.beyondsoft.automation.pages.ios.Settlement;
-import com.beyondsoft.automation.tests.base.Base;
 
 
-public class TestPOC004 extends Base{
+public class TestPOC004 extends Setup{
 	
 
 	

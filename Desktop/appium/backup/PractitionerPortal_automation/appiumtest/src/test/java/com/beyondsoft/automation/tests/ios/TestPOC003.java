@@ -1,5 +1,5 @@
 
-package com.beyondsoft.automation.tests;
+package com.beyondsoft.automation.tests.ios;
 
 import org.testng.annotations.Test;
 import frame.com.pp.auto.action.FrameAssertion;
@@ -10,10 +10,10 @@ import com.beyondsoft.automation.pages.ios.Login;
 import com.beyondsoft.automation.pages.ios.MainPage;
 import com.beyondsoft.automation.pages.ios.Payment;
 import com.beyondsoft.automation.pages.ios.RichJayCoffee;
-import com.beyondsoft.automation.tests.base.Base;
+import com.beyondsoft.automation.base.Setup;
 
 
-public class TestPOC003 extends Base{
+public class TestPOC003 extends Setup{
 
 	
   @Test

@@ -111,11 +111,5 @@ public class WebElementLocator {
 		}
 	}
 	
-	public static void main(String[] args){
-		WebElementLocator PO;
-		PO = new WebElementLocator("social");
-		System.out.println(PO.get("渠道管理门户"));
-		System.out.println(PO.getLocator("渠道管理门户"));
-	}
 }
 

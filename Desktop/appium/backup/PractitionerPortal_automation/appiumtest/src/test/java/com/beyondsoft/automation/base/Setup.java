@@ -1,5 +1,5 @@
 
-package com.beyondsoft.automation.tests.base;
+package com.beyondsoft.automation.base;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
@@ -8,14 +8,14 @@ import frame.com.mtf.ibm.init.IOSInit;
 import frame.com.pp.auto.base.TestBase;
 import java.io.File;
 import java.net.MalformedURLException;
-import com.beyondsoft.automation.model.userInfo;
+import com.beyondsoft.automation.model.UserInfo;
 
 
 
 import mobile.appiumtest.Utilities;
 
 
-public class Base extends TestBase{
+public class Setup extends TestBase{
 	
 	public static String amwayId;
 	public static String password;
@@ -43,10 +43,10 @@ public class Base extends TestBase{
 
   public void setUpUser() throws MalformedURLException{
 		File app = new File("test-data/" + "user.json");
-	  	userInfo user = Utilities.load(app.getAbsolutePath(), "user", userInfo.class);
+	  	UserInfo user = Utilities.load(app.getAbsolutePath(), "user", UserInfo.class);
 		amwayId = user.getAmwayId();
 		password = user.getPassword();
-}
+  }
 	
 
   
