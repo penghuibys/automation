@@ -20,6 +20,7 @@ public class Settlement {
 		Locate locate = new Locate(iOSDriver, null);
 	//	WebElement element = locate.element(iOSDriver, "需要发票");
 		locate.swipeAction("up");
+		locate.swipeAction("up");
 		try {
 			locate.click("需要发票");
 		} catch (Exception e) {
@@ -36,6 +37,7 @@ public class Settlement {
 			locate.swipeAction("up");
 			locate.click("发票类型");
 		}
+		locate.swipeAction("up");
 		locate.click("查看全部发票");
 		locate.click("选择发票");
 		locate.click("发票确认");
