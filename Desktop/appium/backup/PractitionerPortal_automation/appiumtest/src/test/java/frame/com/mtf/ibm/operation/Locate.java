@@ -466,10 +466,14 @@ public class Locate  {
         
     	switch (direction) {    	
 			case "up":
-				JavascriptExecutor js = (JavascriptExecutor) driver;
-				HashMap<String, String> scrollObject = new HashMap<String, String>();
-				scrollObject.put("direction", "up");
-				js.executeScript("mobile: swipe", scrollObject);
+				if (driver.getCapabilities().getCapability("platformName").toString().equalsIgnoreCase("Android")) {
+					driver.swipe(width / 2, height * 3 / 4, width / 2, height / 4, 2000);
+				} else {
+					JavascriptExecutor js = (JavascriptExecutor) driver;
+					HashMap<String, String> scrollObject = new HashMap<String, String>();
+					scrollObject.put("direction", "up");
+					js.executeScript("mobile: swipe", scrollObject);
+				}
 				break;
 			case "down":
 				driver.swipe(width / 2, height / 4, width / 2, height * 3 / 4, 2000);break;
