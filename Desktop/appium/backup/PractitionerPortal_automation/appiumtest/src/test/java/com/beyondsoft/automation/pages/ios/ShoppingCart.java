@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import com.beyondsoft.automation.base.Validation;
 
 import frame.com.mtf.ibm.operation.Locate;
-import frame.com.pp.auto.util.SysUtil;
 import io.appium.java_client.AppiumDriver;
 
 public class ShoppingCart {
@@ -39,7 +38,6 @@ public class ShoppingCart {
 
 	public String getCurrentBuyer() throws InterruptedException {
 		Validation validation = new Validation(iOSDriver, null);
-		SysUtil.sleep(15);
 		String buyer = validation.getValidationInfo("当前购货人").toString();
 		System.out.println(buyer);
 		return buyer;
@@ -52,7 +50,6 @@ public class ShoppingCart {
 
 	public List<String> getMoneyAmount() throws InterruptedException {
 		Validation validation = new Validation(iOSDriver, null);
-		SysUtil.sleep(15);
 		return validation.getAllValidationInfo("总金额");
 	}
 

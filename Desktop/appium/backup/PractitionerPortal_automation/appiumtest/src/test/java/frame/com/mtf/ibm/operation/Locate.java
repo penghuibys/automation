@@ -49,7 +49,7 @@ public class Locate  {
 	
 	
 
-	private static int timeout = 30;//second
+	private static int timeout = 60;//second
 	public static AppiumDriver<WebElement> androidDriver;
 	public static AppiumDriver<WebElement> iOSDriver;
 	private static String timeFormat = "yyyy/MM/dd/ HH:mm:ss";
