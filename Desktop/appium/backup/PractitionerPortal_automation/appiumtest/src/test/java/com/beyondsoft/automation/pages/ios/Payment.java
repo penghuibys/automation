@@ -35,15 +35,34 @@ public class Payment {
 	}
 	
 	public void paymentConfirmation() throws InterruptedException {
-		Locate locate = new Locate(iOSDriver, null);
-		locate.click("确认付款");
+//		Locate locate = new Locate(iOSDriver, null);
+//		locate.click("确认付款");
+		try {
+			iOSDriver.findElementByXPath("//XCUIElementTypeOther[@name='确认付款']").click();
+			SysUtil.sleep(5);
+		} catch (Exception e) {
+			iOSDriver.findElementByXPath("//XCUIElementTypeOther[@name='主要']").click();
+			SysUtil.sleep(5);
+		}
+		
 	}
 	
 	public void paymentCompletion() throws InterruptedException {
 		Locate locate = new Locate(iOSDriver, null);
-		List<WebElement> elements = locate.elements(iOSDriver, "密码输入框");
-		if (elements.size() == 6) {
-			elements.get(0).click();//打开键盘, workaround
+		try {
+			List<WebElement> elements = locate.elements(iOSDriver, "密码输入框");
+			if (elements.size() == 6) {
+				elements.get(0).click();//打开键盘, workaround
+				iOSDriver.getKeyboard().sendKeys("1");
+				iOSDriver.getKeyboard().sendKeys("6");
+				iOSDriver.getKeyboard().sendKeys("0");
+				iOSDriver.getKeyboard().sendKeys("1");
+				iOSDriver.getKeyboard().sendKeys("0");
+				iOSDriver.getKeyboard().sendKeys("4");
+			}
+		} catch (Exception e) {
+			iOSDriver.findElementByXPath("//XCUIElementTypeOther[@name='主要']/XCUIElementTypeOther[4]").click();
+			SysUtil.sleep(2);
 			iOSDriver.getKeyboard().sendKeys("1");
 			iOSDriver.getKeyboard().sendKeys("6");
 			iOSDriver.getKeyboard().sendKeys("0");
@@ -51,6 +70,7 @@ public class Payment {
 			iOSDriver.getKeyboard().sendKeys("0");
 			iOSDriver.getKeyboard().sendKeys("4");
 		}
+
 		SysUtil.sleep(5);
 		locate.click("完成支付");
 	}
