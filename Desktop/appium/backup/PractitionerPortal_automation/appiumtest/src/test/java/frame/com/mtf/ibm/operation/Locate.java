@@ -124,8 +124,7 @@ public class Locate  {
 	        case "accessibilityid":
 	        	new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId(object)));
 	  		  	SysUtil.sleep(5);
-	        	List<WebElement> elements =  dr.findElementsByAccessibilityId(object);
-	            element = elements.get(0);
+	        	element = (WebElement) dr.findElementByAccessibilityId(object);
 		    	break;    
 	        default : 
 	        	System.out.println("[Info:] Your attribute " + attribute + " is not correct or empty for selenium,the API such as: id,name,etc");
@@ -247,7 +246,7 @@ public class Locate  {
 		
 		WebElement element = null;
 		try {
-			element = element(driver, target);
+			element = this.isDisplayed(driver, target, 20);
 			SysUtil.sleep(5);
 			element.click();
 			LogUtil.step("Clicked at '" + target + "', Passed");
@@ -268,6 +267,7 @@ public class Locate  {
 	}
 	
 	public void clickIfItemDisplayed(String target) throws InterruptedException {
+		
 
 		if (androidDriver != null) {
 			clickIfItemDisplayed(androidDriver, target);
@@ -468,6 +468,7 @@ public class Locate  {
 			case "up":
 				if (driver.getCapabilities().getCapability("platformName").toString().equalsIgnoreCase("Android")) {
 					driver.swipe(width / 2, height * 3 / 4, width / 2, height / 4, 2000);
+					SysUtil.sleep(2);
 				} else {
 					JavascriptExecutor js = (JavascriptExecutor) driver;
 					HashMap<String, String> scrollObject = new HashMap<String, String>();

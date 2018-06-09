@@ -23,8 +23,30 @@ public class Payment {
 		Locate locate = new Locate(null, androidDriver);
 		locate.click("去支付");
 		SysUtil.sleep(5); 
+		if (isGoPaymentStillDisplayed()) {
+			int x = androidDriver.findElementByXPath("//android.widget.Button[@content-desc='去支付']").getLocation().getX();
+			int y = androidDriver.findElementByXPath("//android.widget.Button[@content-desc='去支付']").getLocation().getY();
+			androidDriver.tap(1, x, y, 1);
+			SysUtil.sleep(5); 
+		}
+		
 		locate.atScreen("提交成功");
 		SysUtil.sleep(5); 
+	}
+	
+	private boolean isGoPaymentStillDisplayed() throws InterruptedException{
+		try {
+			return androidDriver.findElementByXPath("//android.widget.Button[@content-desc='去支付']").isDisplayed();
+		} catch (Exception e) {
+			return false;
+		} 
+	}
+	
+	public void multiPayment(String amount) throws InterruptedException {
+		Locate locate = new Locate(null, androidDriver);
+		locate.swipeAction("up");
+		locate.click("多笔支付");
+		locate.send("本次支付金额", amount);
 	}
 	
 	public void doPayment() throws InterruptedException {
@@ -61,35 +83,10 @@ public class Payment {
 		}
 
 		locate.click("完成支付");
+		SysUtil.sleep(10);
 	}
 
-	public String getTotalMoneyAmount() throws InterruptedException {
-		Validation validation = new Validation(null, androidDriver);
-		SysUtil.sleep(5);
-		
-		String amount = validation.getValidationInfo("总金额").toString();
-//		String amount;
-//		int retry = 5;
-//		for (int i = 0; i< retry; i++) {
-//			amount = validation.getValidationInfo("总金额").toString();
-//			if (!amount.contains("总金额")) {
-//				SysUtil.sleep(5);
-//				continue;
-//			}
-//			String rep = "[^0-9]";
-//			Pattern p = Pattern.compile(rep); 
-//			Matcher m = p.matcher(amount);  
-//			  
-//			String string = m.replaceAll(" ").trim();
-//			String[] x = string.split(" ");
-//			System.out.println(x[0].trim());
-//			if (x[0].trim() != "") {
-//				return x[0].trim();
-//			}
-//			SysUtil.sleep(5);
-//		}
-		return amount;
-	}
+
 
 
 	public List<String> paymentValidation() throws InterruptedException {
@@ -103,6 +100,8 @@ public class Payment {
 		SysUtil.sleep(5);
 		return validation.getAllValidationInfo("支付未完成信息");
 	}
+	
+	
 	
 
 }

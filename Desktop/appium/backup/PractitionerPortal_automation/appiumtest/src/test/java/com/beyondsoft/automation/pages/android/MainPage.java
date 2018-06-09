@@ -2,7 +2,6 @@ package com.beyondsoft.automation.pages.android;
 
 
 import org.openqa.selenium.WebElement;
-
 import frame.com.mtf.ibm.operation.Locate;
 import frame.com.pp.auto.base.TestBase;
 import io.appium.java_client.AppiumDriver;
@@ -19,14 +18,17 @@ public class MainPage extends TestBase{
 	
 	public void navigateToAmywayCloudShopping() throws InterruptedException {
 		  Locate locate = new Locate(null, androidDriver);
+		  SysUtil.sleep(5);
 		  locate.click("搜索公众号");
 		  locate.send("输入框", "安利保洁用品");
 		  
 		  locate.click("公众号链接");
 		  locate.click("线上工作室");
 		  locate.click("安利云购链接");
-		  SysUtil.sleep(3);
+		  SysUtil.sleep(5);
+		  
 		  locate.clickIfItemDisplayed("我知道了");
+		  SysUtil.sleep(5);
 	}
 
 	//个人护理

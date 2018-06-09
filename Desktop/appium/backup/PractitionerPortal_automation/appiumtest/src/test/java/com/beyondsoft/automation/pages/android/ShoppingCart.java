@@ -25,28 +25,60 @@ public class ShoppingCart {
 	public void goToShoppingCart() throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
 		locate.click("前往购物车");
+		SysUtil.sleep(5);
 	}
 	
 	public void confirm() throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
 		locate.click("去结算");
+		SysUtil.sleep(10);
+		locate.clickIfItemDisplayed("确定");
+		if (isConfirmStillDisplayed()) {
+			int x = androidDriver.findElementById("cartpageLabelConfirmSingle").getLocation().getX();
+			int y = androidDriver.findElementById("cartpageLabelConfirmSingle").getLocation().getY();
+			androidDriver.tap(1, x, y, 1);
+			SysUtil.sleep(10);
+		}
+	}
+	
+	private boolean isConfirmStillDisplayed() throws InterruptedException{
+		try {
+			return androidDriver.findElementById("cartpageLabelConfirmSingle").isDisplayed();
+		} catch (Exception e) {
+			return false;
+		} 
 	}
 
-	public List<String> getCurrentBuyer() throws InterruptedException {
+	public List<String> getCurrentShopper() throws InterruptedException {
 		Validation validation = new Validation(null, androidDriver);
 		return validation.getAllValidationInfo("当前购货人");
 	}
 
 	public String getGoodsAmount() throws InterruptedException {
 		Validation validation = new Validation(null, androidDriver);
-		return validation.getValidationInfo("商品总数");
+		return validation.getValidationInfo("婴儿沐浴露数量");
+	}
+	
+	public String getBV() throws InterruptedException {
+		Validation validation = new Validation(null, androidDriver);
+		return validation.getValidationInfo("净营业额");
+	}
+	
+	public String getPV() throws InterruptedException {
+		Validation validation = new Validation(null, androidDriver);
+		return validation.getValidationInfo("销售指数");
 	}
 
 	public List<String> getMoneyAmount() throws InterruptedException {
 		Validation validation = new Validation(null, androidDriver);
 		return validation.getAllValidationInfo("金额小计");
 	}
-
+	
+	public List<String> getTotalMoneyAmount() throws InterruptedException {
+		Validation validation = new Validation(null, androidDriver);
+		return validation.getAllValidationInfo("总额");
+	}
+	
 
 
 }
