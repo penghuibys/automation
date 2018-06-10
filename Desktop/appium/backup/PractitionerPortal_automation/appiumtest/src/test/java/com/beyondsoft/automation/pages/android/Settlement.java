@@ -38,10 +38,10 @@ public class Settlement {
 	}
 
 	public String getBuyAmount() throws InterruptedException {
-		Locate locate = new Locate(null, androidDriver);
-		locate.swipeAction("up");
-		locate.swipeAction("up");
-		locate.swipeAction("up");
+//		Locate locate = new Locate(null, androidDriver);
+//		locate.swipeAction("up");
+//		locate.swipeAction("up");
+//		locate.swipeAction("up");
 		SysUtil.sleep(10);
 		Validation validation = new Validation(null, androidDriver);
 		return validation.getValidationInfo("购货总额");

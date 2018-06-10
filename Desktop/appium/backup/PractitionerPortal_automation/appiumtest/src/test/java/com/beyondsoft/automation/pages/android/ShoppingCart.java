@@ -25,19 +25,20 @@ public class ShoppingCart {
 	public void goToShoppingCart() throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
 		locate.click("前往购物车");
-		SysUtil.sleep(5);
+		SysUtil.sleep(10);
 	}
 	
 	public void confirm() throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
 		locate.click("去结算");
-		SysUtil.sleep(10);
+		SysUtil.sleep(5);
 		locate.clickIfItemDisplayed("确定");
+		SysUtil.sleep(10);
 		if (isConfirmStillDisplayed()) {
 			int x = androidDriver.findElementById("cartpageLabelConfirmSingle").getLocation().getX();
 			int y = androidDriver.findElementById("cartpageLabelConfirmSingle").getLocation().getY();
 			androidDriver.tap(1, x, y, 1);
-			SysUtil.sleep(10);
+			SysUtil.sleep(15);
 		}
 	}
 	

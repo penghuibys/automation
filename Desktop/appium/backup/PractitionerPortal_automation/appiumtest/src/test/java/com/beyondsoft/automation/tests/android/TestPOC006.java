@@ -33,23 +33,37 @@ public class TestPOC006 extends Setup{
 	  shoppingCart.goToShoppingCart();
 	  
 	  //购物车
-	  List<String> getCurrentBuyer = shoppingCart.getCurrentBuyer();
+	  List<String> getCurrentBuyer = shoppingCart.getCurrentShopper();
 	  FrameAssertion.contains(getCurrentBuyer.toString(), amwayId, "验证当前购货人");
 	  String goodsAmount = shoppingCart.getGoodsAmount();
-	  FrameAssertion.contains(goodsAmount, "2", "验证商品总数");
+	  FrameAssertion.contains(goodsAmount, "2", "验证婴儿沐浴露数量");
+	  String bv = shoppingCart.getBV();
+	  FrameAssertion.contains(bv, "276.80", "验证净营业额");
+	  String pv = shoppingCart.getPV();
+	  FrameAssertion.contains(pv, "22.16", "验证销售指数");
 	  List<String> moneyAmount = shoppingCart.getMoneyAmount();
-	  FrameAssertion.contains(moneyAmount.toString(), "320", "验证总金额");
+	  FrameAssertion.contains(moneyAmount.toString(), "320", "验证金额小计");
+	  List<String> totalAmount = shoppingCart.getTotalMoneyAmount();
+	  FrameAssertion.contains(totalAmount.toString(), "320", "验证总金额");
 	  
 	  //结算
 	  shoppingCart.confirm();
 	  Settlement settlement = new Settlement(androidDriver);
-	  List<String> totalMoneyAmount = settlement.getTotalMoneyAmount();
+	  List<String> multipleValues = settlement.getMultipleValues();
+	  FrameAssertion.contains(multipleValues.toString(), "276.80", "验证净营业额");
+	  FrameAssertion.contains(multipleValues.toString(), "22.16", "验证销售指数");
+	  FrameAssertion.contains(multipleValues.toString(), "332", "验证订单总金额");
+	  
+	  String buyAmount = settlement.getBuyAmount();
+	  FrameAssertion.contains(buyAmount, "320", "验证购货总额");
+	  String freight = settlement.getFreight();
+	  FrameAssertion.contains(freight, "12", "验证运费");
+	  String deductedPoints = settlement.getDeductedPoints();
+	  FrameAssertion.contains(deductedPoints, "0", "验证扣减悦享分");
 	  
 	  //支付
 	  Payment payment = new Payment(androidDriver);
 	  payment.goToPayment();
-	  FrameAssertion.contains(totalMoneyAmount.toString().split("订单金额：")[1].trim(), "330", "验证应付总金额");
-	  
 	  payment.paymentSelection("微信支付");
 	  payment.doPayment();
 	  payment.cancelPayment();

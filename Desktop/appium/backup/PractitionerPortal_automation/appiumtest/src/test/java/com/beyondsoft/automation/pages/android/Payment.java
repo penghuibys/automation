@@ -22,7 +22,7 @@ public class Payment {
 	public void goToPayment() throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
 		locate.click("去支付");
-		SysUtil.sleep(5); 
+		SysUtil.sleep(10); 
 		if (isGoPaymentStillDisplayed()) {
 			int x = androidDriver.findElementByXPath("//android.widget.Button[@content-desc='去支付']").getLocation().getX();
 			int y = androidDriver.findElementByXPath("//android.widget.Button[@content-desc='去支付']").getLocation().getY();
@@ -45,6 +45,7 @@ public class Payment {
 	public void multiPayment(String amount) throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
 		locate.swipeAction("up");
+		SysUtil.sleep(5);
 		locate.click("多笔支付");
 		locate.send("本次支付金额", amount);
 	}
