@@ -124,7 +124,9 @@ public class Locate  {
 	        case "accessibilityid":
 	        	new WebDriverWait(dr,timeout).until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId(object)));
 	  		  	SysUtil.sleep(5);
-	        	element = (WebElement) dr.findElementByAccessibilityId(object);
+	        	List<WebElement> elements =  dr.findElementsByAccessibilityId(object);
+	        	element = elements.get(0);
+	        	element(element);
 		    	break;    
 	        default : 
 	        	System.out.println("[Info:] Your attribute " + attribute + " is not correct or empty for selenium,the API such as: id,name,etc");

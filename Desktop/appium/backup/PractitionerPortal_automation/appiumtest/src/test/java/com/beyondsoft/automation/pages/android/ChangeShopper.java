@@ -31,6 +31,7 @@ public class ChangeShopper extends TestBase{
 		} catch (Exception e) {
 			try {
 				androidDriver.findElementById("colorbox").click();
+				SysUtil.sleep(5);
 			} catch (Exception e2) {
 				androidDriver.findElementByXPath("//android.view.View[contains(@content-desc,'您当前可用悦享分')]").click();
 			}
@@ -41,6 +42,7 @@ public class ChangeShopper extends TestBase{
 		locate.click("梅博众");
 		try {
 			androidDriver.findElementByXPath("//android.view.View[@content-desc='确定']").click();//确认选择
+			SysUtil.sleep(2);
 		} catch (Exception e) {
 			SysUtil.sleep(5);
 			List<WebElement> eles = androidDriver.findElementsByAccessibilityId("确定");

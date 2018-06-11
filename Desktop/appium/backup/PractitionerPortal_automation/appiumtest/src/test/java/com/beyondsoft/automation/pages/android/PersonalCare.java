@@ -38,8 +38,8 @@ public class PersonalCare {
 			locate.send("商品输入框", "39597");
 		}
 		androidDriver.findElementById("searchBtn").click();
-
-		locate.atScreen("婴儿沐浴露");
+		SysUtil.sleep(5);
+//		locate.atScreen("婴儿沐浴露");
 	}
 	
 	public void setQuantity() throws InterruptedException {

@@ -10,6 +10,7 @@ import com.beyondsoft.automation.base.Validation;
 
 import io.appium.java_client.AppiumDriver;
 import frame.com.mtf.ibm.operation.Locate;
+import frame.com.pp.auto.log.LogUtil;
 import frame.com.pp.auto.util.SysUtil;
 
 public class Payment {
@@ -21,7 +22,16 @@ public class Payment {
 	
 	public void goToPayment() throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
-		locate.click("去支付");
+//		locate.click("去支付");
+		try {
+			androidDriver.findElementByXPath("//android.widget.Button[@content-desc='去支付']").click();
+			SysUtil.sleep(10); 
+		} catch (Exception e) {
+			int x = androidDriver.findElementByXPath("//android.widget.Button[@content-desc='去支付']").getLocation().getX();
+			int y = androidDriver.findElementByXPath("//android.widget.Button[@content-desc='去支付']").getLocation().getY();
+			androidDriver.tap(1, x, y, 1);
+			SysUtil.sleep(10); 
+		}
 		SysUtil.sleep(10); 
 		if (isGoPaymentStillDisplayed()) {
 			int x = androidDriver.findElementByXPath("//android.widget.Button[@content-desc='去支付']").getLocation().getX();
@@ -45,8 +55,17 @@ public class Payment {
 	public void multiPayment(String amount) throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
 		locate.swipeAction("up");
-		SysUtil.sleep(5);
-		locate.click("多笔支付");
+		SysUtil.sleep(10);
+//		locate.click("多笔支付");
+		try {
+			androidDriver.findElementByXPath("//android.widget.RadioButton[@content-desc='多笔支付']").click();
+			LogUtil.step("Clicked at '多笔支付', Passed");
+		} catch (Exception e) {
+			int x = androidDriver.findElementByXPath("//android.widget.RadioButton[@content-desc='多笔支付']").getLocation().getX();
+			int y = androidDriver.findElementByXPath("//android.widget.RadioButton[@content-desc='多笔支付']").getLocation().getY();
+			androidDriver.tap(1, x, y, 1);
+			SysUtil.sleep(5); 
+		}
 		locate.send("本次支付金额", amount);
 	}
 	
@@ -66,6 +85,7 @@ public class Payment {
 		locate.swipeAction("up");
 		SysUtil.sleep(2);
 		locate.click(payment);
+		locate.swipeAction("down");
 	}
 	
 	public void paymentCompletion() throws InterruptedException {

@@ -26,10 +26,20 @@ public class Order {
 	}
 	
 	public void doPayment() throws InterruptedException {
-		Locate locate = new Locate(null, androidDriver);
-
+	//	Locate locate = new Locate(null, androidDriver);
+	//	locate.swipeAction("down");
+		
 		SysUtil.sleep(5); 
-		locate.click("立即支付");
+		
+		try {
+			androidDriver.findElementByAccessibilityId("立即支付").click();
+		} catch (Exception e) {
+			SysUtil.sleep(10);
+			int x = androidDriver.findElementByXPath("//android.widget.Button[@content-desc='立即支付']").getLocation().getX();
+			int y = androidDriver.findElementByXPath("//android.widget.Button[@content-desc='立即支付']").getLocation().getY();
+			androidDriver.tap(1, x, y, 1);
+			SysUtil.sleep(10);
+		}
 	}
 	
 	public String getPayed() throws InterruptedException {
