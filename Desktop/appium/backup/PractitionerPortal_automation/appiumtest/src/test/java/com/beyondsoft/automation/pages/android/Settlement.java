@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import com.beyondsoft.automation.base.Validation;
 
 import io.appium.java_client.AppiumDriver;
-import frame.com.mtf.ibm.operation.Locate;
 import frame.com.pp.auto.util.SysUtil;
 
 public class Settlement {

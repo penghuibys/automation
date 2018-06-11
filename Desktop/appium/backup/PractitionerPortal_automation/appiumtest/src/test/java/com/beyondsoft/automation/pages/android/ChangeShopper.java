@@ -25,20 +25,27 @@ public class ChangeShopper extends TestBase{
 		Locate locate = new Locate(null, androidDriver);
 		locate.click("更改");
 		try {
-			SysUtil.sleep(10);
-			WebElement element = androidDriver.findElementByXPath("(//android.view.View[@content-desc='*'])[1]");
-			element.click();
+			SysUtil.sleep(5);
+			androidDriver.findElementByXPath("(//android.view.View[@content-desc='*'])[1]").click();
 		} catch (Exception e) {
 			try {
 				androidDriver.findElementById("colorbox").click();
-				SysUtil.sleep(5);
+				SysUtil.sleep(8);
 			} catch (Exception e2) {
-				androidDriver.findElementByXPath("//android.view.View[contains(@content-desc,'您当前可用悦享分')]").click();
+				androidDriver.findElementById("cboxWrapper").click();
 			}
-		} finally {
-			androidDriver.findElementByXPath("(//android.view.View[@content-desc='*'])[1]").click();
-			SysUtil.sleep(5);
-		}
+		}		
+//		try {
+//			androidDriver.findElementByXPath("(//android.view.View[@content-desc='*'])[1]").click();
+//			SysUtil.sleep(5);
+//		} catch (Exception e) {
+//			SysUtil.sleep(5);
+//			int x = androidDriver.findElementByXPath("(//android.view.View[@content-desc='*'])[1]").getLocation().getX();
+//			int y = androidDriver.findElementByXPath("(//android.view.View[@content-desc='*'])[1]").getLocation().getY();
+//			androidDriver.tap(1, x, y, 1);
+//			SysUtil.sleep(5); 
+//		}
+
 		locate.click("梅博众");
 		try {
 			androidDriver.findElementByXPath("//android.view.View[@content-desc='确定']").click();//确认选择
