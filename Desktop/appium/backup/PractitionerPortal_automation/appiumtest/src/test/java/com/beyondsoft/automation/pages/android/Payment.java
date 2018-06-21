@@ -66,7 +66,18 @@ public class Payment {
 			androidDriver.tap(1, x, y, 1);
 			SysUtil.sleep(5); 
 		}
-		locate.send("本次支付金额", amount);
+		
+		try {
+			SysUtil.sleep(2); 
+			boolean isDisplayed = androidDriver.findElementById("paymentAmount4").isDisplayed();
+			if (isDisplayed) {
+				locate.send("本次支付金额", amount);
+			}
+		} catch (Exception e) {
+			androidDriver.findElementByXPath("//android.widget.RadioButton[@content-desc='多笔支付']").click();
+			locate.send("本次支付金额", amount);
+		}
+	//	locate.send("本次支付金额", amount);
 	}
 	
 	public void doPayment() throws InterruptedException {

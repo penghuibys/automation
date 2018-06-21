@@ -1,7 +1,6 @@
 package com.beyondsoft.automation.pages.android;
 
 
-import java.util.List;
 
 import org.openqa.selenium.WebElement;
 
@@ -9,6 +8,7 @@ import com.beyondsoft.automation.base.Validation;
 
 import frame.com.mtf.ibm.operation.Locate;
 import frame.com.pp.auto.base.TestBase;
+import frame.com.pp.auto.log.LogUtil;
 import io.appium.java_client.AppiumDriver;
 import frame.com.pp.auto.util.SysUtil;
 
@@ -46,14 +46,21 @@ public class ChangeShopper extends TestBase{
 //			SysUtil.sleep(5); 
 //		}
 
-		locate.click("梅博众");
+//		locate.click("梅博众");
 		try {
+			androidDriver.findElementByXPath("//android.widget.ListView[@resource-id='selectFrequentBuyerList']/android.view.View[1]").click();
+			LogUtil.step("Clicked at '梅博众', Passed");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		try {
+			SysUtil.sleep(5); 
 			androidDriver.findElementByXPath("//android.view.View[@content-desc='确定']").click();//确认选择
+			LogUtil.step("Clicked at '确定', Passed");
 			SysUtil.sleep(2);
 		} catch (Exception e) {
 			SysUtil.sleep(5);
-			List<WebElement> eles = androidDriver.findElementsByAccessibilityId("确定");
-			eles.get(0).click();
+			androidDriver.findElementByAccessibilityId("确定").click();
 		}
 		locate.click("保存为常用购货人");
 		SysUtil.sleep(5);
