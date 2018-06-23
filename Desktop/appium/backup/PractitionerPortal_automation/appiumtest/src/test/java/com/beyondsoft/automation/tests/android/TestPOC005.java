@@ -26,10 +26,10 @@ public class TestPOC005 extends Setup{
 	  MainPage mainPage = new MainPage(androidDriver);
 	  mainPage.navigateToAmywayCloudShopping();
 	  
-	  ChangeShopper change = new ChangeShopper(androidDriver);
-	  change.changeShopperAndConfirm();
-	  String currentShopper = change.getCurrentShopper();
-	  FrameAssertion.contains(currentShopper, "48678350", "验证当前购货人");
+//	  ChangeShopper change = new ChangeShopper(androidDriver);
+//	  change.changeShopperAndConfirm();
+//	  String currentShopper = change.getCurrentShopper();
+//	  FrameAssertion.contains(currentShopper, "48678350", "验证当前购货人");
 	  
 	  PersonalCare personCare = new PersonalCare(androidDriver);
 	  personCare.searchBabyShampoo();
@@ -41,7 +41,7 @@ public class TestPOC005 extends Setup{
 	  
 	  //购物车
 	  List<String> getCurrentBuyer = shoppingCart.getCurrentShopper();
-	  FrameAssertion.contains(getCurrentBuyer.toString(), "48678350", "验证当前购货人");
+	  FrameAssertion.contains(getCurrentBuyer.toString(), amwayId, "验证当前购货人");
 	  String goodsAmount = shoppingCart.getGoodsAmount();
 	  FrameAssertion.contains(goodsAmount, "2", "验证婴儿沐浴露数量");
 	  String bv = shoppingCart.getBV();
@@ -59,12 +59,12 @@ public class TestPOC005 extends Setup{
 	  List<String> multipleValues = settlement.getMultipleValues();
 	  FrameAssertion.contains(multipleValues.toString(), "276.80", "验证净营业额");
 	  FrameAssertion.contains(multipleValues.toString(), "22.16", "验证销售指数");
-	  FrameAssertion.contains(multipleValues.toString(), "332", "验证订单总金额");
+	  FrameAssertion.contains(multipleValues.toString(), "330", "验证订单总金额");
 	  
 	  String buyAmount = settlement.getBuyAmount();
 	  FrameAssertion.contains(buyAmount, "320", "验证购货总额");
 	  String freight = settlement.getFreight();
-	  FrameAssertion.contains(freight, "12", "验证运费");
+	  FrameAssertion.contains(freight, "10", "验证运费");
 	  String deductedPoints = settlement.getDeductedPoints();
 	  FrameAssertion.contains(deductedPoints, "0", "验证扣减悦享分");
 	  
@@ -77,8 +77,8 @@ public class TestPOC005 extends Setup{
 	  payment.doPayment();
 	  payment.paymentCompletion();
 	  
-	  List<String> validation = payment.paymentValidation();
-	  FrameAssertion.contains(validation.toString(), "您已成功支付", "验证支付成功信息");
+	  String validation = payment.paymentValidation();
+	  FrameAssertion.contains(validation, "您已成功支付", "验证支付成功信息");
 
 	  //订单
 	  Order order = new Order(androidDriver);
@@ -87,7 +87,7 @@ public class TestPOC005 extends Setup{
 	  String payed = order.getPayed();
 	  FrameAssertion.contains(payed, "200", "验证已支付金额");
 	  String toPay = order.getToPay();
-	  FrameAssertion.contains(toPay, "132", "验证剩余应付金额");
+	  FrameAssertion.contains(toPay, "130", "验证剩余应付金额");
 	  
 	  order.doPayment();//订单页面 立即支付
 	  payment.doPayment();//支付页面 立即支付
@@ -101,7 +101,7 @@ public class TestPOC005 extends Setup{
 	  payed = order.getPayed();
 	  toPay = order.getToPay();
 	  List<String> multiValidation = order.getMultiValidation();
-	  FrameAssertion.contains(payed, "332", "验证已支付金额");
+	  FrameAssertion.contains(payed, "330", "验证已支付金额");
 	  FrameAssertion.contains(toPay, "0", "验证剩余应付金额");
 	  FrameAssertion.contains(orderOperator, amwayId, "验证订单操作人");
 	  FrameAssertion.contains(channel, "云服务", "验证购货渠道");
@@ -109,7 +109,7 @@ public class TestPOC005 extends Setup{
 	  FrameAssertion.contains(paymentInfo, "付款信息", "验证多笔支付");
 	  FrameAssertion.contains(multiValidation.toString(), "276.8", "验证净营业额");
 	  FrameAssertion.contains(multiValidation.toString(), "22.16", "验证销售指数");
-	  FrameAssertion.contains(multiValidation.toString(), "332", "验证总金额");
+	  FrameAssertion.contains(multiValidation.toString(), "320", "验证总金额");
   }
   
 }

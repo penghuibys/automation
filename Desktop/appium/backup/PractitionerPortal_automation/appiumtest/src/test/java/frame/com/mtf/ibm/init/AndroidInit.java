@@ -16,6 +16,7 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -46,22 +47,26 @@ public class AndroidInit {
 	
 	
 	public AndroidDriver<WebElement>launchApp(){
-
+		//Local device configuration
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("deviceName","huawei mate9");
         capabilities.setCapability("platformName", "android");
+        capabilities.setCapability("unicodeKeyboard", true);//Chinese input 
+        capabilities.setCapability("resetKeyboard", true);//hide keyboard
         capabilities.setCapability("appPackage", "com.tencent.mm");
         capabilities.setCapability("appActivity", "com.tencent.mm.ui.LauncherUI");
-        capabilities.setCapability("unicodeKeyboard", true);//Chinese input 
-        capabilities.setCapability("resetKeyboard", false);//hide keyboard
-        capabilities.setCapability("noReset", true);
+        capabilities.setCapability("noReset", false);
+        capabilities.setCapability("noSign", true);
+        capabilities.setCapability("autoGrantPermissions", true);
+
 		
 		try {
 			androidDriver = new AndroidDriver<WebElement>(new URL("http://" + URL +"/wd/hub"), capabilities);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}	
-   
+		
+//		//Devicepasss configuration
 //		DesiredCapabilities capabilities = new DesiredCapabilities();
 //		capabilities.setCapability(CapabilityType.PLATFORM, "android");
 //
@@ -89,9 +94,13 @@ public class AndroidInit {
 //		{
 //			capabilities.setCapability("app", app.getAbsolutePath());
 //		}
-//		capabilities.setCapability("noReset", true);
+//
 //		capabilities.setCapability("unicodeKeyboard", true);//Chinese input 
 //		capabilities.setCapability("resetKeyboard", true);//hide keyboard
+//        capabilities.setCapability("noReset", false);
+//        capabilities.setCapability("noSign", true);
+//        capabilities.setCapability("autoGrantPermissions", true);
+//
 //
 //		if (!isEmpty(APPIUM_DEVICE_VERSION))
 //		{
@@ -114,7 +123,7 @@ public class AndroidInit {
 //			// TODO Auto-generated catch block
 //			e1.printStackTrace();
 //		} 
-//       
+       
         
        
 		return androidDriver;

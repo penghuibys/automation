@@ -19,13 +19,16 @@ public class ShoppingCart {
 	public void addToShoppingCart() throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
 		locate.click("加入购物车");
-		SysUtil.sleep(10);
+		SysUtil.sleep(5);
 	}
 
 	public void goToShoppingCart() throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
 		locate.click("前往购物车");
 		SysUtil.sleep(10);
+		// bug: always pop up once the page refreshes
+		locate.clickIfItemDisplayed("我知道了1");
+		locate.clickIfItemDisplayed("我知道了");
 	}
 	
 	public void confirm() throws InterruptedException {
@@ -41,14 +44,17 @@ public class ShoppingCart {
 			SysUtil.sleep(10);
 		}
 		SysUtil.sleep(5);
-		locate.clickIfItemDisplayed("确定");
+//		locate.clickIfItemDisplayed("确定");
 		SysUtil.sleep(10);
 		if (isConfirmStillDisplayed()) {
 			int x = androidDriver.findElementById("cartpageLabelConfirmSingle").getLocation().getX();
 			int y = androidDriver.findElementById("cartpageLabelConfirmSingle").getLocation().getY();
 			androidDriver.tap(1, x, y, 1);
-			SysUtil.sleep(15);
+			SysUtil.sleep(10);
 		}
+		// bug: always pop up once the page refreshes
+		locate.clickIfItemDisplayed("我知道了1");
+		locate.clickIfItemDisplayed("我知道了");
 	}
 	
 	private boolean isConfirmStillDisplayed() throws InterruptedException{

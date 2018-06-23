@@ -23,16 +23,20 @@ public class Order {
 		Locate locate = new Locate(null, androidDriver);
 		locate.click("查看详情");
 		SysUtil.sleep(10); 
+		// bug: always pop up once the page refreshes
+		locate.clickIfItemDisplayed("我知道了1");
+		locate.clickIfItemDisplayed("我知道了");
 	}
 	
 	public void doPayment() throws InterruptedException {
-	//	Locate locate = new Locate(null, androidDriver);
+		Locate locate = new Locate(null, androidDriver);
 	//	locate.swipeAction("down");
 		
 		SysUtil.sleep(5); 
 		
 		try {
 			androidDriver.findElementByAccessibilityId("立即支付").click();
+			SysUtil.sleep(5); 
 		} catch (Exception e) {
 			SysUtil.sleep(10);
 			int x = androidDriver.findElementByXPath("//android.widget.Button[@content-desc='立即支付']").getLocation().getX();
@@ -40,6 +44,9 @@ public class Order {
 			androidDriver.tap(1, x, y, 1);
 			SysUtil.sleep(10);
 		}
+		// bug: always pop up once the page refreshes
+		locate.clickIfItemDisplayed("我知道了1");
+		locate.clickIfItemDisplayed("我知道了");
 	}
 	
 	public String getPayed() throws InterruptedException {

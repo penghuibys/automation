@@ -39,7 +39,10 @@ public class Payment {
 			androidDriver.tap(1, x, y, 1);
 			SysUtil.sleep(5); 
 		}
-		
+		// bug: always pop up once the page refreshes
+		locate.clickIfItemDisplayed("我知道了1");
+		locate.clickIfItemDisplayed("我知道了");
+		SysUtil.sleep(5); 
 		locate.atScreen("提交成功");
 		SysUtil.sleep(5); 
 	}
@@ -55,7 +58,7 @@ public class Payment {
 	public void multiPayment(String amount) throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
 		locate.swipeAction("up");
-		SysUtil.sleep(10);
+		SysUtil.sleep(5);
 //		locate.click("多笔支付");
 		try {
 			androidDriver.findElementByXPath("//android.widget.RadioButton[@content-desc='多笔支付']").click();
@@ -93,7 +96,7 @@ public class Payment {
 	
 	public void paymentSelection(String payment) throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
-		locate.swipeAction("up");
+	//	locate.swipeAction("up");
 		SysUtil.sleep(2);
 		locate.click(payment);
 		locate.swipeAction("down");
@@ -116,15 +119,18 @@ public class Payment {
 
 		locate.click("完成支付");
 		SysUtil.sleep(10);
+		// bug: always pop up once the page refreshes
+		locate.clickIfItemDisplayed("我知道了1");
+		locate.clickIfItemDisplayed("我知道了");
 	}
 
 
 
 
-	public List<String> paymentValidation() throws InterruptedException {
+	public String paymentValidation() throws InterruptedException {
 		Validation validation = new Validation(null, androidDriver);
-		SysUtil.sleep(10);
-		return validation.getAllValidationInfo("支付成功信息");
+		SysUtil.sleep(5);
+		return validation.getValidationInfo("支付成功信息");
 	}
 	
 	public List<String> paymentIncompleteValidation() throws InterruptedException {

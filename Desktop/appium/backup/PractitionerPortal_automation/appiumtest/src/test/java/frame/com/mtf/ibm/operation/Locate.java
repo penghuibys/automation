@@ -248,12 +248,12 @@ public class Locate  {
 		
 		WebElement element = null;
 		try {
-			element = this.isDisplayed(driver, target, 20);
+			element = this.isDisplayed(driver, target, 15);
 			SysUtil.sleep(5);
 			element.click();
 			LogUtil.step("Clicked at '" + target + "', Passed");
 		} catch (Exception e) {
-			LogUtil.info(target + " is not displayed.");
+			LogUtil.info(target + "  is not displayed.");
 		}
 	}
 	

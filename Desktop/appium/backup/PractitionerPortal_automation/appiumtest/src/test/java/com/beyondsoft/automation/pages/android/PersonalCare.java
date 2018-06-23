@@ -16,36 +16,36 @@ public class PersonalCare {
 		PersonalCare.androidDriver = androidDriver;
 	}
 
-	//添加婴儿沐浴露
+	// 添加婴儿沐浴露
 	public void searchBabyShampoo() throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
 		SysUtil.sleep(5);
+
+		androidDriver.tap(1, 1008, 298, 1); // P8
+		SysUtil.sleep(2);
 		try {
-			if (androidDriver.findElementById("searchBtn").isDisplayed()){
-				locate.send("商品输入框", "39597");
-			}
+			locate.send("商品输入框", "婴儿沐浴露");
 		} catch (Exception e) {
-			WebElement search = androidDriver.findElementsByAccessibilityId("@").get(0);
+			androidDriver.tap(1, 1008, 298, 1); // P8
 			SysUtil.sleep(2);
-			search.click();
+			locate.send("商品输入框", "婴儿沐浴露");
 		}
-		try {
-			locate.send("商品输入框", "39597");
-		} catch (Exception e) {
-			WebElement search = androidDriver.findElementsByAccessibilityId("@").get(0);
-			SysUtil.sleep(2);
-			search.click();
-			locate.send("商品输入框", "39597");
-		}
-		androidDriver.findElementById("searchBtn").click();
+		
+		SysUtil.sleep(2);
+		locate.click("婴儿沐浴露");
+		SysUtil.sleep(10);
+
+		// bug: always pop up once the page refreshes
+		locate.clickIfItemDisplayed("我知道了1");
+		locate.clickIfItemDisplayed("我知道了");
 		SysUtil.sleep(5);
-//		locate.atScreen("婴儿沐浴露");
 	}
 	
 	public void setQuantity() throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
-	//	locate.send("数量", "2"); Not working
+		locate.swipeAction("up");
 		locate.click("数量添加");
+		locate.swipeAction("down");
 	}
 
 }
