@@ -92,6 +92,9 @@ public class Payment {
 		Locate locate = new Locate(null, androidDriver);
 		locate.click("取消支付");
 		SysUtil.sleep(5); 
+		// bug: always pop up once the page refreshes
+		locate.clickIfItemDisplayed("我知道了1");
+		locate.clickIfItemDisplayed("我知道了");
 	}
 	
 	public void paymentSelection(String payment) throws InterruptedException {

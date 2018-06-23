@@ -52,12 +52,12 @@ public class TestPOC006 extends Setup{
 	  List<String> multipleValues = settlement.getMultipleValues();
 	  FrameAssertion.contains(multipleValues.toString(), "276.80", "验证净营业额");
 	  FrameAssertion.contains(multipleValues.toString(), "22.16", "验证销售指数");
-	  FrameAssertion.contains(multipleValues.toString(), "332", "验证订单总金额");
+	  FrameAssertion.contains(multipleValues.toString(), "330", "验证订单总金额");
 	  
 	  String buyAmount = settlement.getBuyAmount();
 	  FrameAssertion.contains(buyAmount, "320", "验证购货总额");
 	  String freight = settlement.getFreight();
-	  FrameAssertion.contains(freight, "12", "验证运费");
+	  FrameAssertion.contains(freight, "10", "验证运费");
 	  String deductedPoints = settlement.getDeductedPoints();
 	  FrameAssertion.contains(deductedPoints, "0", "验证扣减悦享分");
 	  
