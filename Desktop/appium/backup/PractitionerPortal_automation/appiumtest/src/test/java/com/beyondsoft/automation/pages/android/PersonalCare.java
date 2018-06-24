@@ -19,16 +19,15 @@ public class PersonalCare {
 	// 添加婴儿沐浴露
 	public void searchBabyShampoo() throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
-		SysUtil.sleep(5);
 
 		androidDriver.tap(1, 1008, 298, 1); // P8
-		SysUtil.sleep(2);
+//		androidDriver.tap(1, 1014, 282, 1); // Mate9
+		SysUtil.sleep(5);
 		try {
-			locate.send("商品输入框", "婴儿沐浴露");
+			locate.send("商品输入框", "39597");
 		} catch (Exception e) {
-			androidDriver.tap(1, 1008, 298, 1); // P8
-			SysUtil.sleep(2);
-			locate.send("商品输入框", "婴儿沐浴露");
+			SysUtil.sleep(5);
+			locate.send("商品输入框", "39597");
 		}
 		
 		SysUtil.sleep(2);

@@ -99,7 +99,7 @@ public class Payment {
 	
 	public void paymentSelection(String payment) throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
-	//	locate.swipeAction("up");
+		locate.swipeAction("up");
 		SysUtil.sleep(2);
 		locate.click(payment);
 		locate.swipeAction("down");
