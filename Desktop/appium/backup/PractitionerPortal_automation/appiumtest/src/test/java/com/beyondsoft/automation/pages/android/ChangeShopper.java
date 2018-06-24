@@ -23,49 +23,15 @@ public class ChangeShopper extends TestBase{
 	
 	public void changeShopperAndConfirm() throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
-		locate.click("更改");
-		try {
-			SysUtil.sleep(5);
-			androidDriver.findElementByXPath("(//android.view.View[@content-desc='*'])[1]").click();
-		} catch (Exception e) {
-			try {
-				androidDriver.findElementById("colorbox").click();
-				SysUtil.sleep(8);
-			} catch (Exception e2) {
-				androidDriver.findElementById("cboxWrapper").click();
-			}
-		}		
-//		try {
-//			androidDriver.findElementByXPath("(//android.view.View[@content-desc='*'])[1]").click();
-//			SysUtil.sleep(5);
-//		} catch (Exception e) {
-//			SysUtil.sleep(5);
-//			int x = androidDriver.findElementByXPath("(//android.view.View[@content-desc='*'])[1]").getLocation().getX();
-//			int y = androidDriver.findElementByXPath("(//android.view.View[@content-desc='*'])[1]").getLocation().getY();
-//			androidDriver.tap(1, x, y, 1);
-//			SysUtil.sleep(5); 
-//		}
-
-//		locate.click("梅博众");
-		try {
-			androidDriver.findElementByXPath("//android.widget.ListView[@resource-id='selectFrequentBuyerList']/android.view.View[1]").click();
-			LogUtil.step("Clicked at '梅博众', Passed");
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		try {
-			SysUtil.sleep(5); 
-			androidDriver.findElementByXPath("//android.view.View[@content-desc='确定']").click();//确认选择
-			LogUtil.step("Clicked at '确定', Passed");
-			SysUtil.sleep(2);
-		} catch (Exception e) {
-			SysUtil.sleep(5);
-			androidDriver.findElementByAccessibilityId("确定").click();
-		}
-		locate.click("保存为常用购货人");
+//		locate.click("更改");
+		androidDriver.tap(1, 989, 408, 1);//更改  P8
+//		androidDriver.tap(1, 989, 382, 1);//更改  Mate9
 		SysUtil.sleep(5);
-		androidDriver.findElementByXPath("//android.view.View[@content-desc='确定']").click();//确认更改
-		SysUtil.sleep(20);
+		locate.click("常用购货人按钮");
+		locate.send("常用购货人输入框", "48678350");
+		androidDriver.hideKeyboard();
+		locate.click("确定更改常用购货人");
+//		androidDriver.tap(1, 811, 950, 1);//确定
 	}
 	
 	public String getCurrentShopper() throws InterruptedException {
