@@ -35,7 +35,7 @@ public class MainPage extends TestBase {
 
 		SysUtil.sleep(20);
 		locate.click("搜索公众号");
-		locate.send("输入框", "安利保洁用品");
+		locate.send("输入框", "anlibaojie");
 
 		locate.click("公众号链接");
 		locate.click("线上工作室");

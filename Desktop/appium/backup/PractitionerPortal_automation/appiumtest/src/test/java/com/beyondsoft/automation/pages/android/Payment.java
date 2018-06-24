@@ -80,7 +80,9 @@ public class Payment {
 			androidDriver.findElementByXPath("//android.widget.RadioButton[@content-desc='多笔支付']").click();
 			locate.send("本次支付金额", amount);
 		}
-	//	locate.send("本次支付金额", amount);
+		int x = androidDriver.findElementById("paymentAmount4").getLocation().getX();
+		androidDriver.tap(1, x+400, 410, 1); //To dismiss keyboard
+
 	}
 	
 	public void doPayment() throws InterruptedException {
@@ -102,6 +104,8 @@ public class Payment {
 		locate.swipeAction("up");
 		SysUtil.sleep(2);
 		locate.click(payment);
+		locate.swipeAction("down");
+		SysUtil.sleep(2);
 		locate.swipeAction("down");
 	}
 	
