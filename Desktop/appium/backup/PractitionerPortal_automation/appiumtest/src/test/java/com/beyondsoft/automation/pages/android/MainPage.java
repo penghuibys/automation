@@ -22,25 +22,24 @@ public class MainPage extends TestBase {
 		SysUtil.sleep(5);
 	//	androidDriver.tap(1, 228, 1681, 1);
 		androidDriver.tap(1, 220, 1680, 1);
-		locate.send("手机号", "18086627859");
+	//	locate.send("手机号", "18086627859");
+		locate.send("手机号", "13296541308");
 		locate.click("下一步");
-		locate.send("密码", "test0517");
+	//	locate.send("密码", "test0517");
+		locate.send("密码", "penghui19811026");
 		locate.click("登录");
 		locate.click("不检查通讯录");
-
-		// androidDriver.findElementById("com.tencent.mm:id/ak_").click();
-		// androidDriver.findElementByXPath("//android.widget.LinearLayout[@resource-id='com.tencent.mm:id/cb_']/android.widget.EditText").sendKeys("penghui19811026");
-		// androidDriver.findElementById("com.tencent.mm:id/ak_").click();
-		// androidDriver.findElementById("com.tencent.mm:id/alk").click();
 
 		SysUtil.sleep(20);
 		locate.click("搜索公众号");
 		locate.send("输入框", "anlibaojie");
 
 		locate.click("公众号链接");
+		SysUtil.sleep(2);
 		locate.click("线上工作室");
+		SysUtil.sleep(2);
 		locate.click("安利云购链接");
-		SysUtil.sleep(15);
+		SysUtil.sleep(25);
 
 		// Set<String> contexts = androidDriver.getContextHandles();
 		// System.out.println(contexts);
@@ -55,9 +54,8 @@ public class MainPage extends TestBase {
 		// System.out.println(elem.getAttribute("class"));
 
 		// bug: always pop up once the page refreshes
-		locate.clickIfItemDisplayed("我知道了1");
-		locate.clickIfItemDisplayed("我知道了");
-		SysUtil.sleep(5);
+//		locate.clickIfItemDisplayed("我知道了1");
+//		locate.clickIfItemDisplayed("我知道了");
 	}
 
 	// 个人护理

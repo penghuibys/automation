@@ -21,12 +21,14 @@ public class PersonalCare {
 	public void searchBabyShampoo() throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
 
-		androidDriver.tap(1, 1008, 298, 1); // P8
-//		androidDriver.tap(1, 1014, 282, 1); // Mate9
-		SysUtil.sleep(10);
+		androidDriver.tap(1, 1008, 280, 1); // P8
+//		androidDriver.tap(1, 1019, 282, 1); // Mate9
+
+//		locate.click("搜索");
+		SysUtil.sleep(5);
 		if(isSearchBoxDisplayed()){
 			androidDriver.findElementByXPath("//android.widget.EditText").click();
-			androidDriver.findElementByXPath("//android.widget.EditText").sendKeys("3959");
+			androidDriver.findElementByXPath("//android.widget.EditText").sendKeys("39597");
 			LogUtil.step("Send Key '39597' to searchbox, Passed");
 		} else {
 			System.out.println("keyboard input");
@@ -40,18 +42,19 @@ public class PersonalCare {
 		}
 		SysUtil.sleep(2);
 		locate.click("婴儿沐浴露");
-		SysUtil.sleep(10);
+		SysUtil.sleep(15);
 
 		// bug: always pop up once the page refreshes
-		locate.clickIfItemDisplayed("我知道了1");
-		locate.clickIfItemDisplayed("我知道了");
-		SysUtil.sleep(5);
+//		locate.clickIfItemDisplayed("我知道了1");
+//		locate.clickIfItemDisplayed("我知道了");
 	}
 	
 	public void setQuantity() throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
 		locate.swipeAction("up");
+		SysUtil.sleep(2);
 		locate.click("数量添加");
+		SysUtil.sleep(2);
 		locate.swipeAction("down");
 	}
 	
@@ -59,7 +62,7 @@ public class PersonalCare {
 		try {
 			boolean isDisplayed = androidDriver.findElementByXPath("//android.widget.Button[@content-desc='搜索']/preceding-sibling::android.widget.EditText").isDisplayed();
 			System.out.println(isDisplayed);
-			return isDisplayed;
+			return false;
 		} catch (Exception e) {
 			System.out.println(false);
 			return false;

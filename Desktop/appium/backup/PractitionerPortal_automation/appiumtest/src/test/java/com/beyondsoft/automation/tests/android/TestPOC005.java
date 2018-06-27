@@ -59,12 +59,12 @@ public class TestPOC005 extends Setup{
 	  List<String> multipleValues = settlement.getMultipleValues();
 	  FrameAssertion.contains(multipleValues.toString(), "276.80", "验证净营业额");
 	  FrameAssertion.contains(multipleValues.toString(), "22.16", "验证销售指数");
-	  FrameAssertion.contains(multipleValues.toString(), "330", "验证订单总金额");
+	  FrameAssertion.contains(multipleValues.toString(), "328.9", "验证订单总金额");
 	  
 	  String buyAmount = settlement.getBuyAmount();
 	  FrameAssertion.contains(buyAmount, "320", "验证购货总额");
 	  String freight = settlement.getFreight();
-	  FrameAssertion.contains(freight, "10", "验证运费");
+	  FrameAssertion.contains(freight, "8.9", "验证运费");
 	  String deductedPoints = settlement.getDeductedPoints();
 	  FrameAssertion.contains(deductedPoints, "0", "验证扣减悦享分");
 	  
@@ -87,7 +87,7 @@ public class TestPOC005 extends Setup{
 	  String payed = order.getPayed();
 	  FrameAssertion.contains(payed, "200", "验证已支付金额");
 	  String toPay = order.getToPay();
-	  FrameAssertion.contains(toPay, "130", "验证剩余应付金额");
+	  FrameAssertion.contains(toPay, "128.9", "验证剩余应付金额");
 	  
 	  order.doPayment();//订单页面 立即支付
 	  payment.doPayment();//支付页面 立即支付
@@ -101,7 +101,7 @@ public class TestPOC005 extends Setup{
 	  payed = order.getPayed();
 	  toPay = order.getToPay();
 	  List<String> multiValidation = order.getMultiValidation();
-	  FrameAssertion.contains(payed, "330", "验证已支付金额");
+	  FrameAssertion.contains(payed, "328.9", "验证已支付金额");
 	  FrameAssertion.contains(toPay, "0", "验证剩余应付金额");
 	  FrameAssertion.contains(orderOperator, amwayId, "验证订单操作人");
 	  FrameAssertion.contains(channel, "云服务", "验证购货渠道");
