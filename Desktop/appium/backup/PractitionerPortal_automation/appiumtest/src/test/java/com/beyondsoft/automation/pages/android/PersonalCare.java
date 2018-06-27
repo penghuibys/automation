@@ -21,8 +21,8 @@ public class PersonalCare {
 	public void searchBabyShampoo() throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
 
-		androidDriver.tap(1, 1008, 280, 1); // P8
-//		androidDriver.tap(1, 1019, 282, 1); // Mate9
+//		androidDriver.tap(1, 1008, 280, 1); // P8
+		androidDriver.tap(1, 1019, 282, 1); // Mate9
 
 //		locate.click("搜索");
 		SysUtil.sleep(5);
@@ -45,8 +45,9 @@ public class PersonalCare {
 		SysUtil.sleep(15);
 
 		// bug: always pop up once the page refreshes
-//		locate.clickIfItemDisplayed("我知道了1");
-//		locate.clickIfItemDisplayed("我知道了");
+		locate.clickIfItemDisplayed("我知道了1");
+		locate.clickIfItemDisplayed("我知道了");
+		SysUtil.sleep(2);
 	}
 	
 	public void setQuantity() throws InterruptedException {

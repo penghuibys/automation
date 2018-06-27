@@ -22,11 +22,11 @@ public class MainPage extends TestBase {
 		SysUtil.sleep(5);
 	//	androidDriver.tap(1, 228, 1681, 1);
 		androidDriver.tap(1, 220, 1680, 1);
-	//	locate.send("手机号", "18086627859");
-		locate.send("手机号", "13296541308");
+		locate.send("手机号", "18086627859");
+	//	locate.send("手机号", "13296541308");
 		locate.click("下一步");
-	//	locate.send("密码", "test0517");
-		locate.send("密码", "penghui19811026");
+		locate.send("密码", "test0517");
+	//	locate.send("密码", "penghui19811026");
 		locate.click("登录");
 		locate.click("不检查通讯录");
 
@@ -54,8 +54,9 @@ public class MainPage extends TestBase {
 		// System.out.println(elem.getAttribute("class"));
 
 		// bug: always pop up once the page refreshes
-//		locate.clickIfItemDisplayed("我知道了1");
-//		locate.clickIfItemDisplayed("我知道了");
+		locate.clickIfItemDisplayed("我知道了1");
+		locate.clickIfItemDisplayed("我知道了");
+		SysUtil.sleep(2);
 	}
 
 	// 个人护理

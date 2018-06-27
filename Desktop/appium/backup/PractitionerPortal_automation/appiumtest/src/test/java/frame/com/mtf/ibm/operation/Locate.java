@@ -132,6 +132,7 @@ public class Locate  {
 	        	System.out.println("[Info:] Your attribute " + attribute + " is not correct or empty for selenium,the API such as: id,name,etc");
 	        	break;
 			}
+		SysUtil.sleep(2);
 		return element;
 	}
 	
@@ -248,8 +249,7 @@ public class Locate  {
 		
 		WebElement element = null;
 		try {
-			element = this.isDisplayed(driver, target, 15);
-			SysUtil.sleep(5);
+			element = this.isDisplayed(driver, target, 10);
 			element.click();
 			LogUtil.step("Clicked at '" + target + "', Passed");
 		} catch (Exception e) {

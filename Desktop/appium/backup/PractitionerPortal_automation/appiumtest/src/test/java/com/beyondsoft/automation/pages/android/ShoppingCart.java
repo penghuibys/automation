@@ -27,8 +27,9 @@ public class ShoppingCart {
 		locate.click("前往购物车");
 		SysUtil.sleep(10);
 		// bug: always pop up once the page refreshes
-//		locate.clickIfItemDisplayed("我知道了1");
-//		locate.clickIfItemDisplayed("我知道了");
+		locate.clickIfItemDisplayed("我知道了1");
+		locate.clickIfItemDisplayed("我知道了");
+		SysUtil.sleep(2);
 	}
 	
 	public void confirm() throws InterruptedException {
@@ -53,8 +54,9 @@ public class ShoppingCart {
 			SysUtil.sleep(10);
 		}
 		// bug: always pop up once the page refreshes
-//		locate.clickIfItemDisplayed("我知道了1");
-//		locate.clickIfItemDisplayed("我知道了");
+		locate.clickIfItemDisplayed("我知道了1");
+		locate.clickIfItemDisplayed("我知道了");
+		SysUtil.sleep(2);
 	}
 	
 	private boolean isConfirmStillDisplayed() throws InterruptedException{

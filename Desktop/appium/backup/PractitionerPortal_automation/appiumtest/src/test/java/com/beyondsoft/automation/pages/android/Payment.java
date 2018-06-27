@@ -40,11 +40,11 @@ public class Payment {
 			SysUtil.sleep(5); 
 		}
 		// bug: always pop up once the page refreshes
-//		locate.clickIfItemDisplayed("我知道了1");
-//		locate.clickIfItemDisplayed("我知道了");
+		locate.clickIfItemDisplayed("我知道了1");
+		locate.clickIfItemDisplayed("我知道了");
 	//	SysUtil.sleep(5); 
 	//	locate.atScreen("提交成功");
-		SysUtil.sleep(5); 
+		SysUtil.sleep(2); 
 	}
 	
 	private boolean isGoPaymentStillDisplayed() throws InterruptedException{
