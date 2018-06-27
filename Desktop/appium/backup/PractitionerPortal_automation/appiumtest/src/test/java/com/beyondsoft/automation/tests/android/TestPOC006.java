@@ -57,7 +57,7 @@ public class TestPOC006 extends Setup{
 	  String buyAmount = settlement.getBuyAmount();
 	  FrameAssertion.contains(buyAmount, "320", "验证购货总额");
 	  String freight = settlement.getFreight();
-	  FrameAssertion.contains(freight, "10", "验证运费");
+	  FrameAssertion.contains(freight, "8.9", "验证运费");
 	  String deductedPoints = settlement.getDeductedPoints();
 	  FrameAssertion.contains(deductedPoints, "0", "验证扣减悦享分");
 	  
