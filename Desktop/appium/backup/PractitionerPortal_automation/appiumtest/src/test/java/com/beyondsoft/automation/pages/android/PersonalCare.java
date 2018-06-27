@@ -33,12 +33,13 @@ public class PersonalCare {
 		} else {
 			System.out.println("keyboard input");
 			androidDriver.tap(1, 449, 288, 1);
-			SysUtil.sleep(2);
+			SysUtil.sleep(5);
 			androidDriver.getKeyboard().sendKeys("7");
 			androidDriver.getKeyboard().sendKeys("9");
 			androidDriver.getKeyboard().sendKeys("5");
 			androidDriver.getKeyboard().sendKeys("9");
 			androidDriver.getKeyboard().sendKeys("3");
+			LogUtil.step("Keyboard Send Key '39597' to searchbox, Passed");
 		}
 		SysUtil.sleep(2);
 		locate.click("婴儿沐浴露");

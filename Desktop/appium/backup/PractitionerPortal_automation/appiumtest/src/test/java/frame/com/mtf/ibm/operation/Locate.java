@@ -132,7 +132,6 @@ public class Locate  {
 	        	System.out.println("[Info:] Your attribute " + attribute + " is not correct or empty for selenium,the API such as: id,name,etc");
 	        	break;
 			}
-		SysUtil.sleep(2);
 		return element;
 	}
 	

@@ -46,8 +46,8 @@ public class Order {
 			SysUtil.sleep(10);
 		}
 		// bug: always pop up once the page refreshes
-//		locate.clickIfItemDisplayed("我知道了1");
-//		locate.clickIfItemDisplayed("我知道了");
+		locate.clickIfItemDisplayed("我知道了1");
+		locate.clickIfItemDisplayed("我知道了");
 	}
 	
 	public String getPayed() throws InterruptedException {
