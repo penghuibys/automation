@@ -248,7 +248,7 @@ public class Locate  {
 		
 		WebElement element = null;
 		try {
-			element = this.isDisplayed(driver, target, 10);
+			element = this.isDisplayed(driver, target, 5);
 			element.click();
 			LogUtil.step("Clicked at '" + target + "', Passed");
 		} catch (Exception e) {

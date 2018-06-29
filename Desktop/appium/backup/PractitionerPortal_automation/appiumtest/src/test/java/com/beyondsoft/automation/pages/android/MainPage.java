@@ -1,7 +1,5 @@
 package com.beyondsoft.automation.pages.android;
 
-import java.util.List;
-import java.util.Set;
 
 import org.openqa.selenium.WebElement;
 import frame.com.mtf.ibm.operation.Locate;
@@ -20,8 +18,11 @@ public class MainPage extends TestBase {
 	public void navigateToAmywayCloudShopping() throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
 		SysUtil.sleep(5);
+		
+		locate.click("登录微信");
 	//	androidDriver.tap(1, 228, 1681, 1);
-		androidDriver.tap(1, 220, 1680, 1);
+	//	androidDriver.tap(1, 220, 1680, 1);
+		
 		locate.send("手机号", "18086627859");
 	//	locate.send("手机号", "13296541308");
 		locate.click("下一步");

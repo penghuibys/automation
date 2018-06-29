@@ -23,14 +23,17 @@ public class ChangeShopper extends TestBase{
 	
 	public void changeShopperAndConfirm() throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
-//		locate.click("更改");
-		androidDriver.tap(1, 989, 408, 1);//更改  P8
-//		androidDriver.tap(1, 989, 382, 1);//更改  Mate9
+		locate.click("更改");
+//		androidDriver.findElementByXPath("//android.view.View[contains(@content-desc,'更改')]").click();
+//		androidDriver.tap(1, 989, 408, 1);//更改  P8
+//		androidDriver.tap(1, 989, 382, 1);//更改  
+		locate.clickIfItemDisplayed("更改");
 		SysUtil.sleep(5);
 		locate.click("常用购货人按钮");
-		locate.send("常用购货人输入框", "48678350");
-		androidDriver.hideKeyboard();
+		locate.click("选择常用购货人");
 		locate.click("确定更改常用购货人");
+		locate.click("确定常用购货人");
+		SysUtil.sleep(15);
 //		androidDriver.tap(1, 811, 950, 1);//确定
 	}
 	

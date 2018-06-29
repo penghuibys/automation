@@ -26,10 +26,10 @@ public class TestPOC005 extends Setup{
 	  MainPage mainPage = new MainPage(androidDriver);
 	  mainPage.navigateToAmywayCloudShopping();
 	  
-//	  ChangeShopper change = new ChangeShopper(androidDriver);
-//	  change.changeShopperAndConfirm();
-//	  String currentShopper = change.getCurrentShopper();
-//	  FrameAssertion.contains(currentShopper, "48678350", "验证当前购货人");
+	  ChangeShopper change = new ChangeShopper(androidDriver);
+	  change.changeShopperAndConfirm();
+	  String currentShopper = change.getCurrentShopper();
+	  FrameAssertion.contains(currentShopper, "48678350", "验证当前购货人");
 	  
 	  PersonalCare personCare = new PersonalCare(androidDriver);
 	  personCare.searchBabyShampoo();
@@ -41,7 +41,7 @@ public class TestPOC005 extends Setup{
 	  
 	  //购物车
 	  List<String> getCurrentBuyer = shoppingCart.getCurrentShopper();
-	  FrameAssertion.contains(getCurrentBuyer.toString(), amwayId, "验证当前购货人");
+	  FrameAssertion.contains(getCurrentBuyer.toString(), "48678350", "验证当前购货人");
 	  String goodsAmount = shoppingCart.getGoodsAmount();
 	  FrameAssertion.contains(goodsAmount, "2", "验证婴儿沐浴露数量");
 	  String bv = shoppingCart.getBV();
