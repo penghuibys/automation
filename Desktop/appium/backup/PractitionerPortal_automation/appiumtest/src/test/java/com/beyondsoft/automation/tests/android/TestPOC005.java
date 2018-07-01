@@ -82,34 +82,41 @@ public class TestPOC005 extends Setup{
 
 	  //订单
 	  Order order = new Order(androidDriver);
+	  order.goToOrders();
 	  order.goToOrderDetails();
 	  
 	  String payed = order.getPayed();
 	  FrameAssertion.contains(payed, "200", "验证已支付金额");
 	  String toPay = order.getToPay();
 	  FrameAssertion.contains(toPay, "128.9", "验证剩余应付金额");
+	  order.closeOrderDetails();
 	  
-	  order.doPayment();//订单页面 立即支付
+	  order.doPaymentAgain();//订单页面 再次支付
 	  payment.doPayment();//支付页面 立即支付
 	  payment.paymentCompletion();
+	  order.goToOrders();
+	  order.goToAllOrder();
 	  order.goToOrderDetails();
 	  
-	  String orderOperator =  order.getOrderOperator();
-	  String channel =  order.getChannel();
-	  String orderStatus =  order.getOrderStatus();
-	  String paymentInfo =  order.getPaymentInformation();
+	  
+//	  String orderOperator =  order.getOrderOperator();
+//	  String channel =  order.getChannel();
+//	  String orderStatus =  order.getOrderStatus();
+//	  String paymentInfo =  order.getPaymentInformation();
 	  payed = order.getPayed();
 	  toPay = order.getToPay();
-	  List<String> multiValidation = order.getMultiValidation();
+	  String record = order.getPaymentRecords();
+//	  List<String> multiValidation = order.getMultiValidation();
 	  FrameAssertion.contains(payed, "328.9", "验证已支付金额");
 	  FrameAssertion.contains(toPay, "0", "验证剩余应付金额");
-	  FrameAssertion.contains(orderOperator, amwayId, "验证订单操作人");
-	  FrameAssertion.contains(channel, "云服务", "验证购货渠道");
-	  FrameAssertion.contains(orderStatus, "付款成功", "验证订单状态");
-	  FrameAssertion.contains(paymentInfo, "付款信息", "验证多笔支付");
-	  FrameAssertion.contains(multiValidation.toString(), "276.8", "验证净营业额");
-	  FrameAssertion.contains(multiValidation.toString(), "22.16", "验证销售指数");
-	  FrameAssertion.contains(multiValidation.toString(), "320", "验证总金额");
+	  FrameAssertion.contains(record, "2", "验证支付记录");
+//	  FrameAssertion.contains(orderOperator, amwayId, "验证订单操作人");
+//	  FrameAssertion.contains(channel, "云服务", "验证购货渠道");
+//	  FrameAssertion.contains(orderStatus, "付款成功", "验证订单状态");
+//	  FrameAssertion.contains(paymentInfo, "付款信息", "验证多笔支付");
+//	  FrameAssertion.contains(multiValidation.toString(), "276.8", "验证净营业额");
+//	  FrameAssertion.contains(multiValidation.toString(), "22.16", "验证销售指数");
+//	  FrameAssertion.contains(multiValidation.toString(), "320", "验证总金额");
   }
   
 }

@@ -27,7 +27,7 @@ public class ChangeShopper extends TestBase{
 //		androidDriver.findElementByXPath("//android.view.View[contains(@content-desc,'更改')]").click();
 //		androidDriver.tap(1, 989, 408, 1);//更改  P8
 //		androidDriver.tap(1, 989, 382, 1);//更改  
-		locate.clickIfItemDisplayed("更改");
+//		locate.clickIfItemDisplayed("更改");
 		SysUtil.sleep(5);
 		locate.click("常用购货人按钮");
 		locate.click("选择常用购货人");

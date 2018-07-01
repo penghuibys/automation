@@ -10,6 +10,7 @@ import com.beyondsoft.automation.base.Validation;
 
 import io.appium.java_client.AppiumDriver;
 import frame.com.mtf.ibm.operation.Locate;
+import frame.com.pp.auto.log.LogUtil;
 import frame.com.pp.auto.util.SysUtil;
 
 public class Order {
@@ -19,14 +20,64 @@ public class Order {
 		Order.androidDriver = androidDriver;
 	}
 	
-	public void goToOrderDetails() throws InterruptedException {
+	public void goToOrders() throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
-		locate.click("查看详情");
-		SysUtil.sleep(10); 
+		locate.click("查看订单");
+		SysUtil.sleep(5); 
 		// bug: always pop up once the page refreshes
 		locate.clickIfItemDisplayed("我知道了1");
 		locate.clickIfItemDisplayed("我知道了");
 		SysUtil.sleep(2);
+	}
+	
+	public void goToOrderDetails() throws InterruptedException {
+		Locate locate = new Locate(null, androidDriver);
+		locate.click("订单详情");
+	}
+	
+	public void closeOrderDetails() throws InterruptedException {
+//		Locate locate = new Locate(null, androidDriver);
+		try {
+			androidDriver.findElementById("cboxClose").click();
+		} catch (Exception e) {
+			//
+		}
+		SysUtil.sleep(5); 
+		
+		boolean closeIsDisplayed = false;
+		try {
+			closeIsDisplayed = androidDriver.findElementById("cboxClose").isDisplayed();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		if (closeIsDisplayed) {
+			androidDriver.tap(1, 1021, 282, 1);
+			LogUtil.step("Tap 'Close' to close order detail page, Passed");
+			SysUtil.sleep(5); 
+		}
+		
+		
+		
+	}
+	
+	public void doPaymentAgain() throws InterruptedException {
+		Locate locate = new Locate(null, androidDriver);
+	//	locate.swipeAction("down");
+		
+		SysUtil.sleep(5); 
+		locate.click("再次支付");
+		
+		// bug: always pop up once the page refreshes
+		locate.clickIfItemDisplayed("我知道了1");
+		locate.clickIfItemDisplayed("我知道了");
+	}
+	
+	
+	public void goToAllOrder() throws InterruptedException {
+		Locate locate = new Locate(null, androidDriver);
+		locate.click("全部订单");
+		SysUtil.sleep(5);
+	//	locate.click("订单详情");
 	}
 	
 	public void doPayment() throws InterruptedException {
@@ -89,6 +140,11 @@ public class Order {
 		
 		Validation validation = new Validation(null, androidDriver);
 		return validation.getAllValidationInfo("多种金额");
+	}
+	
+	public String getPaymentRecords() throws InterruptedException {
+		Validation validation = new Validation(null, androidDriver);
+		return validation.getValidationInfo("支付记录");
 	}
 
 

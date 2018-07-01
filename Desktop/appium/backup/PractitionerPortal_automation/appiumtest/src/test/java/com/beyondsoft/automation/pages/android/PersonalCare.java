@@ -20,8 +20,8 @@ public class PersonalCare {
 	public void searchBabyShampoo() throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
 		
-//		locate.click("个人护理");
-//		SysUtil.sleep(10);
+		locate.click("个人护理");
+		SysUtil.sleep(10);
 //		androidDriver.tap(1, 1008, 280, 1); // P8
 		androidDriver.tap(1, 1019, 282, 1); // Mate9
 
