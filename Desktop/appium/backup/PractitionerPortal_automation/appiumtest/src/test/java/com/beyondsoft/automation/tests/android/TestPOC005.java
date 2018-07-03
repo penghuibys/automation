@@ -44,10 +44,10 @@ public class TestPOC005 extends Setup{
 	  FrameAssertion.contains(getCurrentBuyer.toString(), "48678350", "验证当前购货人");
 	  String goodsAmount = shoppingCart.getGoodsAmount();
 	  FrameAssertion.contains(goodsAmount, "2", "验证婴儿沐浴露数量");
-	  String bv = shoppingCart.getBV();
-	  FrameAssertion.contains(bv, "276.80", "验证净营业额");
-	  String pv = shoppingCart.getPV();
-	  FrameAssertion.contains(pv, "22.16", "验证销售指数");
+	  List<String> list = shoppingCart.getBVPVMoney();
+	  FrameAssertion.contains(list.toString(), "276.80", "验证净营业额");
+//	  String pv = shoppingCart.getPV();
+	  FrameAssertion.contains(list.toString(), "22.16", "验证销售指数");
 	  List<String> moneyAmount = shoppingCart.getMoneyAmount();
 	  FrameAssertion.contains(moneyAmount.toString(), "320", "验证金额小计");
 	  List<String> totalAmount = shoppingCart.getTotalMoneyAmount();

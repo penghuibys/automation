@@ -97,6 +97,11 @@ public class ShoppingCart {
 		return validation.getAllValidationInfo("总额");
 	}
 	
+	public List<String> getBVPVMoney() throws InterruptedException {
+		Validation validation = new Validation(null, androidDriver);
+		return validation.getAllValidationInfo("多重验证");
+	}
+	
 
 
 }
