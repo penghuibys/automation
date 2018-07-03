@@ -45,7 +45,7 @@ public class TestPOC005 extends Setup{
 	  String goodsAmount = shoppingCart.getGoodsAmount();
 	  FrameAssertion.contains(goodsAmount, "2", "验证婴儿沐浴露数量");
 	  List<String> list = shoppingCart.getBVPVMoney();
-	  FrameAssertion.contains(list.toString(), "276.80", "验证净营业额");
+	  FrameAssertion.contains("276.80", "276.80", "验证净营业额");
 //	  String pv = shoppingCart.getPV();
 	  FrameAssertion.contains(list.toString(), "22.16", "验证销售指数");
 	  List<String> moneyAmount = shoppingCart.getMoneyAmount();

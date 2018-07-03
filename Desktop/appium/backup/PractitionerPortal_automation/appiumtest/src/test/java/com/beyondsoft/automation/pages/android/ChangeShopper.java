@@ -37,7 +37,7 @@ public class ChangeShopper extends TestBase{
 //		locate.clickIfItemDisplayed("更改");
 		SysUtil.sleep(5);
 		locate.click("常用购货人按钮");
-		SysUtil.sleep(5);
+		SysUtil.sleep(2);
 		try {
 			androidDriver.findElementByXPath("//android.view.View[@content-desc='选择常用购货人']/../following-sibling::android.view.View//android.widget.EditText").isDisplayed();
 		} catch (Exception e) {
@@ -45,11 +45,20 @@ public class ChangeShopper extends TestBase{
 			LogUtil.step("Tap '常用购货人按钮', Passed");
 			SysUtil.sleep(5);
 		}
-		locate.click("选择常用购货人");
+		androidDriver.tap(1, 388, 1592, 1);
+//		locate.click("选择常用购货人");
 		locate.click("确定更改常用购货人");
+		
+		SysUtil.sleep(2);
 		locate.click("确定常用购货人");
 		SysUtil.sleep(15);
-//		androidDriver.tap(1, 811, 950, 1);//确定
+		
+		try {
+			androidDriver.findElementByXPath("//android.view.View[contains(@content-desc,'当前购货人')]/following-sibling::android.view.View").isDisplayed();
+		} catch (Exception e) {
+			androidDriver.tap(1, 106, 1733, 1);
+			SysUtil.sleep(15);
+		}
 	}
 	
 	public String getCurrentShopper() throws InterruptedException {

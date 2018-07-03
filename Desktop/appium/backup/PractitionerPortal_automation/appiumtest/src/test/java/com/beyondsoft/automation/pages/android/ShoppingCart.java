@@ -35,18 +35,18 @@ public class ShoppingCart {
 	public void confirm() throws InterruptedException {
 		Locate locate = new Locate(null, androidDriver);
 //		locate.click("去结算");
-		try {
-			androidDriver.findElementByXPath("//android.view.View[@content-desc='去结算']").click();
-		} catch (Exception e) {
-			SysUtil.sleep(10);
-			int x = androidDriver.findElementByXPath("//android.view.View[@content-desc='去结算']").getLocation().getX();
-			int y = androidDriver.findElementByXPath("//android.view.View[@content-desc='去结算']").getLocation().getY();
-			androidDriver.tap(1, x, y, 1);
-			SysUtil.sleep(10);
-		}
-		SysUtil.sleep(5);
+//		try {
+//			androidDriver.findElementByXPath("//android.view.View[@content-desc='去结算']").click();
+//		} catch (Exception e) {
+//			SysUtil.sleep(10);
+//			int x = androidDriver.findElementByXPath("//android.view.View[@content-desc='去结算']").getLocation().getX();
+//			int y = androidDriver.findElementByXPath("//android.view.View[@content-desc='去结算']").getLocation().getY();
+//			androidDriver.tap(1, x, y, 1);
+//			SysUtil.sleep(10);
+//		}
+		androidDriver.tap(1, 935, 1737, 1);
+		SysUtil.sleep(15);
 //		locate.clickIfItemDisplayed("确定");
-		SysUtil.sleep(10);
 		if (isConfirmStillDisplayed()) {
 			int x = androidDriver.findElementById("cartpageLabelConfirmSingle").getLocation().getX();
 			int y = androidDriver.findElementById("cartpageLabelConfirmSingle").getLocation().getY();
