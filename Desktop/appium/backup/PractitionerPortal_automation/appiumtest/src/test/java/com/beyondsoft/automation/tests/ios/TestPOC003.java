@@ -54,6 +54,9 @@ public class TestPOC003 extends Setup{
 //	  FrameAssertion.contains(validation.toString(), "成功扣除", "验证支付成功信息");
 //	  FrameAssertion.contains(validation.toString(), "20.0 悦享分", "验证支付成功信息");
 	  
+	  
+	  System.out.println("hello");
+	  
   }
   
 }
