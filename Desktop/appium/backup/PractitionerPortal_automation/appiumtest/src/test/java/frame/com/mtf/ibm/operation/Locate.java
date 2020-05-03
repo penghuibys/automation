@@ -468,7 +468,7 @@ public class Locate  {
     	switch (direction) {    	
 			case "up":
 				if (driver.getCapabilities().getCapability("platformName").toString().equalsIgnoreCase("Android")) {
-					driver.swipe(width / 2, height * 3 / 4, width / 2, height / 4, 2000);
+					driver.swipe(width / 2, height * 5 / 6, width / 2, height / 6, 4000);
 					SysUtil.sleep(2);
 				} else {
 					JavascriptExecutor js = (JavascriptExecutor) driver;

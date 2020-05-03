@@ -3,4 +3,6 @@
 /frame-output/
 .classpath
 .DS_Store
+.idea
+appiumtest.iml
 /.settings

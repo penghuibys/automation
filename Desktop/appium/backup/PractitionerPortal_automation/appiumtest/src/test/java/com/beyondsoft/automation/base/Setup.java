@@ -30,7 +30,27 @@ public class Setup extends TestBase{
 
 	  	setMobileDriver(androidDriver); 
   }
-  
+
+	public void setUpAndroidDriver_() throws MalformedURLException{
+		android = new AndroidInit();
+		androidDriver = android.launchTikTokApp();
+
+		setMobileDriver(androidDriver);
+	}
+
+	public void setUpAndroidDriver_ks() throws MalformedURLException{
+		android = new AndroidInit();
+		androidDriver = android.launchKsApp();
+
+		setMobileDriver(androidDriver);
+	}
+
+	public void setUpAndroidDriver_hs() throws MalformedURLException{
+		android = new AndroidInit();
+		androidDriver = android.launchHsApp();
+
+		setMobileDriver(androidDriver);
+	}
   
   public void setUpIosDriver() throws MalformedURLException{
 	  	ios = new IOSInit();
